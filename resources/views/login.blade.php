@@ -71,10 +71,19 @@
 			<div class="content-error">
 				<div class="hpanel">
                     <div class="panel-body">
-                        <form action="#" id="loginForm">
+                        <form action="{{ route('xu-ly-dang-nhap') }}" id="loginForm" method="POST">
+                            @csrf
+                            @if (Session::has('alert'))
+                                <div class="alert alert-success">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                    {{ Session::get('alert') }}
+                                </div>
+                            @endif
                             <div class="form-group">
                                 <label class="control-label" for="username">Tên đăng nhập</label>
-                                <input type="text" placeholder="Vui lòng điền tên đăng nhập . . ." required="Không được để trống" value="" name="username" id="username" class="form-control">
+                                <input type="text" autocomplete="off" placeholder="Vui lòng điền tên đăng nhập . . ." required="Không được để trống" value="" name="username" id="username" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label class="control-label" for="password">Mật khẩu</label>
@@ -86,6 +95,7 @@
                                 <p class="help-block small">(nếu đây là máy tính cá nhân)</p>
                             </div>
                             <button class="btn btn-success btn-block loginbtn">Đăng nhập</button>
+                            <a class="btn btn-success btn-block loginbtn" href="{{ route('dang-ky') }}">Đăng ký</a>
                         </form>
                     </div>
                 </div>

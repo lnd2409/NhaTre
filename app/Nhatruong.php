@@ -3,22 +3,26 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
-class User extends Model  {
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+class Nhatruong extends Authenticatable  {
 
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'users';
+    protected $table = 'nhatruong';
+
+    protected $primaryKey = 'nt_id';
 
     /**
      * Attributes that should be mass-assignable.
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'email_verified_at', 'password', 'remember_token'];
+    protected $fillable = ['nt_id', 'nt_tentruong', 'nt_diachi', 'nt_sodienthoai', 'nt_email', 'username', 'password', 'nt_trangthai'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -39,6 +43,6 @@ class User extends Model  {
      *
      * @var array
      */
-    protected $dates = ['email_verified_at'];
+    protected $dates = [];
 
 }

@@ -11,6 +11,11 @@
 		============================================ -->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('template') }}/img/favicon.ico">
     {{-- include css --}}
+    <style>
+        * {padding: 0; margin: 0;}
+.booth {width: 400px; height: auto; margin: 20px auto; padding: 10px; background-color: #f1f1f1; border: 1px solid #e5e5e5;}
+.booth a {display: block; padding: 10px; text-align: center; background-color: #428bca; margin: 10px 0; font-size: 15px; color: #fff; text-decoration: none;}
+    </style>
     @include('admin.template.css')
 
 </head>

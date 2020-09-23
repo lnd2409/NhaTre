@@ -46,6 +46,14 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+        'nhatruong' => [
+            'driver' => 'session',
+            'provider' => 'nhatruong',
+        ],
+        'nhatruong-api' => [
+            'driver' => 'token',
+            'provider' => 'nhatruong',
+        ],
     ],
 
     /*
@@ -75,6 +83,10 @@ return [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
+        'nhatruong' => [
+            'driver' => 'eloquent',
+            'model' => App\Nhatruong::class,
+        ],
     ],
 
     /*
