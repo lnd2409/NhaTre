@@ -19,9 +19,11 @@ class CreateLopHocTable extends Migration
             $table->bigInteger('nt_id')->unsigned();
             $table->bigInteger('kh_id')->unsigned();
             $table->bigInteger('hknh_id')->unsigned();
+            $table->bigInteger('gv_id')->unsigned()->nullable();
             $table->foreign('nt_id')->references('nt_id')->on('nhatruong_khoihoc')->onDelete('cascade');
             $table->foreign('kh_id')->references('kh_id')->on('nhatruong_khoihoc')->onDelete('cascade');
             $table->foreign('hknh_id')->references('hknh_id')->on('hocky_namhoc')->onDelete('cascade');
+            $table->foreign('gv_id')->references('gv_id')->on('giaovien')->onDelete('cascade');
             $table->timestamps();
         });
     }

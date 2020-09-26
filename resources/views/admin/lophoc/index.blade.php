@@ -1,6 +1,6 @@
 @extends('admin.template.master')
 @section('title')
-    Giáo viên
+    lớp học
 @endsection
 @section('content')
 <div class="container-fluid">
@@ -69,7 +69,7 @@
                                 <ul class="breadcome-menu">
                                     <li><a href="{{ route('admin') }}">Trang chủ</a> <span class="bread-slash">/</span>
                                     </li>
-                                    <li><span class="bread-blod">Danh sách giáo viên</span>
+                                    <li><span class="bread-blod">Danh sách lớp học</span>
                                     </li>
                                 </ul>
                             </div>
@@ -83,63 +83,81 @@
 <div class="contacts-area mg-b-15">
     <div class="container-fluid">
         <div class="row">
-            @foreach ($danhSachGiaoVien as $item)
-            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                <div class="hpanel hblue contact-panel contact-panel-cs responsive-mg-b-30">
-                    <div class="panel-body custom-panel-jw">
-                        <img alt="logo" class="img-circle m-b" src="{{ asset('template') }}/img/contact/1.jpg">
-                        <h3><a href="">{{ $item->gv_ten }}</a></h3>
-                        <p class="all-pro-ad">Địa chỉ: {{ $item->gv_diachi }}</p>
-                        <p>Số điện thoại: {{ $item->gv_sdt }}</p>
-                        <p>Ngày sinh: {{ $item->gv_ngaysinh }}</p>
-                        <p>Giới tính: {{ $item->gv_gioitinh == 1 ? 'Nam' : 'Nữ' }}</p>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="sparkline8-list">
+                    <div class="sparkline8-hd">
+                        <div class="main-sparkline8-hd text-center">
+                            <h1>Danh sách lớp {{ $tenKhoi->kh_tenkhoi }}</h1>
+                        </div>
                     </div>
-                    <div class="panel-footer contact-footer" style="background-color: unset;">
-                        <a href="#" class="btn btn-info openModal" data-toggle="modal" data-target="#myModal" data-id="{{ $item->gv_id }}">Chỉnh sửa</a>
-                        <a href="#" class="btn btn-danger">Xóa</a>
+                    <div class="sparkline8-graph">
+                        <div class="static-table-list">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Mã lớp</th>
+                                        <th>Tên lớp</th>
+                                        <th>Giáo viên quản lý</th>
+                                        <th>Thao tác</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($dsLop as $item)
+                                    <tr>
+                                        <td>{{ $item->lh_id }}</td>
+                                        <td>{{ $item->lh_tenlop }}</td>
+                                        <td>
+
+                                            @if ($item->gv_id == NULL)
+                                                <a href="#">Chọn giáo viên</a>
+                                            @else
+                                            {{-- <a href="{{ route('chi-tiet-giao-vien', ['id'=>$giaoVien[$item->gv_id][0]->gv_id]) }}">{{ $giaoVien[$item->gv_id][0]->gv_ten }}</a> --}}
+                                            <a href="#" data-toggle="modal" id="lopHoc" data-lop="{{ $item->lh_tenlop }}" class="openModal" data-target="#modalShow"  data-id="{{ $giaoVien[$item->gv_id][0]->gv_id }}">{{ $giaoVien[$item->gv_id][0]->gv_ten }}</a>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            <a href="#" class="btn btn-success">Sửa</a>
+                                            <a href="#" class="btn btn-danger">Xóa</a>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
-            @endforeach
         </div>
     </div>
 </div>
-<div id="myModal" class="modal fade" role="dialog">
+<div id="modalShow" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Chỉnh sửa thông tin giáo viên </h4>
+                <h3 class="modal-title">Thông tin giáo viên</h3>
+                <h4>Chủ nhiệm: <span id="tenLop"></span></h4>
             </div>
             <div class="modal-body">
-                <form>
-                    <div class="form-group">
-                        <label>Tên giáo viên</label>
-                        <input type="text" class="form-control" id="tenGiaoVien">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>Họ tên: <span  id="tenGiaoVien"></span></p>
+                        <p>Địa chỉ: <span  id="diaChi"></span></p>
+                        <p>Ngày sinh: <span  id="diaChi"></span></p>
+                        <p>SĐT: <span  id="sdt"></span></p>
                     </div>
-                    <div class="form-group">
-                        <label>Địa chỉ</label>
-                        <input type="text" class="form-control" id="diaChi">
+                    <div class="col-md-6">
+                        <img alt="logo"  width="60%" src="{{ asset('template') }}/img/contact/1.jpg">
                     </div>
-                    <div class="form-group">
-                        <label>Ngày sinh</label>
-                        <input type="text" class="form-control" id="ngaySinh">
-                    </div>
-                    <div class="form-group">
-                        <label>Số điện thoại</label>
-                        <input type="text" class="form-control" id="sdt">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Cập nhật</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                </form>
+                </div>
             </div>
             <div class="modal-footer">
-                <p class="text-center">Kiểm tra kỹ thông tin trước khi cập nhật</p>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
             </div>
         </div>
 
     </div>
 </div>
-@endsection
 
+@endsection

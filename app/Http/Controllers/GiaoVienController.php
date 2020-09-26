@@ -4,22 +4,24 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use Auth;
 class GiaoVienController extends Controller
 {
     public function index()
     {
-        $danhSachGiaoVien = DB::table('giaovien')->get();
+        $id = Auth::guard('nhatruong')->id();
+        $danhSachGiaoVien = DB::table('giaovien')->where('nt_id',$id)->get();
         return view('admin.giaovien.index', compact('danhSachGiaoVien'));
     }
 
-    public function themGiaoVien(Request $request)
+    public function themGiaoVien()
     {
-
         return view('admin.giaovien.them-giao-vien');
     }
 
     public function xuLyThemGiaoVien(Request $request)
     {
+        $id = Auth::guard('nhatruong')->id();
         $hoTen = $request->hoTen;
         $diaChi = $request->diaChi;
         $sdt = $request->sdt;
@@ -32,16 +34,16 @@ class GiaoVienController extends Controller
                 'gv_sdt' => $sdt,
                 'gv_ngaysinh' => $ngaySinh,
                 'gv_gioitinh' => $gioiTinh,
-                'nt_id' => 1,
+                'nt_id' => $id,
             ]
         );
-        // dd('re');
         return redirect()->route('danh-sach-giao-vien');
     }
 
     public function chiTietGiaoVien($id)
     {
-        return view('admin.giaovien.chi-tiet');
+        $giaoVien = DB::table('giaovien')->where('gv_id',$id)->first();
+        return response()->json($giaoVien, 200);
     }
 
     public function xoaGiaoVien($id)

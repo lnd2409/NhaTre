@@ -34,9 +34,9 @@
                     <li class="">
                         <a class="has-arrow" href="all-courses.html" aria-expanded="false"><span class="educate-icon educate-library icon-wrap"></span> <span class="mini-click-non">Lớp học</span></a>
                         <ul class="submenu-angle collapse" aria-expanded="false" style="height: 0px;">
-                            <li><a title="All Library" href="library-assets.html"><span class="mini-sub-pro">Lớp mầm</span></a></li>
-                            <li><a title="Add Library" href="add-library-assets.html"><span class="mini-sub-pro">Lớp chồi</span></a></li>
-                            <li><a title="Edit Library" href="edit-library-assets.html"><span class="mini-sub-pro">Lớp lá</span></a></li>
+                            @foreach ($khoiHoc as $item)
+                                <li><a href="{{ route('danh-sach-lop-hoc', ['idKhoi'=>$item->kh_id]) }}"><span class="mini-sub-pro">Lớp {{ $item->kh_tenkhoi }}</span></a></li>
+                            @endforeach
                         </ul>
                     </li>
                 </ul>

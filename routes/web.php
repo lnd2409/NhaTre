@@ -32,6 +32,9 @@ Route::group(['middleware' => ['checkNhaTruong']], function () {
             Route::post('/xu-ly-them-giao-vien', 'GiaoVienController@xuLyThemGiaoVien')->name('xu-ly-themm-giao-vien');
             Route::get('/chi-tiet/{id}','GiaoVienController@chiTietGiaoVien')->name('chi-tiet-giao-vien');
         });
+        Route::group(['prefix' => 'lop-hoc'], function () {
+            Route::get('{idKhoi}','LopHocController@index')->name('danh-sach-lop-hoc');
+        });
     });
 
     Route::get('/dang-xuat', 'NhaTruongController@logout')->name('dang-xuat');

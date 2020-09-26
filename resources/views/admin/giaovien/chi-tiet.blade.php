@@ -83,7 +83,7 @@
 <div class="contacts-area mg-b-15">
     <div class="container-fluid">
         <div class="row">
-
+            <h1>{{ $giaoVien->gv_ten }}</h1>
         </div>
     </div>
 </div>
