@@ -114,22 +114,30 @@
             </div>
             <div class="modal-body">
                 <form>
+                    <input type="text" id="idGiaoVien">
                     <div class="form-group">
                         <label>Tên giáo viên</label>
-                        <input type="text" class="form-control" id="tenGiaoVien">
+                        <input type="text" name="hoTen" class="form-control" id="tenGiaoVien">
                     </div>
                     <div class="form-group">
                         <label>Địa chỉ</label>
-                        <input type="text" class="form-control" id="diaChi">
+                        <input type="text" name="diaChi" class="form-control" id="diaChi">
                     </div>
                     <div class="form-group">
                         <label>Ngày sinh</label>
-                        <input type="text" class="form-control" id="ngaySinh">
+                        <input type="text" name="ngaySinh" class="form-control" id="ngaySinh">
                     </div>
                     <div class="form-group">
                         <label>Số điện thoại</label>
-                        <input type="text" class="form-control" id="sdt">
+                        <input type="text" name="sdt" class="form-control" id="sdt">
                     </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Giới tính</label>
+                        <select class="form-control" name="gioiTinh">
+                          <option value="1" id="men">Nam</option>
+                          <option value="0" id="women">Nữ</option>
+                        </select>
+                      </div>
                     <button type="submit" class="btn btn-primary">Cập nhật</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
                 </form>

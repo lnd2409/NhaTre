@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use Auth;
+use Session;
 class GiaoVienController extends Controller
 {
     public function index()
@@ -44,6 +45,25 @@ class GiaoVienController extends Controller
     {
         $giaoVien = DB::table('giaovien')->where('gv_id',$id)->first();
         return response()->json($giaoVien, 200);
+    }
+
+
+    public function xuLySuaGiaoVien(Request $request)
+    {
+        $hoTen = $request->hoTen;
+        $diaChi = $request->diaChi;
+        $sdt = $request->sdt;
+        $ngaySinh = $request->ngaySinh;
+        $gioiTinh = $request->gioiTinh;
+        $giaoVien = DB::table('giaovien')->where('gv_id', $id)->update([
+            'gv_ten' => $hoTen,
+            'gv_diachi' => $diaChi,
+            'gv_sdt' => $sdt,
+            'gv_ngaysinh' => $ngaySinh,
+            'gv_gioitinh' => $gioiTinh,
+        ]);
+        Session::flash('alert','Chỉnh sửa thông tin thành công');
+        return redirect()->back();
     }
 
     public function xoaGiaoVien($id)
