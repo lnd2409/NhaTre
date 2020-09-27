@@ -14,7 +14,8 @@ class CreateMonAnTable extends Migration
     public function up()
     {
         Schema::create('monan', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('ma_id');
+            $table->string('ma_ten',150);
             $table->timestamps();
         });
     }

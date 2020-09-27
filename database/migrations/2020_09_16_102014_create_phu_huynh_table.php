@@ -14,7 +14,7 @@ class CreatePhuHuynhTable extends Migration
     public function up()
     {
         Schema::create('phuhuynh', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('ph_id');
             $table->timestamps();
         });
     }

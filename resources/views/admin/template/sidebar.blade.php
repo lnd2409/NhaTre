@@ -14,12 +14,6 @@
                             <span class="mini-click-non" >Trang điều khiển</span>
                         </a>
                     </li>
-                    <li>
-                        <a title="Landing Page" href="#" aria-expanded="false">
-                            <span class="educate-icon educate-event icon-wrap sub-icon-mg" aria-hidden="true"></span>
-                            <span class="mini-click-non">Event</span>
-                        </a>
-                    </li>
                     {{-- Giáo viên --}}
                     <li class="">
                         <a class="has-arrow" href="all-professors.html"
@@ -32,11 +26,19 @@
                     </li>
                     {{-- Lớp học --}}
                     <li class="">
-                        <a class="has-arrow" href="all-courses.html" aria-expanded="false"><span class="educate-icon educate-library icon-wrap"></span> <span class="mini-click-non">Lớp học</span></a>
+                        <a class="has-arrow" href="all-courses.html" aria-expanded="false"><span class="educate-icon educate-event icon-wrap sub-icon-mg" aria-hidden="true"></span> <span class="mini-click-non">Lớp học</span></a>
                         <ul class="submenu-angle collapse" aria-expanded="false" style="height: 0px;">
                             @foreach ($khoiHoc as $item)
                                 <li><a href="{{ route('danh-sach-lop-hoc', ['idKhoi'=>$item->kh_id]) }}"><span class="mini-sub-pro">Lớp {{ $item->kh_tenkhoi }}</span></a></li>
                             @endforeach
+                        </ul>
+                    </li>
+                    {{-- Thực đơn --}}
+                    <li class="">
+                        <a class="has-arrow" href="all-courses.html" aria-expanded="false"><span class="educate-icon educate-library icon-wrap"></span> <span class="mini-click-non">Thực đơn</span></a>
+                        <ul class="submenu-angle collapse" aria-expanded="false" style="height: 0px;">
+                            <li><a href="#"><span class="mini-sub-pro">Cập nhật thực đơn</span></a></li>
+                            <li><a href="#"><span class="mini-sub-pro">Quản lý món ăn</span></a></li>
                         </ul>
                     </li>
                 </ul>

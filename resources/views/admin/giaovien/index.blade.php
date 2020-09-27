@@ -83,6 +83,18 @@
 <div class="contacts-area mg-b-15">
     <div class="container-fluid">
         <div class="row">
+            <div class="col-md-12">
+                @if (Session::has('alert'))
+                    <div class="alert alert-success">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        <strong>Thành công! </strong> Hoàn tất cập nhật thông tin.
+                    </div>
+                @endif
+            </div>
+        </div>
+        <div class="row">
             @foreach ($danhSachGiaoVien as $item)
             <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                 <div class="hpanel hblue contact-panel contact-panel-cs responsive-mg-b-30">
@@ -113,23 +125,24 @@
                 <h4 class="modal-title">Chỉnh sửa thông tin giáo viên </h4>
             </div>
             <div class="modal-body">
-                <form>
-                    <input type="text" id="idGiaoVien">
+                <form action="{{ route('xu-ly-sua-giao-vien') }}" method="POST">
+                    @csrf
+                    <input type="text" name="idGiaoVien" id="idGiaoVien" hidden>
                     <div class="form-group">
                         <label>Tên giáo viên</label>
-                        <input type="text" name="hoTen" class="form-control" id="tenGiaoVien">
+                        <input type="text" autocomplete="off" name="hoTen" class="form-control" id="tenGiaoVien">
                     </div>
                     <div class="form-group">
                         <label>Địa chỉ</label>
-                        <input type="text" name="diaChi" class="form-control" id="diaChi">
+                        <input type="text" autocomplete="off" name="diaChi" class="form-control" id="diaChi">
                     </div>
                     <div class="form-group">
                         <label>Ngày sinh</label>
-                        <input type="text" name="ngaySinh" class="form-control" id="ngaySinh">
+                        <input type="text" autocomplete="off" name="ngaySinh" class="form-control" id="ngaySinh">
                     </div>
                     <div class="form-group">
                         <label>Số điện thoại</label>
-                        <input type="text" name="sdt" class="form-control" id="sdt">
+                        <input type="text" autocomplete="off" name="sdt" class="form-control" id="sdt">
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlSelect1">Giới tính</label>

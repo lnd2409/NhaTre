@@ -55,7 +55,7 @@ class GiaoVienController extends Controller
         $sdt = $request->sdt;
         $ngaySinh = $request->ngaySinh;
         $gioiTinh = $request->gioiTinh;
-        $giaoVien = DB::table('giaovien')->where('gv_id', $id)->update([
+        $giaoVien = DB::table('giaovien')->where('gv_id', $request->idGiaoVien)->update([
             'gv_ten' => $hoTen,
             'gv_diachi' => $diaChi,
             'gv_sdt' => $sdt,

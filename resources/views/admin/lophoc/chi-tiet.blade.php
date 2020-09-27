@@ -1,6 +1,6 @@
 @extends('admin.template.master')
 @section('title')
-    lớp học
+    Chi tiết lớp học
 @endsection
 @section('content')
 <div class="container-fluid">
@@ -69,7 +69,7 @@
                                 <ul class="breadcome-menu">
                                     <li><a href="{{ route('admin') }}">Trang chủ</a> <span class="bread-slash">/</span>
                                     </li>
-                                    <li><span class="bread-blod">Danh sách lớp học</span>
+                                    <li><span class="bread-blod">Chi tiết lớp học</span>
                                     </li>
                                 </ul>
                             </div>
@@ -84,81 +84,61 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="sparkline8-list">
-                    <div class="sparkline8-hd">
-                        <div class="main-sparkline8-hd text-center">
-                            <h1>Danh sách lớp {{ $tenKhoi->kh_tenkhoi }}</h1>
+                <div class="product-status-wrap">
+                    <div class="col-md-12" style="padding-left: 0px;">
+                        <h4 class="text-center">Danh sách học sinh lớp mầm 1</h4>
+                    </div>
+
+
+                    <div class="col-md-12" style="padding-left: 0px;">
+                        <p>Giáo viên chủ nhiệm: <b>Lê Ngọc Đức</b></p>
+                    </div>
+                    <div class="col-md-12" style="margin-bottom: 20px; padding-left: 0px;">
+                        <div class="breadcome-heading">
+                            <form role="search" class="sr-input-func">
+                                <input type="text" placeholder="Tìm kiếm học sinh theo tên..." class="search-int form-control" style="width: 300px;">
+                                <a href="#" style="right: -105px;"><i class="fa fa-search"></i></a>
+                            </form>
                         </div>
                     </div>
-                    <div class="sparkline8-graph">
-                        <div class="static-table-list">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Mã lớp</th>
-                                        <th>Tên lớp</th>
-                                        <th>Giáo viên quản lý</th>
-                                        <th>Thao tác</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($dsLop as $item)
-                                    <tr>
-                                        <td>{{ $item->lh_id }}</td>
-                                        <td>{{ $item->lh_tenlop }}</td>
-                                        <td>
-
-                                            @if ($item->gv_id == NULL)
-                                                <a href="#">Chọn giáo viên</a>
-                                            @else
-                                            {{-- <a href="{{ route('chi-tiet-giao-vien', ['id'=>$giaoVien[$item->gv_id][0]->gv_id]) }}">{{ $giaoVien[$item->gv_id][0]->gv_ten }}</a> --}}
-                                            <a href="#" data-toggle="modal" id="lopHoc" data-lop="{{ $item->lh_tenlop }}" class="openModal" data-target="#modalShow"  data-id="{{ $giaoVien[$item->gv_id][0]->gv_id }}">{{ $giaoVien[$item->gv_id][0]->gv_ten }}</a>
-                                            @endif
-                                        </td>
-                                        <td>
-                                            <a href="{{ route('chi-tiet-lop-hoc') }}" class="btn btn-default">Chi tiết</a>
-                                            <a href="#" class="btn btn-success">Sửa</a>
-                                            <a href="#" class="btn btn-danger">Xóa</a>
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
+                    <div class="asset-inner">
+                        <table>
+                            <tbody>
+                            <tr>
+                                <th>Số HS</th>
+                                <th>Ảnh đại diện</th>
+                                <th>Họ tên</th>
+                                <th>Ngày sinh</th>
+                                <th>Nơi sinh</th>
+                                <th>Phụ huynh</th>
+                                <th>Thao tác</th>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td><img src="{{ asset('template') }}/img/product/book-1.jpg" alt=""></td>
+                                <td>Lê Minh Tiến</td>
+                                <td>24/8/2017</td>
+                                <td>An Giang</td>
+                                <td><a href="#">Lê Ngọc Đức</a></td>
+                                <td>
+                                    <button data-toggle="tooltip" title="" class="pd-setting-ed" data-original-title="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                                    <button data-toggle="tooltip" title="" class="pd-setting-ed" data-original-title="Trash"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                </td>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="custom-pagination">
+                        <ul class="pagination">
+                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<div id="modalShow" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h3 class="modal-title">Thông tin giáo viên</h3>
-                <h4>Chủ nhiệm: <span id="tenLop"></span></h4>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-6">
-                        <p>Họ tên: <span  id="tenGiaoVien"></span></p>
-                        <p>Địa chỉ: <span  id="diaChi"></span></p>
-                        <p>Ngày sinh: <span  id="diaChi"></span></p>
-                        <p>SĐT: <span  id="sdt"></span></p>
-                    </div>
-                    <div class="col-md-6">
-                        <img alt="logo"  width="60%" src="{{ asset('template') }}/img/contact/1.jpg">
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-            </div>
-        </div>
-
-    </div>
-</div>
-
 @endsection

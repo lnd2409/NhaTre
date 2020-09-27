@@ -14,7 +14,12 @@ class CreateThucDonTable extends Migration
     public function up()
     {
         Schema::create('thucdon', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('td_id');
+            $table->date('td_ngayapdung');
+            $table->bigInteger('nt_id')->unsigned();
+            $table->foreign('nt_id')->references('nt_id')->on('nhatruong_khoihoc')->onDelete('cascade');
+            $table->bigInteger('kh_id')->unsigned();
+            $table->foreign('kh_id')->references('kh_id')->on('nhatruong_khoihoc')->onDelete('cascade');
             $table->timestamps();
         });
     }

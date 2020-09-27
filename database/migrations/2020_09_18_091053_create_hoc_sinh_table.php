@@ -14,7 +14,7 @@ class CreateHocSinhTable extends Migration
     public function up()
     {
         Schema::create('hocsinh', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('hs_id');
             $table->timestamps();
         });
     }

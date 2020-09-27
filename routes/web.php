@@ -35,6 +35,9 @@ Route::group(['middleware' => ['checkNhaTruong']], function () {
         });
         Route::group(['prefix' => 'lop-hoc'], function () {
             Route::get('{idKhoi}','LopHocController@index')->name('danh-sach-lop-hoc');
+            Route::get('/chi-tiet/lop-hoc', function () {
+                return view('admin.lophoc.chi-tiet');
+            })->name('chi-tiet-lop-hoc');
         });
     });
 
