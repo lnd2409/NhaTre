@@ -15,6 +15,11 @@ class CreateHocSinhTable extends Migration
     {
         Schema::create('hocsinh', function (Blueprint $table) {
             $table->bigIncrements('hs_id');
+            $table->string('hs_hoten');
+            $table->string('hs_noisinh');
+            $table->date('hs_ngaysinh');
+            $table->bigInteger('lh_id')->unsigned()->nullable();
+            $table->foreign('lh_id')->references('lh_id')->on('lophoc');
             $table->timestamps();
         });
     }

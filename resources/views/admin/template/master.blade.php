@@ -16,8 +16,8 @@
 .booth {width: 400px; height: auto; margin: 20px auto; padding: 10px; background-color: #f1f1f1; border: 1px solid #e5e5e5;}
 .booth a {display: block; padding: 10px; text-align: center; background-color: #428bca; margin: 10px 0; font-size: 15px; color: #fff; text-decoration: none;}
     </style>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
     @include('admin.template.css')
-
 </head>
 
 <body>
@@ -31,6 +31,7 @@
 
     @include('admin.template.js')
     {{-- Và đây là AJAX --}}
+    {{-- Giáo viên --}}
     @if (Request::path() == 'giao-vien/danh-sach-giao-vien')
         <script>
             $(document).ready(function(){
@@ -63,6 +64,7 @@
             });
         </script>
     @endif
+    {{-- Lớp học --}}
     @if (Request::path() == 'lop-hoc/1' || Request::path() == 'lop-hoc/2' || Request::path() == 'lop-hoc/3')
         <script>
             $(document).ready(function(){
@@ -93,6 +95,83 @@
             });
         </script>
     @endif
+    {{-- học sinh --}}
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    @if (Request::path() == 'hoc-sinh/danh-sach')
+        <script type="text/javascript">
+            $(function () {
+                var table = $('.data-table').DataTable({
+                    processing: true,
+                    serverSide: true,
+                    ajax: {
+                        url: "{{ route('danh-sach-hoc-sinh') }}",
+                        type: 'GET',
+                    },
+                    columns: [
+                        {data: 'hs_id', name: 'hs_id'},
+                        {data: 'hs_hoten', name: 'hs_hoten'},
+                        {data: 'hs_noisinh', name: 'hs_noisinh'},
+                        {data: 'hs_ngaysinh', name: 'hs_ngaysinh'},
+                        {data: 'lh_tenlop', name: 'lh_tenlop'}
+                    ],
+                    "language": {
+                        "lengthMenu": "Hiển thị _MENU_ dòng trên trang",
+                        "zeroRecords": "Không có dữ liệu",
+                        "info": "Hiển thị _PAGE_ của _PAGES_",
+                        "infoEmpty": "Không có dữ liệu",
+                        "infoFiltered": "(Tìm thấy trong _MAX_ dữ liệu)",
+                        "paginate": {
+                            "first":      "<<",
+                            "last":       ">>",
+                            "next":       ">>",
+                            "previous":   "<<"
+                        },
+                        "search": "Tìm kiếm:",
+                    }
+                //   order: [[0, 'desc']]
+                //   console.log(data);
+                });
+            });
+        </script>
+    @endif
+    <script>
+        $(function () {
+            var url      = window.location.href;
+            // console.log(url.length);
+
+            var id = url.substr(39,3);
+            // console.log(id);
+            var table = $('.data-table-1').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: {
+                    url: "http://127.0.0.1:8000/lop-hoc/chi-tiet/" + id,
+                    type: 'GET',
+                },
+                columns: [
+                    {data: 'hs_id', name: 'hs_id'},
+                    {data: 'hs_hoten', name: 'hs_hoten'},
+                    {data: 'hs_noisinh', name: 'hs_noisinh'},
+                    {data: 'hs_ngaysinh', name: 'hs_ngaysinh'},
+                    // {data: 'lh_tenlop', name: 'lh_tenlop'}
+                ],
+                "language": {
+                    "lengthMenu": "Hiển thị _MENU_ dòng trên trang",
+                    "zeroRecords": "Không có dữ liệu",
+                    "info": "Hiển thị _PAGE_ trên _PAGES_",
+                    "infoEmpty": "Không có dữ liệu",
+                    "infoFiltered": "(Tìm thấy trong _MAX_ dữ liệu)",
+                    "paginate": {
+                        "first":      "<<",
+                        "last":       ">>",
+                        "next":       ">>",
+                        "previous":   "<<"
+                    },
+                    "search": "Tìm kiếm:",
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

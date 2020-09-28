@@ -56,4 +56,17 @@ class LopHocController extends Controller
                 break;
         }
     }
+
+    public function studentInClass($idLop)
+    {
+        $tenLop = DB::table('lophoc')->where('lh_id',$idLop)->first();
+        $countStudent = DB::table('hocsinh')->where('lh_id',$idLop)->count();
+        if(request()->ajax())
+        {
+                return datatables()->of(DB::table('hocsinh')
+                    ->where('lh_id',$idLop)->get())
+                    ->make(true);
+        }
+        return view('admin.lophoc.chi-tiet', compact('tenLop', 'countStudent'));
+    }
 }

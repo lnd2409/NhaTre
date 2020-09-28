@@ -44,7 +44,8 @@ class DatabaseSeeder extends Seeder
                 'nt_trangthai' => 1
             ],
         ];
-
         DB::table('nhatruong')->insert($dataTruongHoc);
+
+        $this->call(HocSinhSeeder::class);
     }
 }
