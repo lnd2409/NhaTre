@@ -30,7 +30,7 @@
         <div class="container mb-3">
           <div class="d-flex align-items-center">
             <div class="site-logo mr-auto">
-              <a href="#">Kiddy<span class="text-primary">.</span></a>
+              <a href="#">Kid Care<span class="text-primary">.</span></a>
             </div>
             <div class="site-quick-contact d-none d-lg-flex ml-auto ">
               <div class="d-flex site-info align-items-center mr-5">
@@ -84,7 +84,7 @@
               <span class="text-cursive h5 text-red">Chào mừng đến với website</span>
               <h1 class="mb-3 font-weight-bold text-teal">Mang lại niềm vui cho trẻ em</h1>
               <p>Sân chơi tuyệt vời cho con bạn</p>
-              <p class="mt-5"><a href="#" class="btn btn-primary py-4 btn-custom-1">Xem thêm</a></p>
+              <p class="mt-5"><a href="{{ route('admin') }}" class="btn btn-primary py-4 btn-custom-1">Đăng nhập hệ thống</a></p>
             </div>
             <div class="col-md-6 ml-auto align-self-end">
               <img src="{{asset('client')}}/images/kid_transparent.png" alt="Image" class="img-fluid">

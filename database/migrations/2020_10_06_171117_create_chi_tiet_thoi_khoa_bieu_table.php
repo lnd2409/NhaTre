@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePhuHuynhTable extends Migration
+class CreateChiTietThoiKhoaBieuTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class CreatePhuHuynhTable extends Migration
      */
     public function up()
     {
-        Schema::create('phuhuynh', function (Blueprint $table) {
-            $table->bigIncrements('ph_id');
+        Schema::create('chitietTKB', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ class CreatePhuHuynhTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('phuhuynh');
+        Schema::dropIfExists('chitietTKB');
     }
 }

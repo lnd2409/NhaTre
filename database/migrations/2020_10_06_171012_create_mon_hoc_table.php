@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateThucDonTable extends Migration
+class CreateMonHocTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateThucDonTable extends Migration
      */
     public function up()
     {
-        Schema::create('thucdon', function (Blueprint $table) {
-            $table->bigIncrements('td_id');
-            $table->date('td_ngayapdung');
+        Schema::create('monhoc', function (Blueprint $table) {
+            $table->bigIncrements('mh_id');
+            $table->string('mh_tenmon');
             $table->bigInteger('nt_id')->unsigned();
-            $table->foreign('nt_id')->references('nt_id')->on('nhatruong_khoihoc')->onDelete('cascade');
+            $table->foreign('nt_id')->references('nt_id')->on('nhatruong')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateThucDonTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('thucdon');
+        Schema::dropIfExists('monhoc');
     }
 }

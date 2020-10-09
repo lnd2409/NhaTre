@@ -15,6 +15,8 @@ class CreateGiaoVienTable extends Migration
     {
         Schema::create('giaovien', function (Blueprint $table) {
             $table->bigIncrements('gv_id');
+            $table->string('username');
+            $table->string('password')->default(Hash::make(123));
             $table->string('gv_ten');
             $table->string('gv_diachi');
             $table->string('gv_sdt');
@@ -23,6 +25,8 @@ class CreateGiaoVienTable extends Migration
             $table->string('gv_avata')->nullable();
             $table->bigInteger('nt_id')->unsigned();
             $table->foreign('nt_id')->references('nt_id')->on('nhatruong_khoihoc')->onDelete('cascade');
+            $table->bigInteger('lh_id')->unsigned()->nullable();
+            $table->foreign('lh_id')->references('lh_id')->on('lophoc')->onDelete('cascade');
             $table->timestamps();
         });
     }

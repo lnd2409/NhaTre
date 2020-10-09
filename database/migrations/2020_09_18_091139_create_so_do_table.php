@@ -14,7 +14,11 @@ class CreateSoDoTable extends Migration
     public function up()
     {
         Schema::create('sodo', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('sd_id');
+            $table->float('sd_chieucao');
+            $table->float('sd_cannang');
+            $table->bigInteger('sbn_id')->unsigned();
+            $table->foreign('sbn_id')->references('sbn_id')->on('sobengoan')->onDelete('cascade');
             $table->timestamps();
         });
     }

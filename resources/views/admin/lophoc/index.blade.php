@@ -71,12 +71,6 @@
                                         <td>{{ $item->lh_tenlop }}</td>
                                         <td>
 
-                                            @if ($item->gv_id == NULL)
-                                                <a href="#">Chọn giáo viên</a>
-                                            @else
-                                            {{-- <a href="{{ route('chi-tiet-giao-vien', ['id'=>$giaoVien[$item->gv_id][0]->gv_id]) }}">{{ $giaoVien[$item->gv_id][0]->gv_ten }}</a> --}}
-                                            <a href="#" data-toggle="modal" id="lopHoc" data-lop="{{ $item->lh_tenlop }}" class="openModal" data-target="#modalShow"  data-id="{{ $giaoVien[$item->gv_id][0]->gv_id }}">{{ $giaoVien[$item->gv_id][0]->gv_ten }}</a>
-                                            @endif
                                         </td>
                                         <td>
                                             <a href="{{ route('chi-tiet-lop-hoc', ['id' => $item->lh_id]) }}" class="btn btn-default">Chi tiết</a>
@@ -92,35 +86,6 @@
                 </div>
             </div>
         </div>
-    </div>
-</div>
-<div id="modalShow" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h3 class="modal-title">Thông tin giáo viên</h3>
-                <h4>Chủ nhiệm: <span id="tenLop"></span></h4>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-6">
-                        <p>Họ tên: <span  id="tenGiaoVien"></span></p>
-                        <p>Địa chỉ: <span  id="diaChi"></span></p>
-                        <p>Ngày sinh: <span  id="diaChi"></span></p>
-                        <p>SĐT: <span  id="sdt"></span></p>
-                    </div>
-                    <div class="col-md-6">
-                        <img alt="logo"  width="60%" src="{{ asset('template') }}/img/contact/1.jpg">
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-            </div>
-        </div>
-
     </div>
 </div>
 

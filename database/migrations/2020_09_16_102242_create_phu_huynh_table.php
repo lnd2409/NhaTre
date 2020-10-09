@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMonAnTable extends Migration
+class CreatePhuHuynhTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,15 @@ class CreateMonAnTable extends Migration
      */
     public function up()
     {
-        Schema::create('monan', function (Blueprint $table) {
-            $table->bigIncrements('ma_id');
-            $table->string('ma_ten',150);
+        Schema::create('phuhuynh', function (Blueprint $table) {
+            $table->bigIncrements('ph_id');
+            $table->string('ph_hoten');
+            $table->string('username');
+            $table->string('password')->default(Hash::make(123));
+            $table->date('ph_ngaysinh');
+            $table->string('ph_nghenghiep');
+            $table->string('ph_sdt');
+            $table->string('ph_diachi');
             $table->bigInteger('nt_id')->unsigned();
             $table->foreign('nt_id')->references('nt_id')->on('nhatruong')->onDelete('cascade');
             $table->timestamps();
@@ -29,6 +35,6 @@ class CreateMonAnTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('monan');
+        Schema::dropIfExists('phuhuynh');
     }
 }

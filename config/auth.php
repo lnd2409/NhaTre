@@ -54,6 +54,14 @@ return [
             'driver' => 'token',
             'provider' => 'nhatruong',
         ],
+        'giaovien' => [
+            'driver' => 'session',
+            'provider' => 'giaovien',
+        ],
+        'giaovien-api' => [
+            'driver' => 'token',
+            'provider' => 'giaovien',
+        ],
     ],
 
     /*
@@ -86,6 +94,10 @@ return [
         'nhatruong' => [
             'driver' => 'eloquent',
             'model' => App\Nhatruong::class,
+        ],
+        'giaovien' => [
+            'driver' => 'eloquent',
+            'model' => App\GiaoVien::class,
         ],
     ],
 

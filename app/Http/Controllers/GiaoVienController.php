@@ -6,8 +6,40 @@ use Illuminate\Http\Request;
 use DB;
 use Auth;
 use Session;
+use Hash;
 class GiaoVienController extends Controller
 {
+
+    public function loginGiaoVien(Request $request)
+    {
+        $arr = [
+            'username' => $request->username,
+            'password' => $request->password,
+        ];
+        if (Auth::guard('giaovien')->attempt($arr)) {
+            return redirect()->route('giao-vien.trang-quan-ly');
+        } else {
+            dd('tài khoản và mật khẩu chưa chính xác');
+        }
+    }
+
+    public function logout()
+    {
+        if(Auth::guard('giaovien')->check()){
+            Auth::guard('giaovien')->logout();
+        }
+        return redirect()->route('dang-nhap');
+    }
+
+    public function resetPassword($id)
+    {
+        $resetPassword = DB::table('giaovien')->where('gv_id',$id)->update([
+            'password' => Hash::make(123)
+        ]);
+        Session::flash('alert','Chỉnh sửa thông tin thành công');
+        return redirect()->back();
+    }
+
     public function index()
     {
         $id = Auth::guard('nhatruong')->id();
@@ -28,9 +60,12 @@ class GiaoVienController extends Controller
         $sdt = $request->sdt;
         $ngaySinh = $request->ngaySinh;
         $gioiTinh = $request->gioiTinh;
+        $explode_fullname = explode('-', str_slug($hoTen));
+        $last_name = $explode_fullname[count($explode_fullname)-1];
         $addGiaoVien = DB::table('giaovien')->insert(
             [
                 'gv_ten' => $hoTen,
+                'username' => $last_name.rand(1,999),
                 'gv_diachi' => $diaChi,
                 'gv_sdt' => $sdt,
                 'gv_ngaysinh' => $ngaySinh,

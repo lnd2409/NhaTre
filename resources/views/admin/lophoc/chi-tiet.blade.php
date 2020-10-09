@@ -54,6 +54,7 @@
                     <div class="col-md-12" style="padding-left: 0px;">
                         <h2 class="text-center">Danh sách học sinh {{ $tenLop->lh_tenlop }}</h2>
                         <p class="text-center">Số lượng: {{ $countStudent }} học sinh</p>
+                        <p class="text-center"><b>Giáo viên chủ nhiệm: </b></p>
                     </div>
                     <div class="asset-inner">
                         <table class="table table-bordered data-table-1">

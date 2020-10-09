@@ -3,8 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Giaovien extends Model  {
+class Giaovien extends Authenticatable  {
 
     /**
      * The database table used by the model.
@@ -12,13 +15,13 @@ class Giaovien extends Model  {
      * @var string
      */
     protected $table = 'giaovien';
-
+    protected $primaryKey = 'gv_id';
     /**
      * Attributes that should be mass-assignable.
      *
      * @var array
      */
-    protected $fillable = [];
+    protected $fillable = ['username','password','fv_ten','gv_diachi','gv_sdt','gv_ngaysinh','gv_gioitinh'];
 
     /**
      * The attributes excluded from the model's JSON form.

@@ -13,7 +13,7 @@
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-7 col-sm-6 col-xs-12">
-                            <h2 style="padding-top: 15px; color: white;">Website quản lý {{ Auth::guard('nhatruong')->user()->nt_tentruong }}</ơ>
+                            <h2 style="padding-top: 15px; color: white;">Hệ thống quản lý {{ Auth::guard('nhatruong')->user()->nt_tentruong }}</ơ>
                         </div>
                         <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
                             <div class="header-right-info">

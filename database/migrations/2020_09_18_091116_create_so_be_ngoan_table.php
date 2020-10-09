@@ -14,7 +14,14 @@ class CreateSoBeNgoanTable extends Migration
     public function up()
     {
         Schema::create('sobengoan', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('sbn_id');
+            $table->string('sbn_ngayviet');
+            $table->text('sbn_noidung');
+            $table->string('sbn_hanhkiem');
+            $table->integer('sbn_suckhoe');
+            $table->integer('sbn_hoctap');
+            $table->bigInteger('hs_id')->unsigned();
+            $table->foreign('hs_id')->references('hs_id')->on('hocsinh')->onDelete('cascade');
             $table->timestamps();
         });
     }

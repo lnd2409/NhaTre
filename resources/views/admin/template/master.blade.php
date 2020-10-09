@@ -97,48 +97,10 @@
     @endif
     {{-- học sinh --}}
     <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
-    @if (Request::path() == 'hoc-sinh/danh-sach')
-        <script type="text/javascript">
-            $(function () {
-                var table = $('.data-table').DataTable({
-                    processing: true,
-                    serverSide: true,
-                    ajax: {
-                        url: "{{ route('danh-sach-hoc-sinh') }}",
-                        type: 'GET',
-                    },
-                    columns: [
-                        {data: 'hs_id', name: 'hs_id'},
-                        {data: 'hs_hoten', name: 'hs_hoten'},
-                        {data: 'hs_noisinh', name: 'hs_noisinh'},
-                        {data: 'hs_ngaysinh', name: 'hs_ngaysinh'},
-                        {data: 'lh_tenlop', name: 'lh_tenlop'}
-                    ],
-                    "language": {
-                        "lengthMenu": "Hiển thị _MENU_ dòng trên trang",
-                        "zeroRecords": "Không có dữ liệu",
-                        "info": "Hiển thị _PAGE_ của _PAGES_",
-                        "infoEmpty": "Không có dữ liệu",
-                        "infoFiltered": "(Tìm thấy trong _MAX_ dữ liệu)",
-                        "paginate": {
-                            "first":      "<<",
-                            "last":       ">>",
-                            "next":       ">>",
-                            "previous":   "<<"
-                        },
-                        "search": "Tìm kiếm:",
-                    }
-                //   order: [[0, 'desc']]
-                //   console.log(data);
-                });
-            });
-        </script>
-    @endif
+    @stack('danh-sach-hoc-sinh')
     <script>
         $(function () {
             var url      = window.location.href;
-            // console.log(url.length);
-
             var id = url.substr(39,3);
             // console.log(id);
             var table = $('.data-table-1').DataTable({
@@ -172,6 +134,9 @@
             });
         });
     </script>
+    @stack('thuc-don')
+    @stack('select-picker')
+    @stack('ajax-get-class')
 </body>
 
 </html>
