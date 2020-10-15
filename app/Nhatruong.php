@@ -44,5 +44,8 @@ class Nhatruong extends Authenticatable  {
      * @var array
      */
     protected $dates = [];
-
+    public function giaoVien()
+    {
+        return $this->hasMany(Giaovien::class, 'nt_id');
+    }
 }

@@ -21,7 +21,7 @@ class Giaovien extends Authenticatable  {
      *
      * @var array
      */
-    protected $fillable = ['username','password','fv_ten','gv_diachi','gv_sdt','gv_ngaysinh','gv_gioitinh'];
+    protected $fillable = ['username','password','gv_ten','gv_diachi','gv_sdt','gv_ngaysinh','gv_avata','gv_gioitinh','nt_id','lh_id'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -44,4 +44,8 @@ class Giaovien extends Authenticatable  {
      */
     protected $dates = [];
 
+    public function nhaTruong()
+    {
+        return $this->belongsTo(Nhatruong::class, 'nt_id');
+    }
 }

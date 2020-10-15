@@ -1,7 +1,8 @@
+@if (Auth::guard('nhatruong')->check())
 <div class="left-sidebar-pro">
     <nav id="sidebar" class="">
         <div class="sidebar-header">
-            <a href="#">
+            <a href="{{ route('trang-chu') }}">
                 <h1 style="margin-top: 10px;">Kid Care</h1>
             </a>
             <strong><a href="#"><img src="{{ asset('template') }}/img/logo/logosn.png" alt="" /></a></strong>
@@ -47,7 +48,7 @@
                     <li>
                         <a class="has-arrow" href="all-courses.html" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Môn học</span></a>
                         <ul class="submenu-angle collapse" aria-expanded="false">
-                            <li><a title="All Courses" href="all-courses.html"><span class="mini-sub-pro">Danh sách môn học</span></a></li>
+                            <li><a title="All Courses" href="{{ route('danh-sach-mon-hoc') }}"><span class="mini-sub-pro">Danh sách môn học</span></a></li>
                             <li><a title="Add Courses" href="add-course.html"><span class="mini-sub-pro">Thêm môn học</span></a></li>
                         </ul>
                     </li>
@@ -72,4 +73,29 @@
         </div>
     </nav>
 </div>
-<!-- End Left menu area -->
+@endif
+@if (Auth::guard('giaovien')->check())
+<div class="left-sidebar-pro">
+    <nav id="sidebar" class="">
+        <div class="sidebar-header">
+            <a href="{{ route('trang-chu') }}">
+                <h1 style="margin-top: 10px;">Kid Care</h1>
+            </a>
+            <strong><a href="#"><img src="{{ asset('template') }}/img/logo/logosn.png" alt="" /></a></strong>
+        </div>
+        <div class="left-custom-menu-adp-wrap comment-scrollbar">
+            <nav class="sidebar-nav left-sidebar-menu-pro">
+                <ul class="metismenu" id="menu1">
+                    <li>
+                        {{-- style="color: rgb(32, 31, 31) !important; background-color: ghostwhite;" --}}
+                        <a title="Landing Page" href="{{ route('giao-vien.trang-quan-ly') }}" aria-expanded="false">
+                            <span class="educate-icon educate-home icon-wrap"></span>
+                            <span class="mini-click-non" >Trang thống kê</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </nav>
+</div>
+@endif

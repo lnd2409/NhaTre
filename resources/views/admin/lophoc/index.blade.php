@@ -70,7 +70,14 @@
                                         <td>{{ $item->lh_id }}</td>
                                         <td>{{ $item->lh_tenlop }}</td>
                                         <td>
-
+                                            @if (!empty($giaoVien[$item->lh_id]))
+                                                @foreach ($giaoVien[$item->lh_id] as $item)
+                                                    {{ $item->gv_ten }}
+                                                    <br>
+                                                @endforeach
+                                            @else
+                                                Chưa có giáo viên quản lý (Vào chi tiết để thêm)
+                                            @endif
                                         </td>
                                         <td>
                                             <a href="{{ route('chi-tiet-lop-hoc', ['id' => $item->lh_id]) }}" class="btn btn-default">Chi tiết</a>

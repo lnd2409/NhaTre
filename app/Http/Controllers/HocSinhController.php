@@ -51,7 +51,6 @@ class HocSinhController extends Controller
                         ->join('khoihoc','khoihoc.kh_id','nhatruong_khoihoc.kh_id')
                         ->where('nhatruong_khoihoc.nt_id',$idSchool)
                         ->get();
-        // dd($selectKhoiHoc);
         return view('admin.hocsinh.add', compact('phuHuynh','selectKhoiHoc'));
     }
 

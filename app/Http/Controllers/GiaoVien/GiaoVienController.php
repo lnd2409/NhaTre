@@ -11,4 +11,13 @@ class GiaoVienController extends Controller
     {
         return view('giao-vien.index');
     }
+
+    public function logout()
+    {
+        if (Auth::guard('giaovien')->check()) {
+            # code...
+            Auth::guard('giaovien')->logout();
+            return redirect()->route('login-giao-vien');
+        }
+    }
 }

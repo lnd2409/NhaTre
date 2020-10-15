@@ -14,7 +14,7 @@
 // Trang giới thiệu
 Route::get('/', function() {
     return view('client.index');
-});
+})->name('trang-chu');
 
 //Trang quản trị
 Route::group(['middleware' => ['checkNhaTruong']], function () {
@@ -43,6 +43,9 @@ Route::group(['middleware' => ['checkNhaTruong']], function () {
             //AJAX lấy lớp học
             Route::get('/get/{idKhoiHoc}', 'HocSinhController@getLopHoc')->name('lophoc.select-lop-hoc');
 
+            //Thêm giáo viên quản lý
+            Route::post('/them-giao-vien-quan-ly', 'LopHocController@addTecherInClass')->name('lophoc.them-giao-vien-quan-ly');
+
         });
 
         #Học sinh
@@ -67,6 +70,11 @@ Route::group(['middleware' => ['checkNhaTruong']], function () {
         Route::group(['prefix' => 'phu-huynh'], function () {
             Route::get('danh-sach', 'PhuHuynhController@phuHuynh')->name('danh-sach-phu-huynh');
         });
+
+        #Môn học
+        Route::group(['prefix' => 'mon-hoc'], function () {
+            Route::get('danh-sach', 'MonHocController@index')->name('danh-sach-mon-hoc');
+        });
     });
 
     Route::get('/dang-xuat', 'NhaTruongController@logout')->name('dang-xuat');
@@ -74,8 +82,13 @@ Route::group(['middleware' => ['checkNhaTruong']], function () {
 
 
 //Trang dành cho phụ huynh
+Route::group(['prefix' => 'phu-huynh'], function () {
 
-//Trang dành cho giáo viện quản lý
+});
+// //Trang dành cho giáo viện quản lý
+// Route::group(['prefix' => 'giao-vien'], function () {
+
+// });
 
 //Trang đăng nhập và phân quyền
 #Nhà trường
@@ -101,7 +114,13 @@ Route::group(['prefix' => 'giao-vien'], function () {
         return view('giao-vien.login');
     })->name('login-giao-vien');
     Route::post('/xu-ly-dang-nhap', 'GiaoVienController@loginGiaoVien')->name('giao-vien.xu-ky-dang-nhap');
+
+
     Route::group(['middleware' => ['checkGiaoVien']], function () {
         Route::get('trang-quan-ly', 'GiaoVien\GiaoVienController@index')->name('giao-vien.trang-quan-ly');
+
+        #Đăng xuất
+        Route::get('dang-xuat-giao-vien', 'GiaoVien\GiaoVienController@logout')->name('giao-vien.dang-xuat');
     });
+
 });
