@@ -119,8 +119,23 @@ Route::group(['prefix' => 'giao-vien'], function () {
     Route::group(['middleware' => ['checkGiaoVien']], function () {
         Route::get('trang-quan-ly', 'GiaoVien\GiaoVienController@index')->name('giao-vien.trang-quan-ly');
 
+        Route::group(['prefix' => 'hoc-sinh'], function () {
+            Route::get('danh-sach','GiaoVien\HocSinhController@getStudentInClass')->name('giao-vien.danh-sach-hoc-sinh');
+            Route::get('{idStudent}/so-be-ngoan/', 'GiaoVien\HocSinhController@soBeNgoan')->name('giao-vien.so-be-ngoan');
+        });
+
+        #Thông báo
+        Route::group(['prefix' => 'thong-bao'], function () {
+            Route::get('/', 'GiaoVien\ThongBaoController@viewNotifi')->name('giao-vien.thong-bao');
+        });
+
         #Đăng xuất
         Route::get('dang-xuat-giao-vien', 'GiaoVien\GiaoVienController@logout')->name('giao-vien.dang-xuat');
     });
+});
 
+
+#admin hệ thống
+Route::get('quan-tri', function () {
+    return view('admin-he-thong.index');
 });

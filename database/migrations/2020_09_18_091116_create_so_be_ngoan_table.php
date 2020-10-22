@@ -20,6 +20,8 @@ class CreateSoBeNgoanTable extends Migration
             $table->string('sbn_hanhkiem');
             $table->integer('sbn_suckhoe');
             $table->integer('sbn_hoctap');
+            $table->integer('sbn_cannang');
+            $table->integer('sbn_chieucao');
             $table->bigInteger('hs_id')->unsigned();
             $table->foreign('hs_id')->references('hs_id')->on('hocsinh')->onDelete('cascade');
             $table->timestamps();

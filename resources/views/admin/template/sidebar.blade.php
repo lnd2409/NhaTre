@@ -93,6 +93,27 @@
                             <span class="mini-click-non" >Trang thống kê</span>
                         </a>
                     </li>
+                    <li>
+                        {{-- style="color: rgb(32, 31, 31) !important; background-color: ghostwhite;" --}}
+                        <a title="Landing Page" href="{{ route('giao-vien.danh-sach-hoc-sinh') }}" aria-expanded="false">
+                            <span class="educate-icon educate-student icon-wrap"></span>
+                            <span class="mini-click-non" >Danh sách học sinh</span>
+                        </a>
+                    </li>
+                    <li>
+                        {{-- style="color: rgb(32, 31, 31) !important; background-color: ghostwhite;" --}}
+                        <a title="Landing Page" href="{{ route('giao-vien.danh-sach-hoc-sinh') }}" aria-expanded="false">
+                            <span class="educate-icon educate-library icon-wrap"></span>
+                            <span class="mini-click-non" >Góp ý</span>
+                        </a>
+                    </li>
+                    <li>
+                        {{-- style="color: rgb(32, 31, 31) !important; background-color: ghostwhite;" --}}
+                        <a title="Landing Page" href="{{ route('giao-vien.thong-bao') }}" aria-expanded="false">
+                            <span class="educate-icon educate-interface icon-wrap"></span>
+                            <span class="mini-click-non" >Thông báo</span>
+                        </a>
+                    </li>
                 </ul>
             </nav>
         </div>

@@ -11,6 +11,6 @@ class MonHocController extends Controller
     {
         $idShool = Auth::guard('nhatruong')->id();
         $monHoc = DB::table('monhoc')->where('nt_id',$idShool)->get();
-        dd($monHoc);
+        return view('admin.monhoc.index', compact('monHoc'));
     }
 }

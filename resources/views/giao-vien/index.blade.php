@@ -23,8 +23,6 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="breadcome-heading">
                                     <form role="search" class="sr-input-func">
-                                        <input type="text" placeholder="Tìm kiếm..." class="search-int form-control">
-                                        <a href="#"><i class="fa fa-search"></i></a>
                                     </form>
                                 </div>
                             </div>
@@ -46,7 +44,19 @@
 <div class="contacts-area mg-b-15">
     <div class="container-fluid">
         <div class="row">
-
+            <div class="col-md-12">
+                <h2>Thống kê</h2>
+            </div>
+            <div class="col-md-12">
+                @if (Session::has('alert'))
+                    <div class="alert alert-success">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        <strong>Thành công! </strong> Hoàn tất cập nhật thông tin.
+                    </div>
+                @endif
+            </div>
         </div>
     </div>
 </div>
