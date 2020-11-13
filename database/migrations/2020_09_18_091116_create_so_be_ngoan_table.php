@@ -16,9 +16,8 @@ class CreateSoBeNgoanTable extends Migration
         Schema::create('sobengoan', function (Blueprint $table) {
             $table->bigIncrements('sbn_id');
             $table->string('sbn_ngayviet');
-            $table->text('sbn_noidung');
-            $table->string('sbn_hanhkiem');
-            $table->integer('sbn_suckhoe');
+            $table->text('sbn_nhanxetchung');
+            $table->string('sbn_suckhoe');
             $table->integer('sbn_hoctap');
             $table->integer('sbn_cannang');
             $table->integer('sbn_chieucao');

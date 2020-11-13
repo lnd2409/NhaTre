@@ -42,8 +42,8 @@
     </div>
 </div>
 <div class="contacts-area mg-b-15">
-    <div class="container-fluid">
-        <div class="row">
+    <div class="container-fluid" style="margin-left: 20px;">
+        <div class="row" >
             <div class="col-md-12">
                 <h2>Thống kê</h2>
             </div>
@@ -58,6 +58,81 @@
                 @endif
             </div>
         </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                <div class="charts-single-pro responsive-mg-b-30">
+                    <div class="alert-title">
+                        <h2>Giới tính</h2>
+                    </div>
+                    <div id="pie-chart">
+                        <canvas id="piechart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                <div class="product-status-wrap">
+                    <h4>Danh sách học sinh</h4>
+                    <div class="add-product">
+                    </div>
+                    <div class="asset-inner">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <th>Mã số</th>
+                                    <th>Họ tên</th>
+                                    <th>Hình ảnh</th>
+                                    <th>Ngày vào lớp</th>
+                                </tr>
+                                @foreach ($hocSinh as $item)
+                                <tr>
+                                    <td>{{ $item->hs_id }}</td>
+                                    <td>{{ $item->hs_hoten }}</td>
+                                    <td><img src="img/product/book-1.jpg" alt=""></td>
+                                    <td>{{ $item->created_at }}</td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                    {{-- <div class="custom-pagination">
+                        <a href="{{ route('giao-vien.danh-sach-hoc-sinh') }}">Xem danh sách lớp</a>
+                    </div> --}}
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+@push('giao-vien.chart')
+    <!-- Charts JS
+    ============================================ -->
+    <script src="{{ asset('template') }}/js/charts/Chart.js"></script>
+    {{-- <script src="{{ asset('template') }}/js/charts/rounded-chart.js"></script> --}}
+    <script>
+    (function ($) {
+    "use strict";
+
+        /*----------------------------------------*/
+        /*  1.  pie Chart
+        /*----------------------------------------*/
+        var ctx = document.getElementById("piechart");
+        var piechart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ["Nam", "Nữ"],
+                datasets: [{
+                    label: 'pie Chart',
+                    backgroundColor: [
+                        '#b3d4fc',
+                        '#f22626'
+                    ],
+                    data: [{{ $hocSinhNam }},{{ $hocSinhNu }}]
+                }]
+            },
+            options: {
+                responsive: true
+            }
+        });
+    })(jQuery);
+    </script>
+@endpush
 @endsection

@@ -48,4 +48,8 @@ class Nhatruong extends Authenticatable  {
     {
         return $this->hasMany(Giaovien::class, 'nt_id');
     }
+    public function phuHuynh()
+    {
+        return $this->hasMany(PhuHuynh::class, 'nt_id');
+    }
 }

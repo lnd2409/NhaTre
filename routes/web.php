@@ -16,7 +16,7 @@ Route::get('/', function() {
     return view('client.index');
 })->name('trang-chu');
 
-//Trang quản trị
+//Trang quản trị nhà trường
 Route::group(['middleware' => ['checkNhaTruong']], function () {
     Route::get('/thong-tin-nha-truong','NhaTruongController@nhapThongTin')->name('nhap-thong-tin');
     Route::post('/xu-ly-thong-tin', 'NhaTruongController@xuLyThongTin')->name('xu-ly-thong-tin');
@@ -26,7 +26,7 @@ Route::group(['middleware' => ['checkNhaTruong']], function () {
         Route::get('/admin', 'NhaTruongController@index')->name('admin');
 
         //Giao vien
-        Route::group(['prefix' => 'giao-vien'], function () {
+        Route::group(['prefix' => 'quan-ly-giao-vien'], function () {
             Route::get('/danh-sach-giao-vien','GiaoVienController@index')->name('danh-sach-giao-vien');
             Route::get('/them-giao-vien', 'GiaoVienController@themGiaoVien')->name('them-giao-vien');
             Route::post('/xu-ly-them-giao-vien', 'GiaoVienController@xuLyThemGiaoVien')->name('xu-ly-themm-giao-vien');
@@ -79,18 +79,6 @@ Route::group(['middleware' => ['checkNhaTruong']], function () {
 
     Route::get('/dang-xuat', 'NhaTruongController@logout')->name('dang-xuat');
 });
-
-
-//Trang dành cho phụ huynh
-Route::group(['prefix' => 'phu-huynh'], function () {
-
-});
-// //Trang dành cho giáo viện quản lý
-// Route::group(['prefix' => 'giao-vien'], function () {
-
-// });
-
-//Trang đăng nhập và phân quyền
 #Nhà trường
 Route::get('/dang-nhap', function () {
     if (Auth::guard('nhatruong')->check()) {
@@ -121,12 +109,20 @@ Route::group(['prefix' => 'giao-vien'], function () {
 
         Route::group(['prefix' => 'hoc-sinh'], function () {
             Route::get('danh-sach','GiaoVien\HocSinhController@getStudentInClass')->name('giao-vien.danh-sach-hoc-sinh');
-            Route::get('{idStudent}/so-be-ngoan/', 'GiaoVien\HocSinhController@soBeNgoan')->name('giao-vien.so-be-ngoan');
+            Route::get('{idStudent}/so-be-ngoan/', 'GiaoVien\SoBeNgoanController@soBeNgoan')->name('giao-vien.so-be-ngoan');
+            Route::get('/{idStudent}/viet-so-be-ngoan', 'GiaoVien\SoBeNgoanController@writeNote')->name('giao-vien.viet-so-be-ngoan');
+
+            //AJAX
+            Route::get('/so-be-ngoan/{idStudent}/{month}','GiaoVien\SoBeNgoanController@getDataNote')->name('giao-vien.ajax-get-so-be-ngoan');
         });
 
         #Thông báo
         Route::group(['prefix' => 'thong-bao'], function () {
             Route::get('/', 'GiaoVien\ThongBaoController@viewNotifi')->name('giao-vien.thong-bao');
+            Route::get('/thong-bao-da-gui', 'GiaoVien\ThongBaoController@postSended')->name('giao-vien.thong-bao-da-gui');
+            Route::get('/viet-thong-bao','GiaoVien\ThongBaoController@writePost')->name('giao-vien.viet-thong-bao');
+            Route::post('/xu-ly-viet-thong-bao', 'GiaoVien\ThongBaoController@postHandle')->name('giao-vien.xu-ly-viet-thong-bao');
+            Route::get('/thong-bao/{idPost}', 'GiaoVien\ThongBaoController@postDetail')->name('giao-vien.chi-tiet-thong-bao');
         });
 
         #Đăng xuất
@@ -134,6 +130,27 @@ Route::group(['prefix' => 'giao-vien'], function () {
     });
 });
 
+#Trang dành cho phụ huynh
+Route::group(['prefix' => 'phu-huynh'], function () {
+    Route::get('dang-nhap', function () {
+        return view('phu-huynh.login');
+    })->name('login-phu-huynh');
+    Route::post('xu-ly-dang-nhap', 'PhuHuynh\AuthController@handleLogin')->name('phu-huynh.xu-ly-dang-nhap');
+
+    Route::group(['middleware' => ['checkPhuHuynh']], function () {
+        Route::get('/', function () {
+            return view('phu-huynh.index');
+        })->name('phu-huynh.trang-chu');
+        Route::get('/dang-xuat', 'PhuHuynh\AuthController@logout')->name('phu-huynh.dang-xuat');
+
+        #Góp ý
+        Route::group(['prefix' => 'gop-y'], function () {
+            Route::get('thu-den', 'PhuHuynh\GopYController@hopThuDen')->name('phu-huynh.hop-thu-den');
+            Route::get('chi-tiet/{idThu}', 'PhuHuynh\GopYController@docthuDen')->name('phu-huynh.chi-tiet-thong-bao');
+            Route::post('phan-hoi/{idThu}', 'PhuHuynh\GopYController@phanHoi')->name('phu-huynh.phan-hoi');
+        });
+    });
+});
 
 #admin hệ thống
 Route::get('quan-tri', function () {

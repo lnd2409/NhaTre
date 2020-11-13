@@ -67,13 +67,13 @@
 			<div class="text-center m-b-md custom-login">
 				<h3>KID CARE</h3>
                 <p>Hệ thống quản lý trường mẫu giáo</p>
-                <p><a href="{{ route('dang-nhap') }}">Nhà trường</a> || <a href="{{ route('login-phu-huynh') }}">Phụ huynh</a></p>
-                <p style="font-size: 20px;"><b>Đăng nhập giáo viên</b></p>
+                <p><a href="{{ route('dang-nhap') }}">Nhà trường</a> || <a href="{{ route('login-giao-vien') }}">Giáo viên</a></p>
+                <p style="font-size: 20px;"><b>Đăng nhập phụ huynh</b></p>
 			</div>
 			<div class="content-error">
 				<div class="hpanel">
                     <div class="panel-body">
-                        <form action="{{ route('giao-vien.xu-ky-dang-nhap') }}" id="loginForm" method="POST">
+                        <form action="{{ route('phu-huynh.xu-ly-dang-nhap') }}" id="loginForm" method="POST">
                             @csrf
                             @if (Session::has('alert'))
                                 <div class="alert alert-success">

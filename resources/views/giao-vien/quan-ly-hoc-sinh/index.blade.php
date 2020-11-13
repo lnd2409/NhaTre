@@ -42,7 +42,7 @@
     </div>
 </div>
 <div class="contacts-area mg-b-15">
-    <div class="container-fluid">
+    <div class="container-fluid" style="margin-left: 20px;">
         <div class="row">
             <div class="col-md-12">
                 <h2>Quản lý học sinh</h2>
@@ -70,8 +70,8 @@
                         <p><b>Giới tính:</b> {{ $item->hs_gioitinh == 1 ? 'Nam' : 'Nữ' }}</p>
                     </div>
                     <div class="panel-footer contact-footer" style="background-color: unset;">
-                        <a href="{{ route('giao-vien.so-be-ngoan', ['idStudent'=> $item->hs_id]) }}" class="btn btn-success">Sổ bé ngoan</a>
-                        <a href="#" class="btn btn-info openModal" data-toggle="modal" data-target="#myModal" data-id="{{ $item->hs_id }}">Chỉnh sửa</a>
+                        <a href="{{ route('giao-vien.so-be-ngoan', ['idStudent'=> $item->hs_id]) }}" class="btn btn-success">Xem sổ</a>
+                        {{-- <a href="#" class="btn btn-info openModal" data-toggle="modal" data-target="#myModal" data-id="{{ $item->hs_id }}">Chỉnh sửa</a> --}}
                         {{-- <a href="#" class="btn btn-danger">Xóa</a> --}}
                     </div>
                 </div>

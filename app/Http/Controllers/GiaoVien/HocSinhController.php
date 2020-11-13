@@ -15,10 +15,4 @@ class HocSinhController extends Controller
         $hocSinh = DB::table('hocsinh')->where('lh_id',$idLopHoc)->get();
         return view('giao-vien.quan-ly-hoc-sinh.index',compact('hocSinh'));
     }
-
-    public function soBeNgoan($idStudent)
-    {
-        $hocSinh = DB::table('hocsinh')->where('hs_id',$idStudent)->join('phuhuynh','phuhuynh.ph_id','hocsinh.ph_id')->first();
-        return view('giao-vien.quan-ly-hoc-sinh.so-be-ngoan', compact('hocSinh'));
-    }
 }

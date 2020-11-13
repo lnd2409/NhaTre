@@ -17,6 +17,8 @@
 .booth a {display: block; padding: 10px; text-align: center; background-color: #428bca; margin: 10px 0; font-size: 15px; color: #fff; text-decoration: none;}
     </style>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+
     @include('admin.template.css')
 </head>
 
@@ -137,6 +139,8 @@
     @stack('thuc-don')
     @stack('select-picker')
     @stack('ajax-get-class')
+    @stack('giao-vien.chart')
+    @stack('so-be-ngoan')
 </body>
 
 </html>

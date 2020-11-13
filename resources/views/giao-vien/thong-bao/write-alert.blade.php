@@ -42,10 +42,10 @@
     </div>
 </div>
 <div class="contacts-area mg-b-15">
-    <div class="container-fluid" style="margin-left: 20px;">
+    <div class="container-fluid"  style="margin-left: 20px;">
         <div class="row">
             <div class="col-md-12">
-                <h2>Quản lý thông báo</h2>
+                <h2>Viết thông báo</h2>
             </div>
         </div>
         <div class="row">
@@ -58,23 +58,19 @@
                                 <a href="{{ route('giao-vien.viet-thong-bao') }}" class="btn btn-primary btn-sm" style="color: white;">Viết thư  <i class="fa fa-plus"></i></a>
                             </li>
                             <hr>
-                            <li class="@if (Request::path() == "giao-vien/thong-bao")
+                            <li class="
+                                    @if (Request::path() == "giao-vien/thong-bao")
                                         active
                                     @endif
-
                                 ">
-                                <a href="{{ route('giao-vien.thong-bao') }}">
-                                    <span class="pull-right"></span>
+                                <a href="#">
+                                    <span class="pull-right">12</span>
                                     <i class="fa fa-envelope"></i> Thư đến
                                 </a>
                             </li>
 
-                            <li class="
-                                    @if (Request::path() == "giao-vien/thong-bao/thong-bao-da-gui")
-                                        active
-                                    @endif
-                                ">
-                                <a href="{{ route('giao-vien.thong-bao-da-gui') }}"><i class="fa fa-paper-plane"></i> Đã gửi</a>
+                            <li>
+                                <a href="#"><i class="fa fa-paper-plane"></i> Đã gửi</a>
                             </li>
                             <li>
                                 <a href="#"><i class="fa fa-trash"></i> Thùng rác</a>
@@ -83,47 +79,43 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-9 col-md-9 col-sm-9 col-xs-12">
-                <div class="hpanel">
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-md-6 col-md-6 col-sm-6 col-xs-8">
-                                <div class="btn-group ib-btn-gp active-hook mail-btn-sd mg-b-15">
-                                </div>
-                            </div>
+            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                <form action="{{ route('giao-vien.xu-ly-viet-thong-bao') }}" method="post">
+                    @csrf
+                    <div class="tinymce-single mg-t-30">
+                        <div class="alert-title form-group">
+                            <label>Người nhận</label>
+                            <select class="js-example-basic-multiple form-control" name="phuHuynh[]" multiple="multiple">
+                                @foreach ($phuHuynh as $item)
+                                    <option data-tokens="{{ $item->username }}" value="{{ $item->username }}">{{ $item->ph_hoten }}  ({{ $item->username }})</option>
+                                @endforeach
+                            </select>
                         </div>
-                        <div class="table-responsive ib-tb">
-                            <table class="table table-hover table-mailbox">
-                                <tbody>
-                                    <tr>
-                                        <th></th>
-                                        <th>Người gửi</th>
-                                        <th>Tiêu đề</th>
-                                        <th></th>
-                                        <th class="text-center">Ngày viết</th>
-                                    </tr>
-                                    @foreach ($baiViet as $item)
-                                        <tr>
-                                            <td class="">
-                                                <div class="checkbox checkbox-single checkbox-success">
-                                                    <input type="checkbox" checked="">
-                                                    <label></label>
-                                                </div>
-                                            </td>
-                                            {{-- <td><a href="{{ route('giao-vien.chi-tiet-thong-bao', ['idPost'=>$item->tb_id]) }}">{{ $item->gv_ten }}</a></td> --}}
-                                            <td><a href="{{ route('giao-vien.chi-tiet-thong-bao', ['idPost'=>$item->tb_id]) }}">{{ $item->tb_tieude }}</a>
-                                            </td>
-                                            <td><i class="fa fa-paperclip"></i></td>
-                                            <td class="text-center mail-date">{{ Carbon\Carbon::parse($item->tb_ngayviet)->format('d/m/Y') }}</td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                        <div class="alert-title form-group">
+                            <label>Tiêu đề</label>
+                            <input type="text" name="tieuDe" class="form-control" placeholder="Nhập tiêu đề bài viết . . .">
                         </div>
+                        <textarea id="summernote" name="noiDungThongBao">
+
+                        </textarea>
+                        <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Gửi</button>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>
 </div>
+@push('select-picker')
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.js-example-basic-multiple').select2();
+        });
+    </script>
+@endpush
 @endsection

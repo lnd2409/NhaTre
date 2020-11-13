@@ -21,7 +21,7 @@ class HocSinhSeeder extends Seeder
                 'hs_noisinh' => $faker->address,
                 'hs_ngaysinh' => $faker->date($format = 'Y-m-d', $max = 'now'),
                 'hs_gioitinh' => rand(0,1),
-                'lh_id' => rand(1,5),
+                'lh_id' => rand(1,3),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ]);
