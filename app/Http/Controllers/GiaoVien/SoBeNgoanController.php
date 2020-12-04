@@ -25,7 +25,7 @@ class SoBeNgoanController extends Controller
     public function writeNote(Request $request, $idStudent)
     {
         // $getThang = DB::table('sobengoan')->get();
-        $checkNull = DB::table('sobengoan')->where('sbn_ngayviet',$request->thang)->get();
+        $checkNull = DB::table('sobengoan')->where('hs_id',$idStudent)->where('sbn_ngayviet',$request->thang)->get();
         // dd(count($checkNull));
         if (count($checkNull) == 0) {
             # code...

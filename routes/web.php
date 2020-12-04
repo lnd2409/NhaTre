@@ -75,6 +75,13 @@ Route::group(['middleware' => ['checkNhaTruong']], function () {
         Route::group(['prefix' => 'mon-hoc'], function () {
             Route::get('danh-sach', 'MonHocController@index')->name('danh-sach-mon-hoc');
         });
+
+        #Lịch hoạt động
+        Route::get('sap-lich-hoat-dong/{idClass}', 'HoatDongController@makeActivate')->name('nha-truong.sap-lich-hoat-dong');
+        Route::get('lich-hoat-dong/{idClass}', 'HoatDongController@getActivate')->name('nha-truong.lich-hoat-dong-chi-tiet');
+
+
+
     });
 
     Route::get('/dang-xuat', 'NhaTruongController@logout')->name('dang-xuat');
@@ -92,6 +99,9 @@ Route::get('/dang-ky', function() {
 })->name('dang-ky');
 Route::post('/xu-ly-dang-ky', 'NhaTruongController@register')->name('xu-ly-dang-ky');
 Route::post('/xu-ly-dang-nhap', 'NhaTruongController@login')->name('xu-ly-dang-nhap');
+
+
+
 
 #Giáo viên
 Route::group(['prefix' => 'giao-vien'], function () {
@@ -125,6 +135,23 @@ Route::group(['prefix' => 'giao-vien'], function () {
             Route::get('/thong-bao/{idPost}', 'GiaoVien\ThongBaoController@postDetail')->name('giao-vien.chi-tiet-thong-bao');
         });
 
+        #Hoạt động
+        Route::group(['prefix' => 'hoat-dong'], function () {
+            Route::get('/', 'GiaoVien\LichHoatDongController@getHoatDong')->name('hoat-dong.danh-sach');
+        });
+
+        #Đơn xin phép
+        Route::group(['prefix' => 'don-xin-phep'], function () {
+            Route::get('/', 'GiaoVien\DonXinPhepController@index')->name('giao-vien.don-xin-phep');
+        });
+
+        #Điểm danh
+        Route::group(['prefix' => 'diem-danh'], function () {
+            Route::get('/', 'GiaoVien\DiemDanhController@index')->name('giao-vien.diem-danh');
+            Route::get('/danh-sach', 'GiaoVien\DiemDanhController@viewFillAttendance')->name('giao-vien.giao-dien-diem-danh');
+            Route::get('/check/{idStudent}/{trangThai}/{idClass}', 'GiaoVien\DiemDanhController@fillAttendance')->name('giao-vien.check-diem-danh');
+        });
+
         #Đăng xuất
         Route::get('dang-xuat-giao-vien', 'GiaoVien\GiaoVienController@logout')->name('giao-vien.dang-xuat');
     });
@@ -149,6 +176,10 @@ Route::group(['prefix' => 'phu-huynh'], function () {
             Route::get('chi-tiet/{idThu}', 'PhuHuynh\GopYController@docthuDen')->name('phu-huynh.chi-tiet-thong-bao');
             Route::post('phan-hoi/{idThu}', 'PhuHuynh\GopYController@phanHoi')->name('phu-huynh.phan-hoi');
         });
+
+        #Đơn xin phép
+        Route::get('don-xin-phep', 'PhuHuynh\DonXinPhepController@index')->name('phu-huynh.don-xin-phep');
+        Route::post('xu-ly-don-xin-phep', 'PhuHuynh\DonXinPhepController@xuLyNghiPhep')->name('phu-huynh.xu-ly-don-xin-phep');
     });
 });
 

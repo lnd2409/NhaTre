@@ -285,7 +285,7 @@
                 // console.log(monthSelected);
                 $.ajax({
                     type: "get",
-                    url: url + "/giao-vien/" + "hoc-sinh/" + "so-be-ngoan/" + {{ $soBeNgoan->hs_id }} + "/" + monthSelected,
+                    url: url + "/giao-vien/" + "hoc-sinh/" + "so-be-ngoan/" + {{ $hocSinh->hs_id }} + "/" + monthSelected,
                     dataType: "json",
                     success: function (response) {
                         /* Bắt đầu đổ dữ liệu ra ở đây */
@@ -304,7 +304,7 @@
 
 
                         //Ẩn button nhận xét
-                        // $("#btnNhanXet").attr("style","display: none");
+                        $("#btnNhanXet").attr("style","display: none");
                         //Nhhận xét chung
                         $("#nhanXetChung").text(response.sbn_nhanxetchung);
                         var imgFlower = '<img src="{{ asset('') }}admin-he-thong/images/hoa-be-ngoan.png" alt="Hoa bé ngoan" width="20%" title="Bông ">';

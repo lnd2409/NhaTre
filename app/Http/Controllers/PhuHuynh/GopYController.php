@@ -40,13 +40,13 @@ class GopYController extends Controller
             ]
         );
 
-        $phanHoi = DB::table('thongbao')->where('tb_phanhoi',$idThu)
-                    ->leftJoin('phuhuynh','phuhuynh.ph_id','thongbao.ph_id')
-                    ->leftJoin('giaovien','giaovien.gv_id','thongbao.gv_id')
-                    ->leftJoin('nhatruong','nhatruong.nt_id','thongbao.nt_id')
-                    ->get();
+        // $phanHoi = DB::table('thongbao')->where('tb_phanhoi',$idThu)
+        //             ->leftJoin('phuhuynh','phuhuynh.ph_id','thongbao.ph_id')
+        //             ->leftJoin('giaovien','giaovien.gv_id','thongbao.gv_id')
+        //             ->leftJoin('nhatruong','nhatruong.nt_id','thongbao.nt_id')
+        //             ->get();
         // dd($phanHoi);
-        return view('phu-huynh.gop-y.detail', compact('thongBao', 'nguoiNhan','phanHoi'));
+        return view('phu-huynh.gop-y.detail', compact('thongBao', 'nguoiNhan'));
     }
 
     public function phanHoi(Request $request ,$idThu)

@@ -39,6 +39,12 @@
                             <span class="mini-click-non" >Hộp thư góp ý</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="{{ route('phu-huynh.don-xin-phep') }}" aria-expanded="false">
+                            <span class="educate-icon educate-interface"></span>
+                            <span class="mini-click-non" >Đơn xin phép</span>
+                        </a>
+                    </li>
                 </ul>
             </nav>
         </div>

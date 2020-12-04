@@ -141,7 +141,7 @@
                     </li>
                     <li>
                         {{-- style="color: rgb(32, 31, 31) !important; background-color: ghostwhite;" --}}
-                        <a title="Landing Page" href="{{ route('giao-vien.danh-sach-hoc-sinh') }}" aria-expanded="false">
+                        <a title="Landing Page" href="{{ route('hoat-dong.danh-sach') }}" aria-expanded="false">
                             <span class="educate-icon educate-library icon-wrap"></span>
                             <span class="mini-click-non" >Quản lý lịch hoạt động</span>
                         </a>
@@ -154,6 +154,28 @@
                             @endif title="Landing Page" href="{{ route('giao-vien.thong-bao') }}" aria-expanded="false">
                             <span class="educate-icon educate-interface icon-wrap"></span>
                             <span class="mini-click-non" >Thông báo</span>
+                        </a>
+                    </li>
+                    <li>
+                        {{-- style="color: rgb(32, 31, 31) !important; background-color: ghostwhite;" --}}
+                        <a href="{{ route('giao-vien.don-xin-phep') }}" aria-expanded="false">
+                            <span class="educate-icon educate-interface"></span>
+                            <?php
+                                $donXinPhep = DB::table('donxinphep')
+                                ->join('hocsinh','hocsinh.hs_id','donxinphep.hs_id')
+                                ->join('lophoc','lophoc.lh_id','hocsinh.lh_id')
+                                // ->where('lophoc.nt_id',Auth::guard('nhatruong')->id())
+                                ->where('dxp_trangthai',0)->count();
+                            ?>
+                            <span class="mini-click-non" >Đơn xin phép ({{ $donXinPhep }})</span>
+                        </a>
+                    </li>
+                    <li>
+                        {{-- style="color: rgb(32, 31, 31) !important; background-color: ghostwhite;" --}}
+                        <a href="{{ route('giao-vien.diem-danh') }}" aria-expanded="false">
+                            <span class="educate-icon educate-interface"></span>
+
+                            <span class="mini-click-non" >Điểm danh</span>
                         </a>
                     </li>
                 </ul>

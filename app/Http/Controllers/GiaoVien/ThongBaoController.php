@@ -16,7 +16,7 @@ class ThongBaoController extends Controller
         $idLopHoc = Auth::guard('giaovien')->user()->lh_id;
         $giaoVien = DB::table('giaovien')->where('lh_id',$idLopHoc)->pluck('username');
         $baiViet = DB::table('nguoinhan')->whereIn('nn_id',$giaoVien)->join('thongbao','thongbao.tb_id','nguoinhan.tb_id')->get();
-        dd($baiViet);
+        // dd($baiViet);
         return view('giao-vien.thong-bao.index', compact('baiViet'));
 
     }
@@ -58,7 +58,8 @@ class ThongBaoController extends Controller
             DB::table('nguoinhan')->insert(
                 [
                     'tb_id' => $thongBao,
-                    'nn_id' => $value
+                    'nn_id' => $value,
+                    'nn_trangthai' => 0
                 ]
             );
         }

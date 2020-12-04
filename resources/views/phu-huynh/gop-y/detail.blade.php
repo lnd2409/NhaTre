@@ -126,14 +126,14 @@
 
                     <div class="border-bottom border-left border-right bg-white mg-tb-15">
                     </div>
-
+{{--
                     <div class="btn-group active-hook">
                         <button class="btn btn-default" id="phan-hoi"><i class="fa fa-reply"></i> Phản hồi</button>
                         <button class="btn btn-default" id="tro-ve" style="display: none;"><i class="fa fa-reply"></i> Trở về</button>
                     </div>
                     <div class="border-bottom border-left border-right bg-white mg-tb-15">
-                    </div>
-                    <div class="panel-footer ft-pn" style="background-color: white;">
+                    </div> --}}
+                    {{-- <div class="panel-footer ft-pn" style="background-color: white;">
                         <div class="chat-message">
                             @foreach ($phanHoi as $item)
                             <div class="message" style="border: 1px solid white; margin-bottom: 5px; padding-left: 10px;padding-top: 10px; border-radius: 30px; background: #F6F8FA;">
@@ -151,7 +151,7 @@
                             </div>
                             @endforeach
                         </div>
-                    </div>
+                    </div> --}}
                     <hr>
                     <div class="panel-body panel-csm" id="form-phan-hoi" style="display: none;">
                         <form action="{{ route('phu-huynh.phan-hoi', ['idThu'=> $thongBao->tb_id]) }}" method="post">
