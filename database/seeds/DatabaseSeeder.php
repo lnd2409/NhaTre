@@ -46,6 +46,6 @@ class DatabaseSeeder extends Seeder
         ];
         DB::table('nhatruong')->insert($dataTruongHoc);
 
-        $this->call(HocSinhSeeder::class);
+        // $this->call(HocSinhSeeder::class);
     }
 }
