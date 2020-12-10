@@ -150,6 +150,7 @@ Route::group(['prefix' => 'giao-vien'], function () {
             Route::get('/', 'GiaoVien\DiemDanhController@index')->name('giao-vien.diem-danh');
             Route::get('/danh-sach', 'GiaoVien\DiemDanhController@viewFillAttendance')->name('giao-vien.giao-dien-diem-danh');
             Route::get('/check/{idStudent}/{trangThai}/{idClass}', 'GiaoVien\DiemDanhController@fillAttendance')->name('giao-vien.check-diem-danh');
+            Route::get('/{idDiemDanh}', 'GiaoVien\DiemDanhController@attendanceDetail')->name('giao-vien.chi-tiet-diem-danh');
         });
 
         #Đăng xuất

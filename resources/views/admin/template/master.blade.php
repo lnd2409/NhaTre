@@ -142,6 +142,7 @@
     @stack('giao-vien.chart')
     @stack('so-be-ngoan')
     @stack('js-thoi-khoa-bieu')
+    @stack('js-diem-danh')
 </body>
 
 </html>

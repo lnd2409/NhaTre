@@ -95,16 +95,4 @@
         </div>
     </div>
 </div>
-
-@push('js-diem-danh')
-    <script>
-        $(document).ready(function () {
-            $('.pd-setting').click(function (e) {
-                e.preventDefault();
-
-            });
-        });
-    </script>
-@endpush
-
 @endsection

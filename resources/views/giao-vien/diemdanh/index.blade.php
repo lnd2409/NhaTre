@@ -47,9 +47,18 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="product-status-wrap">
                     <h4>Điểm danh</h4>
-                    <div class="add-product">
-                        <a href="{{ route('giao-vien.giao-dien-diem-danh') }}" >Tạo điểm danh ngày {{ Carbon\Carbon::now()->format('d-m-Y') }}</a>
-                    </div>
+                    @if (empty($ngayHienTai))
+                        <div class="add-product">
+                            <a href="{{ route('giao-vien.giao-dien-diem-danh') }}" >Tạo điểm danh ngày {{ Carbon\Carbon::now()->format('d-m-Y') }}</a>
+                        </div>
+                    @else
+                        @if ($ngayHienTai->dd_ngay =! Carbon\Carbon::now()->format('Y-m-d'))
+                            <div class="add-product">
+                                <a href="{{ route('giao-vien.giao-dien-diem-danh') }}" >Tạo điểm danh ngày {{ Carbon\Carbon::now()->format('d-m-Y') }}</a>
+                            </div>
+                        @endif
+                    @endif
+
                     <div class="asset-inner">
                         <table >
                             <thead >
@@ -57,6 +66,7 @@
                                     <th style="text-align: center;">STT</th>
                                     <th style="text-align: center;">Tiêu đề</th>
                                     <th style="text-align: center;"></th>
+                                    <th></th>
                                 </tr>
 
                             </thead>
@@ -67,7 +77,14 @@
                                         <td style="text-align: center;">{{ $stt++ }}</td>
                                         <td style="text-align: center;">Điểm danh ngày {{ Carbon\Carbon::parse($item->dd_ngay)->format('d/m/Y') }}</td>
                                         <td style="text-align: center;">
-                                            <a href="#" class="btn btn-default">Xem chi tiết</a>
+                                            <a href="{{ route('giao-vien.chi-tiet-diem-danh', ['idDiemDanh'=>$item->dd_id]) }}" class="btn btn-default">Xem chi tiết</a>
+                                        </td>
+                                        <td style="color: red;">
+                                            @if (!empty($chiTiet[$item->dd_id]))
+                                                {{-- @if ($chiTiet[$item->dd_id]->ctdd_trangthai == NULL) --}}
+                                                    Chưa điểm danh đủ
+                                                {{-- @endif --}}
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach

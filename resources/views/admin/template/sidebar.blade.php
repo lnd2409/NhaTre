@@ -164,8 +164,8 @@
                                 $donXinPhep = DB::table('donxinphep')
                                 ->join('hocsinh','hocsinh.hs_id','donxinphep.hs_id')
                                 ->join('lophoc','lophoc.lh_id','hocsinh.lh_id')
-                                // ->where('lophoc.nt_id',Auth::guard('nhatruong')->id())
-                                ->where('dxp_trangthai',0)->count();
+                                ->where('lophoc.nt_id',Auth::guard('nhatruong')->id())
+                                ->where('dxp_trangthai',0)->get();
                             ?>
                             <span class="mini-click-non" >Đơn xin phép ({{ $donXinPhep }})</span>
                         </a>
