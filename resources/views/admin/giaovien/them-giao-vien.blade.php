@@ -57,7 +57,7 @@
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="review-content-section">
                                         <div id="dropzone1" class="pro-ad">
-                                            <form action="{{ route('xu-ly-themm-giao-vien') }}" method="POST" class="dropzone dropzone-custom needsclick add-professors dz-clickable" id="demo1-upload" novalidate="novalidate">
+                                            <form action="{{ route('xu-ly-themm-giao-vien') }}" method="POST" class="dropzone dropzone-custom needsclick add-professors dz-clickable" id="demo1-upload demoForm" novalidate="novalidate">
                                                 @csrf
                                                 <div class="row">
                                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -106,5 +106,4 @@
         </div>
     </div>
 </div>
-
 @endsection

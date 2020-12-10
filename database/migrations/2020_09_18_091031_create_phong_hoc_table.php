@@ -14,7 +14,8 @@ class CreatePhongHocTable extends Migration
     public function up()
     {
         Schema::create('phonghoc', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('ph_id');
+            $table->string('ph_tenphong');
             $table->timestamps();
         });
     }

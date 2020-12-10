@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateChiTietThoiKhoaBieuTable extends Migration
+class CreateLichHoatDongTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class CreateChiTietThoiKhoaBieuTable extends Migration
      */
     public function up()
     {
-        Schema::create('chitietTKB', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('lichhoatdong', function (Blueprint $table) {
+            $table->bigIncrements('lhd_id');
+            $table->date('ldh_ngayapdung');
+            $table->bigInteger('lh_id')->unsigned();
+            $table->foreign('lh_id')->references('lh_id')->on('lophoc')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -26,6 +29,6 @@ class CreateChiTietThoiKhoaBieuTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('chitietTKB');
+        Schema::dropIfExists('lichhoatdong');
     }
 }

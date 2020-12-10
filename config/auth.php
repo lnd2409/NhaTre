@@ -62,6 +62,14 @@ return [
             'driver' => 'token',
             'provider' => 'giaovien',
         ],
+        'phuhuynh' => [
+            'driver' => 'session',
+            'provider' => 'phuhuynh',
+        ],
+        'phuhuynh-api' => [
+            'driver' => 'token',
+            'provider' => 'phuhuynh',
+        ],
     ],
 
     /*
@@ -98,6 +106,10 @@ return [
         'giaovien' => [
             'driver' => 'eloquent',
             'model' => App\GiaoVien::class,
+        ],
+        'phuhuynh' => [
+            'driver' => 'eloquent',
+            'model' => App\PhuHuynh::class,
         ],
     ],
 

@@ -35,6 +35,12 @@
             ============================================ -->
         <script src="{{ asset('template') }}/js/metisMenu/metisMenu.min.js"></script>
         <script src="{{ asset('template') }}/js/metisMenu/metisMenu-active.js"></script>
+
+        <!-- summernote JS
+		============================================ -->
+        <!-- include summernote css/js -->
+        <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+
         <!-- morrisjs JS
             ============================================ -->
         {{-- <script src="{{ asset('template') }}/js/morrisjs/raphael-min.js"></script>
@@ -50,9 +56,28 @@
         <script src="{{ asset('template') }}/js/calendar/moment.min.js"></script>
         <script src="{{ asset('template') }}/js/calendar/fullcalendar.min.js"></script>
         <script src="{{ asset('template') }}/js/calendar/fullcalendar-active.js"></script>
+
+
+
+        <!-- tab JS
+		============================================ -->
+        <script src="{{ asset('template') }}/js/tab.js"></script>
         <!-- plugins JS
             ============================================ -->
         <script src="{{ asset('template') }}/js/plugins.js"></script>
         <!-- main JS
             ============================================ -->
         <script src="{{ asset('template') }}/js/main.js"></script>
+
+        <script>
+            $(document).ready(function() {
+                // $('#summernote').summernote();
+                $('#summernote').summernote({
+                    height: 450,                 // set editor height
+                    minHeight: null,             // set minimum height of editor
+                    maxHeight: null,             // set maximum height of editor
+                    // focus: true                  // set focus to editable area after initializing summernote
+                });
+            });
+        </script>
+

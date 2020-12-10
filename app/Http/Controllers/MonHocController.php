@@ -11,6 +11,18 @@ class MonHocController extends Controller
     {
         $idShool = Auth::guard('nhatruong')->id();
         $monHoc = DB::table('monhoc')->where('nt_id',$idShool)->get();
-        dd($monHoc);
+        return view('admin.monhoc.index', compact('monHoc'));
+    }
+
+    public function store(Request $request)
+    {
+        $idSchool = Auth::guard('nhatruong')->id();
+        $tenMonHoc = $request->tenMonHoc;
+        $insert = DB::table('monhoc')->insert([
+            'mh_tenmon' => $tenMonHoc,
+            'nt_id' => $idSchool
+        ]);
+
+        return redirect()->back();
     }
 }

@@ -67,8 +67,8 @@
 			<div class="text-center m-b-md custom-login">
 				<h3>KID CARE</h3>
                 <p>Hệ thống quản lý trường mẫu giáo</p>
-                <p><a href="{{ route('dang-nhap') }}">Nhà trường</a></p>
-                <p><b>Đăng nhập giáo viên</b></p>
+                <p><a href="{{ route('dang-nhap') }}">Nhà trường</a> || <a href="{{ route('login-phu-huynh') }}">Phụ huynh</a></p>
+                <p style="font-size: 20px;"><b>Đăng nhập giáo viên</b></p>
 			</div>
 			<div class="content-error">
 				<div class="hpanel">

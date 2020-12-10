@@ -49,8 +49,13 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="sparkline8-list">
                     <div class="sparkline8-hd">
-                        <div class="main-sparkline8-hd text-center">
+                        <div class="main-sparkline8-hd">
                             <h1>Danh sách lớp {{ $tenKhoi->kh_tenkhoi }}</h1>
+                        </div>
+                        <div class="main-sparkline8-hd">
+                            {{-- {{ route('nha-truong.sap-lich-hoat-dong', ['idClass' => $tenKhoi->kh_id]) }} --}}
+                            <a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#activeModal">Tạo lịch hoạt động</a>
+
                         </div>
                     </div>
                     <div class="sparkline8-graph">
@@ -81,6 +86,7 @@
                                         </td>
                                         <td>
                                             <a href="{{ route('chi-tiet-lop-hoc', ['id' => $item->lh_id]) }}" class="btn btn-default">Chi tiết</a>
+                                            <a href="{{ route('nha-truong.lich-hoat-dong-chi-tiet', ['idClass'=> $item->lh_id]) }}">Chi tiết lịch hoạt động</a>
                                             <a href="#" class="btn btn-success">Sửa</a>
                                             <a href="#" class="btn btn-danger">Xóa</a>
                                         </td>
@@ -95,5 +101,28 @@
         </div>
     </div>
 </div>
-
+<div class="modal fade" id="activeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <form action="{{ route('nha-truong.sap-lich-hoat-dong', ['idClass' => $tenKhoi->kh_id]) }}" method="get">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Sắp lịch hoạt động</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <label>Ngày bắt áp dụng</label>
+                <input type="date" class="form-control" name="ngayApDung">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+            <button type="submit" class="btn btn-primary">Áp dụng</button>
+        </div>
+        </div>
+    </form>
+  </div>
+</div>
 @endsection

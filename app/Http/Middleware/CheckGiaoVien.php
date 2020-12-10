@@ -19,6 +19,6 @@ class CheckGiaoVien
             # code...
             return $next($request);
         }
-        return redirect()->route('dang-nhap');
+        return redirect()->route('login-giao-vien');
     }
 }
