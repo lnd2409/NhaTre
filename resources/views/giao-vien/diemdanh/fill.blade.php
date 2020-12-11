@@ -64,7 +64,7 @@
                                 </tr>
                                 @foreach ($hocSinh as $item)
                                 <tr>
-                                    <td>HS-{{ $item->hs_id }}</td>
+                                    <td>HS-{{ $item->hs_id }} </td>
                                     <td>{{ $item->hs_hoten }}</td>
                                     <td>
                                         @if (!empty($chiTiet[$item->hs_id]))
@@ -96,15 +96,10 @@
     </div>
 </div>
 
-@push('js-diem-danh')
+{{-- @push('js-diem-danh')
     <script>
-        $(document).ready(function () {
-            $('.pd-setting').click(function (e) {
-                e.preventDefault();
 
-            });
-        });
     </script>
-@endpush
+@endpush --}}
 
 @endsection
