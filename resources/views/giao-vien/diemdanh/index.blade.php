@@ -52,7 +52,7 @@
                             <a href="{{ route('giao-vien.giao-dien-diem-danh') }}" >Tạo điểm danh ngày {{ Carbon\Carbon::now()->format('d-m-Y') }}</a>
                         </div>
                     @else
-                        @if ($ngayHienTai->dd_ngay =! Carbon\Carbon::now()->format('Y-m-d'))
+                        @if ($ngayHienTai->dd_ngay != Carbon\Carbon::now()->format('Y-m-d'))
                             <div class="add-product">
                                 <a href="{{ route('giao-vien.giao-dien-diem-danh') }}" >Tạo điểm danh ngày {{ Carbon\Carbon::now()->format('d-m-Y') }}</a>
                             </div>

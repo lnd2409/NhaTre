@@ -62,6 +62,8 @@
                                     {{-- <th>Người viết</th> --}}
                                     {{-- <th>Thao tác</th> --}}
                                 </tr>
+                                {{-- {{ dd($idDiemDanh) }} --}}
+
                                 @foreach ($hocSinh as $item)
                                 <tr>
                                     <td>HS-{{ $item->hs_id }}</td>
@@ -69,14 +71,14 @@
                                     <td>
                                         @if (!empty($chiTiet[$item->hs_id]))
                                             @if ($chiTiet[$item->hs_id]->ctdd_trangthai == 1)
-                                                <a href="{{ route('giao-vien.check-diem-danh', ['idStudent'=> $item->hs_id,'trangThai' => 2,'idClass' => $item->lh_id]) }}" title="Vắng mặt" class="pd-setting">Có</a>
+                                                <a href="{{ route('giao-vien.check-diem-danh', ['idStudent'=> $item->hs_id,'trangThai' => 2,'idDiemDanh' => $idDiemDanh]) }}" title="Vắng mặt" class="pd-setting">Có</a>
                                             @endif
                                             @if($chiTiet[$item->hs_id]->ctdd_trangthai == 2)
-                                                <a href="{{ route('giao-vien.check-diem-danh', ['idStudent'=> $item->hs_id,'trangThai' => 1,'idClass' => $item->lh_id]) }}" title="Có mặt" class="ds-setting">Vắng</a>
+                                                <a href="{{ route('giao-vien.check-diem-danh', ['idStudent'=> $item->hs_id,'trangThai' => 1,'idDiemDanh' => $idDiemDanh]) }}" title="Có mặt" class="ds-setting">Vắng</a>
                                             @endif
                                             @if($chiTiet[$item->hs_id]->ctdd_trangthai == NULL)
-                                                <a href="{{ route('giao-vien.check-diem-danh', ['idStudent'=> $item->hs_id,'trangThai' => 1,'idClass' => $item->lh_id]) }}" class="pd-setting">Có</a>
-                                                <a href="{{ route('giao-vien.check-diem-danh', ['idStudent'=> $item->hs_id,'trangThai' => 2,'idClass' => $item->lh_id]) }}" class="ds-setting">Vắng</a>
+                                                <a href="{{ route('giao-vien.check-diem-danh', ['idStudent'=> $item->hs_id,'trangThai' => 1,'idDiemDanh' => $idDiemDanh]) }}" class="pd-setting">Có</a>
+                                                <a href="{{ route('giao-vien.check-diem-danh', ['idStudent'=> $item->hs_id,'trangThai' => 2,'idDiemDanh' => $idDiemDanh]) }}" class="ds-setting">Vắng</a>
                                             @endif
                                         @endif
                                     </td>

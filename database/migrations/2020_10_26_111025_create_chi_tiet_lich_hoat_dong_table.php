@@ -15,8 +15,8 @@ class CreateChiTietLichHoatDongTable extends Migration
     {
         Schema::create('chitietlichhoatdong', function (Blueprint $table) {
             $table->bigIncrements('ctlhd_id');
-            $table->string('ctlhd_giobatdau');
-            $table->string('ctlhd_gioketthuc');
+            $table->string('ctlhd_giobatdau')->nullable();
+            $table->string('ctlhd_gioketthuc')->nullable();
             $table->bigInteger('lhd_id')->unsigned();
             $table->foreign('lhd_id')->references('lhd_id')->on('lichhoatdong')->onDelete('cascade');
             $table->bigInteger('mh_id')->unsigned();

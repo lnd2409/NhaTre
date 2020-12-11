@@ -98,7 +98,7 @@
                         @csrf
                         <div class="form-group">
                             <label for="">Tên món</label>
-                            <input type="text" autocomplete="off" name="tenMon" class="form-control" placeholder="Nhập tên món ăn . . .">
+                            <input type="text" autocomplete="off" required name="tenMon" class="form-control" placeholder="Nhập tên món ăn . . .">
                         </div>
                         <div class="form-group">
                             <input type="submit" class="btn btn-primary" value="Thêm">
