@@ -70,10 +70,10 @@
                     </li>
                     {{-- Lớp học --}}
                     <li class="">
-                        <a class="has-arrow" href="all-courses.html" aria-expanded="false"><span class="educate-icon educate-event icon-wrap sub-icon-mg" aria-hidden="true"></span> <span class="mini-click-non">Lớp học</span></a>
+                        <a class="has-arrow" href="all-courses.html" aria-expanded="false"><span class="educate-icon educate-event icon-wrap sub-icon-mg" aria-hidden="true"></span> <span class="mini-click-non">Khối học</span></a>
                         <ul class="submenu-angle collapse" aria-expanded="false" style="height: 0px;">
                             @foreach ($khoiHoc as $item)
-                                <li><a href="{{ route('danh-sach-lop-hoc', ['idKhoi'=>$item->kh_id]) }}"><span class="mini-sub-pro">Lớp {{ $item->kh_tenkhoi }}</span></a></li>
+                                <li><a href="{{ route('danh-sach-lop-hoc', ['idKhoi'=>$item->kh_id]) }}"><span class="mini-sub-pro">{{ $item->kh_tenkhoi }}</span></a></li>
                             @endforeach
                         </ul>
                     </li>

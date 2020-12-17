@@ -23,6 +23,8 @@ class CreateGiaoVienTable extends Migration
             $table->string('gv_ngaysinh');
             $table->integer('gv_gioitinh')->comment('1 là Nam 0 là Nữ');
             $table->string('gv_avata')->nullable();
+            $table->integer('gv_trangthai')->default(1);
+            $table->string('gv_bangcap');
             $table->bigInteger('nt_id')->unsigned();
             $table->foreign('nt_id')->references('nt_id')->on('nhatruong_khoihoc')->onDelete('cascade');
             $table->bigInteger('lh_id')->unsigned()->nullable();

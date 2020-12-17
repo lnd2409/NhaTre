@@ -26,7 +26,6 @@ class ThucDonController extends Controller
         $insertThucDon = DB::table('thucdon')->insertGetId([
             'td_ngayapdung' => $request->ngayApDung,
             'nt_id' => $idSchool,
-            'kh_id' => NULL
         ]);
         $monAn = $request->monAn;
         foreach ($monAn as $item) {
