@@ -32,6 +32,7 @@ Route::group(['middleware' => ['checkNhaTruong']], function () {
             Route::post('/xu-ly-them-giao-vien', 'GiaoVienController@xuLyThemGiaoVien')->name('xu-ly-themm-giao-vien');
             Route::get('/chi-tiet/{id}','GiaoVienController@chiTietGiaoVien')->name('chi-tiet-giao-vien');
             Route::post('/chinh-sua','GiaoVienController@xuLySuaGiaoVien')->name('xu-ly-sua-giao-vien');
+            Route::post('/cap-nhat-anh-dai-dien', 'GiaoVienController@capNhatAnhDaiDien')->name('cap-nhat-avata-giao-vien');
             Route::get('/reset-password/{id}', 'GiaoVienController@resetPassword')->name('reset-password-giao-vien');
         });
 

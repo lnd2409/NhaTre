@@ -52,12 +52,12 @@
                         <a href="{{ route('danh-sach-lop-hoc', ['idKhoi'=> $tenLop->kh_id ]) }}" class="btn btn-sm btn-warning">Quay lại</a>
                     </div>
                     <div class="col-md-12" style="padding-left: 0px;">
-                        <h2 class="text-center">Danh sách học sinh {{ $tenLop->lh_tenlop }}</h2>
-                        <p class="text-center">Số lượng: {{ $countStudent }} học sinh</p>
-                        <p class="text-center">
+                        <h2>Danh sách học sinh {{ $tenLop->lh_tenlop }}</h2>
+                        <p>Số lượng: {{ $countStudent }} học sinh</p>
+                        <p>
                             <b>Giáo viên quản lý
                                 <br>
-                                @if (count($giaoVien) > 0)
+                                @if (count($giaoVien))
                                     @foreach ($giaoVien as $item)
                                         {{ $item->gv_ten }}
                                         <br>
@@ -110,15 +110,19 @@
                                 <label>Giáo viên chính</label>
                                 <select class="selectpicker form-control" data-live-search="true" name="giaoVien1">
                                     @foreach ($giaoVienSelect as $item)
-                                        <option data-tokens="{{ $item->gv_id }}" value="{{ $item->gv_id }}">{{ $item->gv_ten }}</option>
+                                        @if ($item->lh_id == NULL)
+                                            <option data-tokens="{{ $item->gv_id }}" value="{{ $item->gv_id }}">{{ $item->gv_ten }}</option>
+                                        @endif
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label>Bảo mẫu</label>
+                                <label>Giáo viên phụ</label>
                                 <select class="selectpicker form-control" data-live-search="true" name="giaoVien2">
                                     @foreach ($giaoVienSelect as $item)
-                                        <option data-tokens="{{ $item->gv_id }}" value="{{ $item->gv_id }}">{{ $item->gv_ten }}</option>
+                                        @if ($item->lh_id == NULL)
+                                            <option data-tokens="{{ $item->gv_id }}" value="{{ $item->gv_id }}">{{ $item->gv_ten }}</option>
+                                        @endif
                                     @endforeach
                                 </select>
                             </div>

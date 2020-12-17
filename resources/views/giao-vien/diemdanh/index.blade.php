@@ -65,8 +65,8 @@
                                 <tr >
                                     <th style="text-align: center;">STT</th>
                                     <th style="text-align: center;">Tiêu đề</th>
-                                    <th style="text-align: center;"></th>
                                     <th></th>
+                                    <th>Trạng thái</th>
                                 </tr>
 
                             </thead>
@@ -82,7 +82,7 @@
                                         <td style="color: red;">
                                             @if (!empty($chiTiet[$item->dd_id]))
                                                 {{-- @if ($chiTiet[$item->dd_id]->ctdd_trangthai == NULL) --}}
-                                                    Chưa điểm danh đủ
+                                                    Chưa hoàn thành
                                                 {{-- @endif --}}
                                             @endif
                                         </td>

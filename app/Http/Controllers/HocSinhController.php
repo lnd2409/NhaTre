@@ -21,7 +21,7 @@ class HocSinhController extends Controller
 
                         $button = '<a href="'. 'http://127.0.0.1:8000/hoc-sinh/chi-tiet/'.$data->hs_id.'" data-toggle="tooltip"  data-id="'.$data->hs_id.'" data-original-title="Chỉnh sửa" class="edit btn btn-success edit-post">Chỉnh sửa</a>';
                         $button .= '&nbsp;&nbsp;';
-                        $button .= '<a href="'. 'http://127.0.0.1:8000/hoc-sinh/xoa-hoc-sinh/'.$data->hs_id.'" id="delete-post" data-toggle="tooltip" data-original-title="Xóa" data-id="'.$data->hs_id.'" class="delete btn btn-danger">Xóa</a>';
+                        // $button .= '<a href="'. 'http://127.0.0.1:8000/hoc-sinh/xoa-hoc-sinh/'.$data->hs_id.'" id="delete-post" data-toggle="tooltip" data-original-title="Xóa" data-id="'.$data->hs_id.'" class="delete btn btn-danger">Xóa</a>';
                         return $button;
                     })
                     ->rawColumns(['action'])

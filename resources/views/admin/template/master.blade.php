@@ -33,39 +33,7 @@
 
     @include('admin.template.js')
     {{-- Và đây là AJAX --}}
-    {{-- Giáo viên --}}
-    @if (Request::path() == 'giao-vien/danh-sach-giao-vien')
-        <script>
-            $(document).ready(function(){
-                $(document).on('click','.openModal',function(){
-                    var id = $(this).data('id');
-                    var url = "{!! asset('') !!}";
-                    console.log(url);
-                    console.log(id);
-                    $.ajax({
-                        type: "GET",
-                        url: url + "giao-vien/chi-tiet/" + id,
-                        // data: "data",
-                        dataType: "json",
-                        success: function (response) {
-                            $('#idGiaoVien').val(response.gv_id);
-                            $('#tenGiaoVien').val(response.gv_ten);
-                            $('#diaChi').val(response.gv_diachi);
-                            $('#ngaySinh').val(response.gv_ngaysinh);
-                            $('#sdt').val(response.gv_sdt);
-                            if(response.gv_gioitinh == 0){
-                                $('#women').attr("selected","selected");
-                            }else{
-                                $('#men').attr("selected","selected");
-                            }
-                            $('#gioiTinh').val(response.gv_gioitinh);
-                            console.log(response);
-                        }
-                    });
-                });
-            });
-        </script>
-    @endif
+    {{--  --}}
     {{-- Lớp học --}}
     @if (Request::path() == 'lop-hoc/1' || Request::path() == 'lop-hoc/2' || Request::path() == 'lop-hoc/3')
         <script>
@@ -136,6 +104,7 @@
             });
         });
     </script>
+    @stack('giao-vien')
     @stack('thuc-don')
     @stack('select-picker')
     @stack('ajax-get-class')
