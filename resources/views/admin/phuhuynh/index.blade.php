@@ -48,7 +48,9 @@
                     <div class="sparkline8-hd">
                         <div class="main-sparkline8-hd">
                             <h1>Danh sách lớp môn học</h1>
+                            <a href="{{ route('them-phu-huynh') }}" class="btn btn-primary">Thêm phụ huynh</a>
                         </div>
+
                     </div>
                     <div class="sparkline8-graph">
                         <div class="static-table-list">

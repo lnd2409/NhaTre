@@ -68,7 +68,9 @@ class NhaTruongController extends Controller
         $hocKy = $request->hocKy;
         $insertNamHocHocKy = DB::table('hocky_namhoc')->insertGetId([
             'hocky' => $hocKy,
-            'namhoc' => $namHoc
+            'namhoc' => $namHoc,
+            'trangthai' => 1,
+            'nt_id' => $id
         ]);
 
         //Thêm khối học - trường

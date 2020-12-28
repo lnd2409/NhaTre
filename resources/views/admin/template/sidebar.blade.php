@@ -79,11 +79,12 @@
                     </li>
                     {{-- Môn học --}}
                     <li>
+                        <a title="Landing Page" href="{{ route('danh-sach-mon-hoc') }}" aria-expanded="false">
+                            <span class="educate-icon educate-course icon-wrap"></span>
+                            {{-- <span class="educate-icon educate-home icon-wrap" style="@if (Request::path() == 'admin') color: white; @endif"></span> --}}
+                            <span class="mini-click-non" >Danh sách môn học</span>
+                        </a>
                         <a class="has-arrow" href="all-courses.html" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Môn học</span></a>
-                        <ul class="submenu-angle collapse" aria-expanded="false">
-                            <li><a title="All Courses" href="{{ route('danh-sach-mon-hoc') }}"><span class="mini-sub-pro">Danh sách môn học</span></a></li>
-                            <li><a title="Add Courses" href="add-course.html"><span class="mini-sub-pro">Thêm môn học</span></a></li>
-                        </ul>
                     </li>
                     {{-- Thực đơn --}}
                     <li class="">

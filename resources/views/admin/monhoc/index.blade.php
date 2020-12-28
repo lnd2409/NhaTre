@@ -52,6 +52,12 @@
                         <div class="main-sparkline8-hd">
                             <h1>Danh sách lớp môn học</h1>
                         </div>
+                        <div class="main-sparkline8-hd">
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                Thêm môn học
+                            </button>
+                        </div>
                     </div>
                     <div class="sparkline8-graph">
                         <div class="static-table-list">
@@ -69,6 +75,9 @@
                                         <td>{{ $item->mh_id }}</td>
                                         <td>{{ $item->mh_tenmon }}</td>
                                         <td>
+                                            <p>{{ $item->mh_mota }}</p>
+                                        </td>
+                                        <td>
                                             <a href="#" class="btn btn-success">Sửa</a>
                                             <a href="#" class="btn btn-danger">Xóa</a>
                                         </td>
@@ -83,5 +92,34 @@
         </div>
     </div>
 </div>
-
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <form action="{{ route('them-mon-hoc') }}" method="POST">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Thêm môn học</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    @csrf
+                    <div class="form-group">
+                        <label>Tên môn học</label>
+                        <input type="text" name="tenMonHoc" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Tên môn học</label>
+                        <textarea name="moTa" class="form-control" cols="30" rows="10"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                <button type="submit" class="btn btn-primary">Lưu</button>
+                </div>
+            </div>
+        </form>
+    </div>
+  </div>
 @endsection

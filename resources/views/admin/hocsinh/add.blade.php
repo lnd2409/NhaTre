@@ -58,7 +58,7 @@
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="review-content-section">
                                         <div id="dropzone1" class="pro-ad">
-                                            <form action="{{ route('hocsinh.xu-ly-them') }}" method="POST" class="dropzone dropzone-custom needsclick add-professors dz-clickable" id="demo1-upload" novalidate="novalidate">
+                                            <form action="{{ route('hocsinh.xu-ly-them') }}" method="POST" class="dropzone dropzone-custom needsclick add-professors dz-clickable" id="demo1-upload" enctype="multipart/form-data" novalidate="novalidate">
                                                 @csrf
                                                 <div class="row">
                                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -68,8 +68,11 @@
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="">Nơi sinh:</label>
-                                                            <input name="noiSinh" type="text" class="form-control" placeholder="Nơi sinh">
+                                                            <select name="noiSinh" id="" class="noiSinh form-control col-md-4">
+                                                                {{-- <option value="null" lang="123">Chọn thành phố</option> --}}
+                                                            </select>
                                                         </div>
+                                                        <br>
                                                         <div class="form-group">
                                                             <label for="">Ngày sinh</label>
                                                             <input name="ngaySinh" id="finish" type="date" class="form-control hasDatepicker" placeholder="Ngày sinh">
@@ -101,6 +104,12 @@
                                                     </div>
                                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                         <div class="form-group">
+                                                            <label>Hình ảnh</label>
+                                                            <br>
+                                                            <img id="blah" src="https://via.placeholder.com/230x185" alt="your image" width="120" height="150" />
+                                                            <input type="file" class="form-control" name="anhDaiDien" id="imgInp">
+                                                        </div>
+                                                        <div class="form-group">
                                                             <label>Phụ huynh của học sinh</label>
                                                             <select class="selectpicker form-control" data-live-search="true" name="phuHuynh">
                                                                 @foreach ($phuHuynh as $item)
@@ -109,7 +118,7 @@
                                                             </select>
                                                             <br>
                                                             <br>
-                                                            <a href="#" class="btn btn-primary">Thêm thông tin phụ huynh</a>
+                                                            <a href="{{ route('them-phu-huynh') }}" class="btn btn-primary">Thêm thông tin phụ huynh</a>
                                                             <p><i>(Nếu không có thông tên phụ huynh trong form nhập)</i></p>
                                                         </div>
                                                     </div>
@@ -142,6 +151,23 @@
 @endpush
 @push('ajax-get-class')
     <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                $('#blah').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]); // convert to base64 string
+            }
+            }
+
+            $("#imgInp").change(function() {
+            readURL(this);
+        });
+    </script>
+    <script>
         $('select.khoiHoc').change(function (e) {
             e.preventDefault();
             var getID = $(this).children("option:selected").val();
@@ -162,6 +188,17 @@
                         console.log(response[i].lh_tenlop);
                         $('.lopHoc').append('<option class="value-lh" value="' + response[i].lh_id + '" >' + response[i].lh_tenlop + '</option>');
                     }
+                }
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            var jsonFile = "{{ asset('admin-he-thong') }}/"+"local.json";
+            $.getJSON(jsonFile, function(js) {
+                console.log(js.length);
+                for (let i = 0; i < js.length; i++) {
+                    $('.noiSinh').append('<option class="value-tp" value="' + js[i].name + '" lang="' + js[i].id + '" >' + js[i].name + '</option>');
                 }
             });
         });

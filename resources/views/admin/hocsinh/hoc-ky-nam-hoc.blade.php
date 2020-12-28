@@ -57,17 +57,17 @@
                                 <div class="form-group col-md-5">
                                     <label for="">Năm học</label>
                                     <select name="namHoc" id="" class="form-control">
-                                        <option value="2020-2021">2020-2021</option>
-                                        <option value="2021-2022">2021-2022</option>
-                                        <option value="2022-2023">2022-2023</option>
-                                        <option value="2023-2024">2023-2024</option>
+                                        <option value="2020-2021" {{ $namHoc == '2020-2021' ? 'selected' : '' }}>2020-2021</option>
+                                        <option value="2021-2022" {{ $namHoc == '2021-2022' ? 'selected' : '' }}>2021-2022</option>
+                                        <option value="2022-2023" {{ $namHoc == '2022-2023' ? 'selected' : '' }}>2022-2023</option>
+                                        <option value="2023-2024" {{ $namHoc == '2023-2024' ? 'selected' : '' }}>2023-2024</option>
                                     </select>
                                 </div>
                                 <div class="form-group col-md-5">
                                     <label for="">Học kỳ</label>
                                     <select name="hocKy" id="" class="form-control">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
+                                        <option value="1" {{ $hocKy == '1' ? 'selected' : '' }}>1</option>
+                                        <option value="2" {{ $hocKy == '2' ? 'selected' : '' }}>2</option>
                                     </select>
                                 </div>
                                 <div class="col-md-2">
@@ -94,7 +94,28 @@
                                 </tr>
                             </thead>
                             <tbody>
-
+                                @if (count($data) > 0)
+                                    @foreach ($data as $item)
+                                        <tr>
+                                            <td style="line-height: 5em;">{{ $item->hs_id }}</td>
+                                            <td style="line-height: 5em;"><img src="{{ asset('hoc-sinh/anh-dai-dien') }}/{{ $item->hs_avata }}" alt="Ảnh đại diện"></td>
+                                            <td style="line-height: 5em;">{{ $item->hs_hoten }}</td>
+                                            <td style="line-height: 5em;">{{ $item->hs_noisinh }}</td>
+                                            <td style="line-height: 5em;">{{ $item->hs_ngaysinh }}</td>
+                                            <td style="line-height: 5em;">{{ $item->ph_hoten }}</td>
+                                            <td style="line-height: 5em;"><a href="{{ route('chi-tiet-lop-hoc', ['idLop'=> $item->lh_id]) }}">{{ $item->lh_tenlop }}</a></td>
+                                            <td style="line-height: 5em;">
+                                                <button type="button" data-id="{{ $item->hs_id }}" class="btn btn-primary openModal" data-toggle="modal" data-target="#exampleModal">Chỉnh sửa</button>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @else
+                                    <tr>
+                                        <td colspan="8" >
+                                            <p class="text-center">Không có dữ liệu</p>
+                                        </td>
+                                    </tr>
+                                @endif
                             </tbody>
                         </table>
                     </div>
@@ -137,7 +158,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
                     <button type="submit" class="btn btn-primary">Chỉnh sửa</button>
                     <hr>
                     <p class="text-center">Kiểm tra kỹ thông tin trước khi cập nhật</p>
@@ -149,54 +170,6 @@
 </div>
 
 @push('danh-sach-hoc-sinh')
-<script type="text/javascript">
-    $(function () {
-        var url = '{{ asset('') }}';
-        console.log(url);
-        var table = $('.data-table').DataTable({
-            processing: true,
-            serverSide: true,
-            ajax: {
-                url: "{{ route('danh-sach-hoc-sinh') }}",
-                type: 'GET',
-            },
-            columns: [
-                {data: 'hs_id', name: 'hs_id'},
-                {data: {hs_avata : 'hs_avata'}, name: 'hs_avata', 'render' : function(data){
-                                    // return '<a href="'+url+'hocsinh/anh-dai-dien/' + data.lh_id +'"> '+data.lh_tenlop+'</a>';
-                                    return '<img src="'+url+'hinh-anh-hoc-sinh/anh-dai-dien/'+ data.hs_avata +'" alt="Ảnh đại diện">';
-
-                                }
-                            },
-                {data: 'hs_hoten', name: 'hs_hoten'},
-                {data: 'hs_noisinh', name: 'hs_noisinh'},
-                {data: 'hs_ngaysinh', name: 'hs_ngaysinh'},
-                {data: 'ph_hoten', name: 'ph_hoten'},
-                {data: {lh_tenlop : 'lh_tenlop'}, name: 'lh_tenlop', "render" : function(data){
-                                return '<a href="'+url+'lop-hoc/chi-tiet/' + data.lh_id +'"> '+data.lh_tenlop+'</a>';
-                            }
-                        },
-                {data: 'action', name: 'action'},
-            ],
-            "language": {
-                "lengthMenu": "Hiển thị _MENU_ dòng trên trang",
-                "zeroRecords": "Không có dữ liệu",
-                "info": "Hiển thị _PAGE_ của _PAGES_",
-                "infoEmpty": "Không có dữ liệu",
-                "infoFiltered": "(Tìm thấy trong _MAX_ dữ liệu)",
-                "paginate": {
-                    "first":      "<<",
-                    "last":       ">>",
-                    "next":       ">>",
-                    "previous":   "<<"
-                },
-                "search": "Tìm kiếm:",
-            }
-        //   order: [[0, 'desc']]
-
-        });
-    });
-</script>
 <script>
     $(document).ready(function(){
         $(document).on('click','.openModal',function(){

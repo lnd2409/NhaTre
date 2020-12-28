@@ -20,6 +20,7 @@ class CreateHocSinhTable extends Migration
             $table->date('hs_ngaysinh');
             $table->integer('hs_gioitinh')->comment("1 là nam ; 0 là nữ");
             $table->integer('hs_trangthaitienhoc')->nullable();
+            $table->string('hs_avata')->nullable();
             $table->bigInteger('lh_id')->unsigned()->nullable();
             $table->foreign('lh_id')->references('lh_id')->on('lophoc');
             $table->bigInteger('ph_id')->unsigned()->nullable();

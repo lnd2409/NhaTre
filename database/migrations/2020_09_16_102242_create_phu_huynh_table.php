@@ -22,6 +22,8 @@ class CreatePhuHuynhTable extends Migration
             $table->string('ph_nghenghiep');
             $table->string('ph_sdt');
             $table->string('ph_diachi');
+            $table->string('ph_avata');
+            $table->integer('ph_gioitinh');
             $table->bigInteger('nt_id')->unsigned();
             $table->foreign('nt_id')->references('nt_id')->on('nhatruong')->onDelete('cascade');
             $table->timestamps();

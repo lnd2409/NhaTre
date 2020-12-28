@@ -14,66 +14,18 @@
 
     <div class="site-wrap" id="home-section">
 
-      <div class="site-mobile-menu site-navbar-target">
-        <div class="site-mobile-menu-header">
-          <div class="site-mobile-menu-close mt-3">
-            <span class="icon-close2 js-menu-toggle"></span>
-          </div>
-        </div>
-        <div class="site-mobile-menu-body"></div>
-      </div>
-
-
-
-      <header class="site-navbar site-navbar-target" role="banner">
-
-        <div class="container mb-3">
-          <div class="d-flex align-items-center">
-            <div class="site-logo mr-auto">
-              <a href="#">Kid Care<span class="text-primary">.</span></a>
+        <div class="site-mobile-menu site-navbar-target">
+            <div class="site-mobile-menu-header">
+            <div class="site-mobile-menu-close mt-3">
+                <span class="icon-close2 js-menu-toggle"></span>
             </div>
-            <div class="site-quick-contact d-none d-lg-flex ml-auto ">
-              <div class="d-flex site-info align-items-center mr-5">
-                <span class="block-icon mr-3"><span class="icon-map-marker text-yellow"></span></span>
-                <span>2/38 Bùi Thị Xuân, P. Thới Bình, Q. Ninh Kiểu <br> Cần Thơ</span>
-              </div>
-              <div class="d-flex site-info align-items-center">
-                <span class="block-icon mr-3"><span class="icon-clock-o"></span></span>
-                <span>Monday - Friday 7:30AM - 5:30PM</span>
-              </div>
-
             </div>
-          </div>
-        </div>
-
-
-        <div class="container">
-          <div class="menu-wrap d-flex align-items-center">
-            <span class="d-inline-block d-lg-none"><a href="#" class="text-black site-menu-toggle js-menu-toggle py-5"><span class="icon-menu h3 text-black"></span></a></span>
-
-
-
-              <nav class="site-navigation text-left mr-auto d-none d-lg-block" role="navigation">
-                <ul class="site-menu main-menu js-clone-nav mr-auto ">
-                  <li class="active"><a href="index.html" class="nav-link">Trang chủ</a></li>
-                  <li><a href="about.html" class="nav-link">Về chúng tôi</a></li>
-                  <li><a href="packages.html" class="nav-link">Dịch vụ</a></li>
-                  <li><a href="gallery.html" class="nav-link">Hình ảnh</a></li>
-                  <li><a href="contact.html" class="nav-link">Liên hệ</a></li>
-                </ul>
-              </nav>
-
-              <div class="top-social ml-auto">
-                <a href="#"><span class="icon-facebook text-teal"></span></a>
-                <a href="#"><span class="icon-twitter text-success"></span></a>
-                <a href="#"><span class="icon-linkedin text-yellow"></span></a>
-              </div>
-          </div>
+            <div class="site-mobile-menu-body"></div>
         </div>
 
 
 
-      </header>
+        @include('client.template.menu')
 
     <div class="ftco-blocks-cover-1">
 
@@ -98,30 +50,30 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-4">
-            <div class="block-2 red">
+            <div class="block-2 red" style="height: 350px;">
               <span class="wrap-icon">
                 <span class="icon-home"></span>
               </span>
-              <h2>Trò chơi trong nhà</h2>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima nesciunt, mollitia, hic enim id culpa.</p>
+              <h2>Chuyên nghiệp hóa trong công tác quản lý trường mầm non</h2>
+              <p>Cho phép nhà trường quản lý thông tin học sinh, giáo viên, nhân viên; hỗ trợ nghiệp vụ tài chính, dinh dưỡng,…</p>
             </div>
           </div>
           <div class="col-lg-4">
-            <div class="block-2 yellow">
+            <div class="block-2 yellow" style="height: 350px;">
               <span class="wrap-icon">
                 <span class="icon-person"></span>
               </span>
-              <h2>Trò chơi và hoạt động ngoài trời</h2>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima nesciunt, mollitia, hic enim id culpa.</p>
+              <h2>Thuận tiện tương tác và trao đổi thông tin</h2>
+              <p>Nhà trường khảo sát, thông báo nhanh chóng; phụ huynh trao đổi, cập nhật nhận xét của giáo viên theo ngày, theo tuần và theo tháng.</p>
             </div>
           </div>
           <div class="col-lg-4">
-            <div class="block-2 teal">
+            <div class="block-2 teal" style="height: 350px;">
               <span class="wrap-icon">
                 <span class="icon-cog"></span>
               </span>
-              <h2>Cắm trại cho trẻ em</h2>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima nesciunt, mollitia, hic enim id culpa.</p>
+              <h2>Cập nhật hình ảnh, video, thông tin hoạt động của trẻ trong ngày</h2>
+              <p>Bố mẹ đồng hành cùng con mỗi ngày trong mọi hoạt động ở trường như ăn, học, vui chơi, ngoại khóa…</p>
             </div>
           </div>
         </div>
@@ -136,10 +88,14 @@
           </div>
           <div class="col-md-5 ml-auto pl-md-5">
             <span class="text-cursive h5 text-red">Về chúng tôi</span>
-            <h3 class="text-black">Mang lại cuộc sống vui vẻ cho con bạn</h3>
-            <p><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et harum, magni sequi nostrum maxime enim.</span><span>Magnam id atque dicta deleniti, ipsam ipsum distinctio. Facilis praesentium voluptatem accusamus, earum veritatis, laudantium.</span></p>
+            <h3 class="text-black">Mang lại những điều tốt nhất dành cho bạn</h3>
+            <p>
+                <span>
+                    Thời đại công nghệ 4.0, khi lựa chọn trường cho con, Phụ huynh không chỉ quan tâm đến cơ sở vật chất, chất lượng đào tạo, thái độ giáo viên,… mà còn quan tâm đến “tính công nghệ” của ngôi trường. Do đó, ứng dụng công nghệ trong trường mầm non không chỉ là xu hướng mà còn là điều tất yếu.
+                </span>
+            </p>
 
-            <p class="mt-5"><a href="#" class="btn btn-warning py-4 btn-custom-1">Thông tin thêm</a></p>
+            {{-- <p class="mt-5"><a href="#" class="btn btn-warning py-4 btn-custom-1">Thông tin thêm</a></p> --}}
           </div>
         </div>
       </div>
@@ -155,28 +111,25 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-lg-4 mb-4 mb-lg-0">
-            <div class="package text-center bg-white">
+          <div class="col-lg-4 mb-4 mb-lg-0" style="height: 350px;">
+            <div class="package text-center bg-white" style="height: 350px;">
               <span class="img-wrap"><img src="{{asset('client')}}/images/flaticon/svg/001-jigsaw.svg" alt="Image" class="img-fluid"></span>
-              <h3 class="text-teal">Trò chơi trong nhà</h3>
-              <p>Lorem ipsum dolor sit amet. Consequatur aliquam, fuga maiores amet quo corporis distinctio soluta recusandae?</p>
-              <p><a href="#" class="btn btn-primary btn-custom-1 mt-4">Xem thêm</a></p>
+              <h3 class="text-teal">BGH & GIÁO VỤ</h3>
+              <p>Hỗ trợ công tác quản lý của Nhà trường, chuyên nghiệp hóa công tác quản lý trường mầm non: Quản lý thông tin học sinh, giáo viên, nhân viên; dinh dưỡng,...</p>
             </div>
           </div>
-          <div class="col-lg-4 mb-4 mb-lg-0">
-            <div class="package text-center bg-white">
+          <div class="col-lg-4 mb-4 mb-lg-0" style="height: 350px;">
+            <div class="package text-center bg-white" style="height: 350px;">
               <span class="img-wrap"><img src="{{asset('client')}}/images/flaticon/svg/002-target.svg" alt="Image" class="img-fluid"></span>
-              <h3 class="text-success">Hoạt động ngoài trời</h3>
-              <p>Lorem ipsum dolor sit amet. Consequatur aliquam, fuga maiores amet quo corporis distinctio soluta recusandae?</p>
-              <p><a href="#" class="btn btn-warning btn-custom-1 mt-4">Xem thêm</a></p>
+              <h3 class="text-success">CÔ GIÁO</h3>
+              <p>Theo dõi và đánh giá sự tiến bộ của trẻ; tương tác và trao đổi với phụ huynh và ban giám hiệu</p>
             </div>
           </div>
-          <div class="col-lg-4 mb-4 mb-lg-0">
-            <div class="package text-center bg-white">
+          <div class="col-lg-4 mb-4 mb-lg-0" style="height: 350px;">
+            <div class="package text-center bg-white" style="height: 350px;">
               <span class="img-wrap"><img src="{{asset('client')}}/images/flaticon/svg/003-mission.svg" alt="Image" class="img-fluid"></span>
-              <h3 class="text-danger">Cắm trại</h3>
-              <p>Lorem ipsum dolor sit amet. Consequatur aliquam, fuga maiores amet quo corporis distinctio soluta recusandae?</p>
-              <p><a href="#" class="btn btn-success btn-custom-1 mt-4">Xem thêm</a></p>
+              <h3 class="text-danger">PHỤ HUYNH</h3>
+              <p>Là công cụ để phụ huynh chủ động đồng hành cùng quá trình vui học của trẻ</p>
             </div>
           </div>
         </div>
@@ -215,62 +168,7 @@
         </div>
       </div>
     </div>
-    <footer class="site-footer">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-4">
-            <h2 class="footer-heading mb-3">About Us</h2>
-                <p class="mb-5">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
-
-                <h2 class="footer-heading mb-4">Newsletter</h2>
-                <form action="#" class="d-flex" class="subscribe">
-                  <input type="text" class="form-control mr-3" placeholder="Email">
-                  <input type="submit" value="Send" class="btn btn-primary">
-                </form>
-          </div>
-          <div class="col-lg-8 ml-auto">
-            <div class="row">
-              <div class="col-lg-4 ml-auto">
-                <h2 class="footer-heading mb-4">Navigation</h2>
-                <ul class="list-unstyled">
-                  <li><a href="#">About Us</a></li>
-                  <li><a href="#">Testimonials</a></li>
-                  <li><a href="#">Terms of Service</a></li>
-                  <li><a href="#">Privacy</a></li>
-                  <li><a href="#">Contact Us</a></li>
-                </ul>
-              </div>
-              <div class="col-lg-4">
-                <h2 class="footer-heading mb-4">Navigation</h2>
-                <ul class="list-unstyled">
-                  <li><a href="#">About Us</a></li>
-                  <li><a href="#">Testimonials</a></li>
-                  <li><a href="#">Terms of Service</a></li>
-                  <li><a href="#">Privacy</a></li>
-                  <li><a href="#">Contact Us</a></li>
-                </ul>
-
-              </div>
-
-
-
-            </div>
-          </div>
-        </div>
-        <div class="row pt-5 mt-5 text-center">
-          <div class="col-md-12">
-            <div class="border-top pt-5">
-              <p>
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            </p>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </footer>
+    @include('client.template.footer')
     </div>
   </body>
 

@@ -16,6 +16,11 @@ Route::get('/', function() {
     return view('client.index');
 })->name('trang-chu');
 
+Route::get('/truong-hoc', 'TrangChu\TrangChuController@getSchool')->name('trang-chu.truong-hoc');
+
+
+
+
 //Trang quản trị nhà trường
 Route::group(['middleware' => ['checkNhaTruong']], function () {
     Route::get('/thong-tin-nha-truong','NhaTruongController@nhapThongTin')->name('nhap-thong-tin');
@@ -53,10 +58,12 @@ Route::group(['middleware' => ['checkNhaTruong']], function () {
         Route::group(['prefix' => 'hoc-sinh'], function () {
             Route::get('danh-sach', 'HocSinhController@index')->name('danh-sach-hoc-sinh');
             Route::get('data','HocSinhController@getData')->name('hocsinh.get-data');
-            Route::get('chi-tiet/{idStudent}', 'HocSinhController@editStudent')->name('chinh-sua-thong-tin-hoc-sinh');
+            Route::get('chinh-sua/{idStudent}', 'HocSinhController@editStudent')->name('chinh-sua-thong-tin-hoc-sinh');
             Route::get('xoa-hoc-sinh/{idStudent}','HocSinhController@delStudent')->name('xoa-hoc-sinh');
             Route::get('them-hoc-sinh', 'HocSinhController@viewAddStudent')->name('hocsinh.them-hoc-sinh');
             Route::post('xu-ly-them-hoc-sinh', 'HocSinhController@addStudent')->name('hocsinh.xu-ly-them');
+            Route::post('cap-nhat', 'HocSinhController@handleEdit')->name('hoc-sinh.xu-ly-chinh-sua');
+            Route::get('hoc-ky-nam-hoc','HocSinhController@getCourse')->name('hoc-sinh.danh-sach-hoc-ky-nam-hoc');
         });
 
         #Thực đơn
@@ -70,11 +77,14 @@ Route::group(['middleware' => ['checkNhaTruong']], function () {
         #Phụ huynh
         Route::group(['prefix' => 'phu-huynh'], function () {
             Route::get('danh-sach', 'PhuHuynhController@phuHuynh')->name('danh-sach-phu-huynh');
+            Route::get('them-phu-huynh', 'PhuHuynhController@themPhuHuynh')->name('them-phu-huynh');
+            Route::post('xu-ly-them-phu-huynh', 'PhuHuynhController@xuLyThemPhuHuynh')->name('xu-ly-them-phu-huynh');
         });
 
         #Môn học
         Route::group(['prefix' => 'mon-hoc'], function () {
             Route::get('danh-sach', 'MonHocController@index')->name('danh-sach-mon-hoc');
+            Route::post('them-mon-hoc', 'MonHocController@store')->name('them-mon-hoc');
         });
 
         #Lịch hoạt động

@@ -30,7 +30,7 @@ class HoatDongController extends Controller
         #lấy tất cả lớp học trong khối đã chọn
         $lopHoc = DB::table('lophoc')->where('kh_id', $idClass)->where('nt_id',$idSchool)->get();
         #lấy danh sách môn học đưa vào mảng
-        $monHoc = DB::table('monhoc')->get('mh_id')->toArray();
+        $monHoc = DB::table('monhoc')->join('hocky_namhoc','hocky_namhoc.hknh_id','monhoc.hknh_id')->where('trangthai',1)->get('mh_id')->toArray();
 
         foreach ($lopHoc as $key => $item1) {
             #tạo lịch hoạt động trong 7 ngày

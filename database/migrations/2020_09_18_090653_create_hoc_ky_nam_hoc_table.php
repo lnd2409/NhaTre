@@ -17,6 +17,9 @@ class CreateHocKyNamHocTable extends Migration
             $table->bigIncrements('hknh_id');
             $table->string('namhoc');
             $table->string('hocky');
+            $table->integer('trangthai');
+            $table->bigInteger('nt_id')->unsigned();
+            $table->foreign('nt_id')->references('nt_id')->on('nhatruong')->onDelete('cascade');
             $table->timestamps();
         });
     }

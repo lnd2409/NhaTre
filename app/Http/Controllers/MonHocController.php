@@ -17,10 +17,16 @@ class MonHocController extends Controller
     public function store(Request $request)
     {
         $idSchool = Auth::guard('nhatruong')->id();
+        $hocKyNamHoc = DB::table('hocky_namhoc')
+                        ->where('trangthai', 1)
+                        ->where('nt_id', $idSchool)
+                        ->first();
         $tenMonHoc = $request->tenMonHoc;
         $insert = DB::table('monhoc')->insert([
             'mh_tenmon' => $tenMonHoc,
-            'nt_id' => $idSchool
+            'nt_id' => $idSchool,
+            'hknh_id' => $hocKyNamHoc->hknh_id,
+            'mh_mota' => $request->moTa
         ]);
 
         return redirect()->back();

@@ -72,9 +72,19 @@
                     @endphp
                     <h4>Từ ngày <span style="color: blue;">@if(count($getAct) >= 1) {{ $getAct[0]->lhd_ngayapdung }} @endif</span> đến <span style="color: blue;"> @if(count($getAct) >= 1) {{ Carbon\Carbon::parse($endDay)->format('d-m-Y') }} @endif</span></h4>
                 <div class="row">
-                    @for ($i = 2; $i < 7; $i++)
-                        <div class="col-md-2 text-center" style="font-weight: bold;" >THỨ {{ $i }}</div>
+                    @for ($i = 2; $i <= 6; $i++)
+                        <div class="col-md-2 text-center" style="font-weight: bold;" >
+                            THỨ {{ $i }}
+                        </div>
                     @endfor
+                    <div class="col-md-12 text-center" style="font-weight: bold;" >
+                        {{-- {{ $item->lhd_ngayapdung }} --}}
+                    </div>
+                    @foreach ($getAct as $item)
+                        <div class="col-md-2 text-center" style="font-weight: bold;" >
+                            {{ $item->lhd_ngayapdung }}
+                        </div>
+                    @endforeach
                 </div>
                 @if(count($getAct) >= 1)
                     <div class="row">

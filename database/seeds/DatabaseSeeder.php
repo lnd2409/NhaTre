@@ -10,19 +10,19 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $dataKhoiHoc = [
-        //     [
-        //         'kh_tenkhoi' => 'Mầm',
-        //         'kh_dotuoi' => '3-4'
-        //     ],[
-        //         'kh_tenkhoi' => 'Chồi',
-        //         'kh_dotuoi' => '4-5'
-        //     ],[
-        //         'kh_tenkhoi' => 'Lá',
-        //         'kh_dotuoi' => '5-6'
-        //     ],
-        // ];
-        // DB::table('khoihoc')->insert($dataKhoiHoc);
+        $dataKhoiHoc = [
+            [
+                'kh_tenkhoi' => 'Mầm',
+                'kh_dotuoi' => '3-4'
+            ],[
+                'kh_tenkhoi' => 'Chồi',
+                'kh_dotuoi' => '4-5'
+            ],[
+                'kh_tenkhoi' => 'Lá',
+                'kh_dotuoi' => '5-6'
+            ],
+        ];
+        DB::table('khoihoc')->insert($dataKhoiHoc);
 
         // $dataTruongHoc = [
         //     [
@@ -46,9 +46,9 @@ class DatabaseSeeder extends Seeder
         // ];
         // DB::table('nhatruong')->insert($dataTruongHoc);
 
-        $this->call(HocSinhSeeder::class);
-        $this->call(GiaoVienSeeder::class);
-        $this->call(PhuHuynhSeeder::class);
-        $this->call(MonHocSeeder::class);
+        // $this->call(HocSinhSeeder::class);
+        // $this->call(GiaoVienSeeder::class);
+        // $this->call(PhuHuynhSeeder::class);
+        // $this->call(MonHocSeeder::class);
     }
 }

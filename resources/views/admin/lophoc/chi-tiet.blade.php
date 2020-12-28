@@ -49,7 +49,8 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="product-status-wrap">
                     <div class="col-md-12">
-                        <a href="{{ route('danh-sach-lop-hoc', ['idKhoi'=> $tenLop->kh_id ]) }}" class="btn btn-sm btn-warning">Quay lại</a>
+                        {{-- {{ route('danh-sach-lop-hoc', ['idKhoi'=> $tenLop->kh_id ]) }} --}}
+                        <a href="{{url()->previous()}}" class="btn btn-sm btn-warning">Quay lại</a>
                     </div>
                     <div class="col-md-12" style="padding-left: 0px;">
                         <h2>Danh sách học sinh {{ $tenLop->lh_tenlop }}</h2>

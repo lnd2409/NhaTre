@@ -55,7 +55,7 @@
 
                         <ul class="mailbox-list">
                             <li>
-                                <a href="{{ route('giao-vien.viet-thong-bao') }}" class="btn btn-primary btn-sm" style="color: white;">Viết thư  <i class="fa fa-plus"></i></a>
+                                <a href="{{ route('giao-vien.viet-thong-bao') }}" class="btn btn-primary btn-sm" style="color: white;">Viết thông báo  <i class="fa fa-plus"></i></a>
                             </li>
                             <hr>
                             <li class="@if (Request::path() == "giao-vien/thong-bao")
@@ -65,7 +65,7 @@
                                 ">
                                 <a href="{{ route('giao-vien.thong-bao') }}">
                                     <span class="pull-right"></span>
-                                    <i class="fa fa-envelope"></i> Thư đến
+                                    <i class="fa fa-envelope"></i> Thông báo nhận
                                 </a>
                             </li>
 

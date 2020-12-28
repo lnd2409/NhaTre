@@ -18,6 +18,8 @@ class CreateMonHocTable extends Migration
             $table->string('mh_tenmon');
             $table->bigInteger('nt_id')->unsigned();
             $table->foreign('nt_id')->references('nt_id')->on('nhatruong')->onDelete('cascade');
+            $table->bigInteger('hknh_id')->unsigned();
+            $table->foreign('hknh_id')->references('hknh_id')->on('hocky_namhoc')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -10,16 +10,19 @@ class HocSinhController extends Controller
 {
     public function index()
     {
-        $idSchool = Auth::guard('nhatruong')->id();;
+        $idSchool = Auth::guard('nhatruong')->id();
         if(request()->ajax())
         {
             $data = DB::table('hocsinh')
             ->join('lophoc','lophoc.lh_id','hocsinh.lh_id')
-            ->where('nt_id',$idSchool)->get();
+            ->join('hocky_namhoc','hocky_namhoc.hknh_id','lophoc.hknh_id')
+            ->join('phuhuynh','phuhuynh.ph_id','hocsinh.ph_id')
+            ->where('hocky_namhoc.trangthai',1)
+            ->where('lophoc.nt_id',$idSchool)->get();
             return datatables()->of($data)
                     ->addColumn('action', function($data){
 
-                        $button = '<a href="'. 'http://127.0.0.1:8000/hoc-sinh/chi-tiet/'.$data->hs_id.'" data-toggle="tooltip"  data-id="'.$data->hs_id.'" data-original-title="Chỉnh sửa" class="edit btn btn-success edit-post">Chỉnh sửa</a>';
+                        $button = '<button type="button" data-id="'.$data->hs_id.'" class="btn btn-primary openModal" data-toggle="modal" data-target="#exampleModal">Chỉnh sửa</button>';
                         $button .= '&nbsp;&nbsp;';
                         // $button .= '<a href="'. 'http://127.0.0.1:8000/hoc-sinh/xoa-hoc-sinh/'.$data->hs_id.'" id="delete-post" data-toggle="tooltip" data-original-title="Xóa" data-id="'.$data->hs_id.'" class="delete btn btn-danger">Xóa</a>';
                         return $button;
@@ -30,11 +33,50 @@ class HocSinhController extends Controller
         return view('admin.hocsinh.index');
     }
 
+    public function getCourse(Request $request)
+    {
+        $hocKy = $request->hocKy;
+        $namHoc = $request->namHoc;
+        $hocKyNamHoc = DB::table('hocky_namhoc')->where('hocky',$hocKy)->where('namhoc',$namHoc)->first();
+        $idSchool = Auth::guard('nhatruong')->id();
+        $data = DB::table('hocsinh')
+                ->join('lophoc','lophoc.lh_id','hocsinh.lh_id')
+                ->join('hocky_namhoc','hocky_namhoc.hknh_id','lophoc.hknh_id')
+                ->join('phuhuynh','phuhuynh.ph_id','hocsinh.ph_id')
+                ->where('hocky', $hocKy)
+                ->where('namhoc',$namHoc)
+                // ->where('hocky_namhoc.trangthai',1)
+                ->where('lophoc.nt_id',$idSchool)->paginate(5);
+        // dd($data[0]->trangthai);
+        if(count($data) > 0)
+        {
+            if ($data[0]->trangthai == 1) {
+                # code...
+                return redirect()->route('danh-sach-hoc-sinh');
+            }
+        }
+
+        return view('admin.hocsinh.hoc-ky-nam-hoc', compact('data', 'hocKy', 'namHoc'));
+    }
+
     public function editStudent($idStudent)
     {
-        $hocSinh = DB::table('hocsinh')->where('hs_id',$idStudent)->first();
-        dd($hocSinh);
+        $hocSinh = DB::table('hocsinh')->where('hs_id',$idStudent)->join('lophoc','lophoc.lh_id','hocsinh.lh_id')->first();
+        return response()->json($hocSinh, 200);
     }
+
+    public function handleEdit(Request $request)
+    {
+
+        $addStudent = DB::table('hocsinh')->where('hs_id',$request->idHocSinh)->update([
+            'hs_hoten' => $request->hoTen,
+            'hs_noisinh' => $request->noiSinh,
+            'hs_ngaysinh' => $request->ngaySinh,
+            'hs_gioitinh' => $request->gioiTinh,
+        ]);
+        return redirect()->back();
+    }
+
 
     public function delStudent($idStudent)
     {
@@ -63,14 +105,21 @@ class HocSinhController extends Controller
 
     public function addStudent(Request $request)
     {
-        $addStudent = DB::table('hocsinh')->insert([
-            'hs_hoten' => $request->hoTen,
-            'hs_noisinh' => $request->noiSinh,
-            'hs_ngaysinh' => $request->ngaySinh,
-            'hs_gioitinh' => $request->gioiTinh,
-            'lh_id' => $request->lopHoc,
-            'ph_id' => $request->phuHuynh,
-        ]);
-        return redirect()->route('danh-sach-hoc-sinh');
+        if ($request->hasFile('anhDaiDien')) {
+            $file = $request->file('anhDaiDien')->getClientOriginalName();
+            $request->file('anhDaiDien')->move(public_path('hoc-sinh/anh-dai-dien/'),$file);
+            $addStudent = DB::table('hocsinh')->insert([
+                'hs_hoten' => $request->hoTen,
+                'hs_noisinh' => $request->noiSinh,
+                'hs_ngaysinh' => $request->ngaySinh,
+                'hs_gioitinh' => $request->gioiTinh,
+                'hs_avata' => $file,
+                'lh_id' => $request->lopHoc,
+                'ph_id' => $request->phuHuynh,
+            ]);
+            return redirect()->route('danh-sach-hoc-sinh');
+        }else {
+            dd('none');
+        }
     }
 }
