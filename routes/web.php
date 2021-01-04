@@ -15,9 +15,8 @@
 Route::get('/', function() {
     return view('client.index');
 })->name('trang-chu');
-
 Route::get('/truong-hoc', 'TrangChu\TrangChuController@getSchool')->name('trang-chu.truong-hoc');
-
+Route::get('/truong-hoc/{idSchool}/chi-tiet', 'TrangChu\TrangChuController@shoolDetail')->name('trang-chu.chi-tiet-truong-hoc');
 
 
 
@@ -29,6 +28,13 @@ Route::group(['middleware' => ['checkNhaTruong']], function () {
     //Login Success
     Route::group(['middleware' => ['checkThongTin']], function () {
         Route::get('/admin', 'NhaTruongController@index')->name('admin');
+
+        #thông tin trường
+        Route::get('/thong-tin', 'NhaTruongController@getInfo')->name('nha-truong.thong-tin');
+        Route::post('/them-gioi-thieu-chung', 'NhaTruongController@gioiThieuChungHandle')->name('nha-truong.them-gioi-thieu-chung');
+        Route::post('/them-gioi-thieu-ban-giam-hieu', 'NhaTruongController@gioiThieuBanGiamHieuHandle')->name('nha-truong.them-gioi-thieu-ban-giam-hieu');
+        Route::post('/them-gioi-thieu-giao-vien', 'NhaTruongController@gioiThieuGiaoVienHandle')->name('nha-truong.them-gioi-thieu-giao-vien');
+        Route::post('/them-gioi-thieu-co-so-vat-chat', 'NhaTruongController@gioiThieuCoSoVatChatHandle')->name('nha-truong.them-gioi-thieu-co-so-vat-chat');
 
         //Giao vien
         Route::group(['prefix' => 'quan-ly-giao-vien'], function () {
@@ -125,6 +131,8 @@ Route::group(['prefix' => 'giao-vien'], function () {
     Route::post('/xu-ly-dang-nhap', 'GiaoVienController@loginGiaoVien')->name('giao-vien.xu-ky-dang-nhap');
 
 
+
+
     Route::group(['middleware' => ['checkGiaoVien']], function () {
         Route::get('trang-quan-ly', 'GiaoVien\GiaoVienController@index')->name('giao-vien.trang-quan-ly');
 
@@ -149,6 +157,8 @@ Route::group(['prefix' => 'giao-vien'], function () {
         #Hoạt động
         Route::group(['prefix' => 'hoat-dong'], function () {
             Route::get('/', 'GiaoVien\LichHoatDongController@getHoatDong')->name('hoat-dong.danh-sach');
+            Route::get('/chi-tiet/{idActive}', 'GiaoVien\LichHoatDongController@getDetailActive')->name('hoat-dong.chi-tiet');
+            Route::post('/them-hinh-anh','GiaoVien\LichHoatDongController@insertImageActive')->name('hoat-dong.them-hinh-anh');
         });
 
         #Đơn xin phép
@@ -192,6 +202,13 @@ Route::group(['prefix' => 'phu-huynh'], function () {
         #Đơn xin phép
         Route::get('don-xin-phep', 'PhuHuynh\DonXinPhepController@index')->name('phu-huynh.don-xin-phep');
         Route::post('xu-ly-don-xin-phep', 'PhuHuynh\DonXinPhepController@xuLyNghiPhep')->name('phu-huynh.xu-ly-don-xin-phep');
+
+        #Lịch hoạt động
+        Route::group(['prefix' => 'lich-hoat-dong'], function () {
+            Route::get('/', 'PhuHuynh\LichHoatDongController@getActive')->name('phu-huynh.lich-hoat-dong');
+            Route::get('/chi-tiet/{idActive}', 'PhuHuynh\LichHoatDongController@getDetailActive')->name('phu-huynh.hoat-dong-chi-tiet');
+        });
+        Route::get('thuc-don', 'PhuHuynh\ThucDonController@thucDon')->name('phu-huynh.thuc-don');
     });
 });
 

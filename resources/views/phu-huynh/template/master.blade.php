@@ -31,6 +31,8 @@
 
     @include('phu-huynh.template.js')
     @stack('phu-huynh.phan-hoi')
+    @stack('phu-huynh.lich-hoat-dong')
+    @stack('thuc-don')
 </body>
 
 </html>

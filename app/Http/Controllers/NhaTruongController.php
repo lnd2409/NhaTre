@@ -14,7 +14,8 @@ class NhaTruongController extends Controller
     {
         $nhaTruong = new Nhatruong();
         $nhaTruong->nt_tentruong = $request->tenTruong;
-        $nhaTruong->nt_diachi = $request->diaChi;
+        $nhaTruong->nt_diachi = $request->tenDuong.', '.$request->phuongXa.', '.$request->quanHuyen.', '.$request->thanhPho;
+        $nhaTruong->nt_thanhPho = $request->thanhPho;
         $nhaTruong->nt_sodienthoai = $request->sdt;
         $nhaTruong->nt_email = $request->email;
         $nhaTruong->username = $request->username;
@@ -38,6 +39,9 @@ class NhaTruongController extends Controller
             'password' => $request->password,
         ];
         if (Auth::guard('nhatruong')->attempt($arr)) {
+            if(Auth::guard('nhatruong')->user()->nt_trangthai == 0) {
+                dd("Tài khoản chưa được xác thực");
+            }
             return redirect()->route('admin');
         } else {
             dd('tài khoản và mật khẩu chưa chính xác');
@@ -140,6 +144,57 @@ class NhaTruongController extends Controller
         $lopChoi = DB::table('lophoc')->where('kh_id',2)->where('nt_id',$id)->count();
         $lopLa = DB::table('lophoc')->where('kh_id',3)->where('nt_id',$id)->count();
         return view('admin.index', compact('lopMam','lopChoi','lopLa'));
+    }
+
+    public function getInfo()
+    {
+        $idSchool = Auth::guard('nhatruong')->id();
+        $data = DB::table('nhatruong')->where('nt_id',$idSchool)->first();
+        return view('admin.nhatruong.index', compact('data'));
+    }
+
+    public function gioiThieuChungHandle(Request $request)
+    {
+        $idSchool = Auth::guard('nhatruong')->id();
+        $insert = DB::table('nhatruong')->where('nt_id', $idSchool)->update(
+            [
+                'nt_gioithieuchung' => $request->gioiThieuChung
+            ]
+        );
+        return redirect()->back();
+    }
+
+    public function gioiThieuBanGiamHieuHandle(Request $request)
+    {
+        $idSchool = Auth::guard('nhatruong')->id();
+        $insert = DB::table('nhatruong')->where('nt_id', $idSchool)->update(
+            [
+                'nt_gioithieubangiamhieu' => $request->gioiThieuBanGiamHieu
+            ]
+        );
+        return redirect()->back();
+    }
+
+    public function gioiThieuGiaoVienHandle(Request $request)
+    {
+        $idSchool = Auth::guard('nhatruong')->id();
+        $insert = DB::table('nhatruong')->where('nt_id', $idSchool)->update(
+            [
+                'nt_gioithieugiaovien' => $request->gioiThieuGiaoVien
+            ]
+        );
+        return redirect()->back();
+    }
+
+    public function gioiThieuCoSoVatChatHandle(Request $request)
+    {
+        $idSchool = Auth::guard('nhatruong')->id();
+        $insert = DB::table('nhatruong')->where('nt_id', $idSchool)->update(
+            [
+                'nt_gioithieucosovatchat' => $request->gioiThieuCoSoVatChat
+            ]
+        );
+        return redirect()->back();
     }
 
     /**

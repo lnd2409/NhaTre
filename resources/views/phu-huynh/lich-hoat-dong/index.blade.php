@@ -1,4 +1,4 @@
-@extends('admin.template.master')
+@extends('phu-huynh.template.master')
 @section('title')
     Lịch hoạt động
 @endsection
@@ -13,7 +13,7 @@
     </div>
 </div>
 <div class="header-advance-area">
-    @include('admin.template.header')
+    @include('phu-huynh.template.header')
     <div class="breadcome-area">
         <div class="container-fluid">
             <div class="row">
@@ -61,12 +61,12 @@
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     @php
-                        if(count($getAct) >= 1){
-                            $day = new Carbon\Carbon($getAct[0]->lhd_ngayapdung);
+                        if(count($getActList) >= 1){
+                            $day = new Carbon\Carbon($getActList[0]->lhd_ngayapdung);
                             $endDay = $day->addDays(4);
                         }
                     @endphp
-                    <h4>Từ ngày <span style="color: blue;">@if(count($getAct) >= 1) {{ $getAct[0]->lhd_ngayapdung }} @endif</span> đến <span style="color: blue;"> @if(count($getAct) >= 1) {{ Carbon\Carbon::parse($endDay)->format('d-m-Y') }} @endif</span></h4>
+                    <h4>Từ ngày <span style="color: blue;">@if(count($getActList) >= 1) {{ $getActList[0]->lhd_ngayapdung }} @endif</span> đến <span style="color: blue;"> @if(count($getActList) >= 1) {{ Carbon\Carbon::parse($endDay)->format('d-m-Y') }} @endif</span></h4>
                 <div class="row">
                     <div class="col-md-1"></div>
                     @for ($i = 2; $i <= 6; $i++)
@@ -78,24 +78,28 @@
                 </div>
                 <div class="row">
                     <div class="col-md-1"></div>
-                    @foreach ($getAct as $item)
+                    @foreach ($getActList as $item)
                         <div class="col-md-2 text-center" style="font-weight: bold;" >
                             {{ $item->lhd_ngayapdung }}
                         </div>
                     @endforeach
                     <div class="col-md-1"></div>
                 </div>
-                @if(count($getAct) >= 1)
+                @if(count($getActList) >= 1)
+                    <div class="container">
+                        {{ $getActList->links() }}
+                    </div>
+                    {{-- {{ dd($getActList) }} --}}
                     <div class="row">
                         <div class="col-md-1"></div>
                         <div class="col-md-2" >
                             <ul class="list-group">
-                                @foreach ($activities[$getAct[0]->lhd_id] as $item)
-                                    <li class="list-group-item">{{ $item->mh_tenmon }}</li>
-                                    <li class="list-group-item"><a href="#" data-toggle="modal" data-target="#imageModal" data-id="{{ $item->ctlhd_id }}" class="imageAct">Hình ảnh hoạt động</a></li>
-                                    <li class="list-group-item">
-                                        <a data-toggle="modal" data-target="#exampleModal" data-id="{{ $item->ctlhd_id }}" class="btn btn-sm btn-default detailAct" id="detailAct">Chi tiết</a>
-                                        <a href="#" class="btn btn-sm btn-primary">Chỉnh sửa</a>
+                                @foreach ($activities[$getActList[0]->lhd_id] as $item)
+                                    <li class="list-group-item text-center">{{ $item->mh_tenmon }}</li>
+
+                                    <li class="list-group-item text-center">
+                                        <a data-toggle="modal" data-target="#exampleModal" data-id="{{ $item->ctlhd_id }}" class="btn btn-sm btn-success detailAct" id="detailAct">Chi tiết</a>
+
                                     </li>
                                     <br>
                                 @endforeach
@@ -103,12 +107,11 @@
                         </div>
                         <div class="col-md-2" >
                             <ul class="list-group">
-                                @foreach ($activities[$getAct[1]->lhd_id] as $item)
-                                    <li class="list-group-item">{{ $item->mh_tenmon }}</li>
-                                    <li class="list-group-item"><a href="#" data-toggle="modal" data-target="#imageModal" data-id="{{ $item->ctlhd_id }}" class="imageAct">Hình ảnh hoạt động</a></li>
-                                    <li class="list-group-item">
-                                        <a data-toggle="modal" data-target="#exampleModal" href="#" data-id="{{ $item->ctlhd_id }}" class="btn btn-sm btn-default detailAct" id="detailAct">Chi tiết</a>
-                                        <a href="#" class="btn btn-sm btn-primary">Chỉnh sửa</a>
+                                @foreach ($activities[$getActList[1]->lhd_id] as $item)
+                                    <li class="list-group-item text-center">{{ $item->mh_tenmon }}</li>
+                                    <li class="list-group-item text-center">
+                                        <a data-toggle="modal" data-target="#exampleModal" href="#" data-id="{{ $item->ctlhd_id }}" class="btn btn-sm btn-success detailAct" id="detailAct">Chi tiết</a>
+
                                     </li>
                                     <br>
                                 @endforeach
@@ -116,12 +119,12 @@
                         </div>
                         <div class="col-md-2" >
                             <ul class="list-group">
-                                @foreach ($activities[$getAct[2]->lhd_id] as $item)
-                                    <li class="list-group-item">{{ $item->mh_tenmon }}</li>
-                                    <li class="list-group-item"><a href="#" data-toggle="modal" data-target="#imageModal" data-id="{{ $item->ctlhd_id }}" class="imageAct">Hình ảnh hoạt động</a></li>
-                                    <li class="list-group-item">
-                                        <a data-toggle="modal" data-target="#exampleModal" href="#" data-id="{{ $item->ctlhd_id }}" class="btn btn-sm btn-default detailAct" id="detailAct">Chi tiết</a>
-                                        <a href="#" class="btn btn-sm btn-primary">Chỉnh sửa</a>
+                                @foreach ($activities[$getActList[2]->lhd_id] as $item)
+                                    <li class="list-group-item text-center">{{ $item->mh_tenmon }}</li>
+
+                                    <li class="list-group-item text-center">
+                                        <a data-toggle="modal" data-target="#exampleModal" href="#" data-id="{{ $item->ctlhd_id }}" class="btn btn-sm btn-success detailAct" id="detailAct">Chi tiết</a>
+
                                     </li>
                                     <br>
                                 @endforeach
@@ -129,12 +132,12 @@
                         </div>
                         <div class="col-md-2" >
                             <ul class="list-group">
-                                @foreach ($activities[$getAct[3]->lhd_id] as $item)
-                                    <li class="list-group-item">{{ $item->mh_tenmon }}</li>
-                                    <li class="list-group-item"><a href="#" data-toggle="modal" data-target="#imageModal" data-id="{{ $item->ctlhd_id }}" class="imageAct">Hình ảnh hoạt động</a></li>
-                                    <li class="list-group-item">
-                                        <a data-toggle="modal" data-target="#exampleModal" href="#" data-id="{{ $item->ctlhd_id }}" class="btn btn-sm btn-default detailAct" id="detailAct">Chi tiết</a>
-                                        <a href="#" class="btn btn-sm btn-primary">Chỉnh sửa</a>
+                                @foreach ($activities[$getActList[3]->lhd_id] as $item)
+                                    <li class="list-group-item text-center">{{ $item->mh_tenmon }}</li>
+
+                                    <li class="list-group-item text-center">
+                                        <a data-toggle="modal" data-target="#exampleModal" href="#" data-id="{{ $item->ctlhd_id }}" class="btn btn-sm btn-success detailAct" id="detailAct">Chi tiết</a>
+
                                     </li>
                                     <br>
                                 @endforeach
@@ -142,12 +145,12 @@
                         </div>
                         <div class="col-md-2" >
                             <ul class="list-group">
-                                @foreach ($activities[$getAct[4]->lhd_id] as $item)
-                                    <li class="list-group-item">{{ $item->mh_tenmon }}</li>
-                                    <li class="list-group-item"><a href="#" data-toggle="modal" data-target="#imageModal" data-id="{{ $item->ctlhd_id }}" class="imageAct">Hình ảnh hoạt động</a></li>
-                                    <li class="list-group-item">
-                                        <a data-toggle="modal" data-target="#exampleModal" href="#" data-id="{{ $item->ctlhd_id }}" class="btn btn-sm btn-default detailAct" id="detailAct">Chi tiết</a>
-                                        <a href="#" class="btn btn-sm btn-primary">Chỉnh sửa</a>
+                                @foreach ($activities[$getActList[4]->lhd_id] as $item)
+                                    <li class="list-group-item text-center">{{ $item->mh_tenmon }}</li>
+
+                                    <li class="list-group-item text-center">
+                                        <a data-toggle="modal" data-target="#exampleModal" href="#" data-id="{{ $item->ctlhd_id }}" class="btn btn-sm btn-success detailAct" id="detailAct">Chi tiết</a>
+
                                     </li>
                                     <br>
                                 @endforeach
@@ -222,17 +225,18 @@
     </div>
 </div>
 
-@push('giao-vien.lich-hoat-dong')
+@push('phu-huynh.lich-hoat-dong')
     <script>
         $(document).ready(function () {
             $(document).on('click','.detailAct',function(){
+            // alert("10");
             var idAct = $(this).data('id');
             var url = "{!! asset('') !!}";
             console.log(url);
             console.log(idAct);
             $.ajax({
                     type: "GET",
-                    url: url+'giao-vien/hoat-dong/chi-tiet/'+idAct,
+                    url: url+'phu-huynh/lich-hoat-dong/chi-tiet/'+idAct,
                     dataType: "json",
                     success: function (response) {
                         console.log(response.monHoc);
@@ -244,6 +248,9 @@
                             // const element = array[i];
                             $('.hinhAnh').append('<img class="imageShow" style="width:70px; height:70px;" src='+ url + response.hinhAnh[i].hahd_duongdan + '>');
                         }
+                    }
+                    ,error: function(err) {
+                        console.log(err);
                     }
                 });
             });

@@ -16,6 +16,7 @@ class CreateMonHocTable extends Migration
         Schema::create('monhoc', function (Blueprint $table) {
             $table->bigIncrements('mh_id');
             $table->string('mh_tenmon');
+            $table->text('mh_mota');
             $table->bigInteger('nt_id')->unsigned();
             $table->foreign('nt_id')->references('nt_id')->on('nhatruong')->onDelete('cascade');
             $table->bigInteger('hknh_id')->unsigned();

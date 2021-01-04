@@ -84,7 +84,6 @@
                             {{-- <span class="educate-icon educate-home icon-wrap" style="@if (Request::path() == 'admin') color: white; @endif"></span> --}}
                             <span class="mini-click-non" >Danh sách môn học</span>
                         </a>
-                        <a class="has-arrow" href="all-courses.html" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Môn học</span></a>
                     </li>
                     {{-- Thực đơn --}}
                     <li class="">

@@ -76,7 +76,7 @@ class GiaoVienController extends Controller
         // $avata = $request
         if ($request->hasFile('anhDaiDien')) {
             $file = $request->file('anhDaiDien')->getClientOriginalName();
-            $request->file('anhDaiDien')->move(public_path('giao-vien/anh-dai-dien/'),$file);
+            $request->file('anhDaiDien')->move(public_path('hinh-anh-giao-vien/anh-dai-dien/'),$file);
             $addGiaoVien = DB::table('giaovien')->insert(
                 [
                     'gv_ten' => $hoTen,

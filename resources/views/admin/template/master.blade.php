@@ -18,7 +18,6 @@
     </style>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
-    @stack('css-thoi-khoa-bieu')
     @include('admin.template.css')
 </head>
 
@@ -112,6 +111,7 @@
     @stack('so-be-ngoan')
     @stack('js-thoi-khoa-bieu')
     @stack('js-diem-danh')
+    @stack('giao-vien.lich-hoat-dong')
 </body>
 
 </html>

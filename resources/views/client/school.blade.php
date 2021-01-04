@@ -63,7 +63,7 @@
                         class="img-fluid">
 
                     <div class="post-entry-1-contents">
-                        <h2>{{ $item->nt_tentruong }}</h2>
+                        <h2><a href="{{ route('trang-chu.chi-tiet-truong-hoc', ['idSchool'=>$item->nt_id]) }}"><a href="{{ route('trang-chu.chi-tiet-truong-hoc', ['idSchool'=>$item->nt_id]) }}"><a href="{{ route('trang-chu.chi-tiet-truong-hoc', ['idSchool'=>$item->nt_id]) }}"><a href="{{ route('trang-chu.chi-tiet-truong-hoc', ['idSchool'=>$item->nt_id]) }}">{{ $item->nt_tentruong }}</a></h2>
                         <span class="meta" style="color: black">SĐT: {{ $item->nt_sodienthoai }}</span>
                         <p>Địa chỉ: {{ $item->nt_diachi }}</p>
                     </div>

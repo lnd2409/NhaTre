@@ -14,13 +14,6 @@ class LichHoatDongController extends Controller
         $idTecher = Auth::guard('giaovien')->id();
         $getClass = DB::table('giaovien')->where('gv_id',$idTecher)->first();
         $getAct = DB::table('lichhoatdong')->where('lh_id',$getClass->lh_id)->get()->toArray();
-
-        # code...
-        // $activities = DB::table('lophoc')
-        // ->where('nt_id',$id)
-        // ->where('kh_id',1)
-        // // ->join('giaovien','giaovien.gv_id','lophoc.gv_id')
-        // ->get();
         $activities = array();
         foreach ($getAct as $value) {
             # code...
@@ -29,11 +22,47 @@ class LichHoatDongController extends Controller
                                         ->join('monhoc','monhoc.mh_id','chitietlichhoatdong.mh_id')
                                         ->get();
         }
-        // dd($activities);
-        // $day = new Carbon();
-        // $day->addDays(7);
-        // dd($day);
-        // dd($getAct);
         return view('giao-vien.hoat-dong.index', compact('getAct','activities'));
+    }
+
+    public function insertImageActive(Request $request)
+    {
+        if($request->hasFile('hinhAnh'))
+        {
+            $images = $request->file('hinhAnh');
+            foreach ($images as $image) {
+                # code...
+                $name = $image->getClientOriginalName();
+                $image->move(public_path().'/hinh-anh-hoat-dong/', $name);
+                // $data[] = $name;
+                // echo $name;
+                $idAct = $request->idHoatDong;
+                $insertImage = DB::table('hinhanhhoatdong')->insert([
+                    'ctlhd_id' => $idAct,
+                    'hahd_duongdan' => '/hinh-anh-hoat-dong/'.$name
+                ]);
+            }
+            return redirect()->back();
+        }
+    }
+
+    public function getDetailActive($idActive)
+    {
+        // $monHoc = DB::table('monhoc')->where('')->first();
+        $getAct = DB::table('chitietlichhoatdong')
+                ->where('ctlhd_id',$idActive)
+                ->join('monhoc','monhoc.mh_id','chitietlichhoatdong.mh_id')
+                ->first();
+        $getImage = DB::table('hinhanhhoatdong')
+                ->join('chitietlichhoatdong','chitietlichhoatdong.ctlhd_id','hinhanhhoatdong.ctlhd_id')
+                ->join('monhoc','monhoc.mh_id','chitietlichhoatdong.mh_id')
+                ->where('chitietlichhoatdong.ctlhd_id', $idActive)
+                ->get();
+        // dd($getAct);
+        return response()->json([
+            'monHoc' => $getAct,
+            'hinhAnh' => $getImage
+        ], 200);
+
     }
 }

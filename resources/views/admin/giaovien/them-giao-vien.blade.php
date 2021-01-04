@@ -218,6 +218,6 @@
                 });
             });
         });
-     </script>
+    </script>
 @endpush
 @endsection

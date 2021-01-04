@@ -22,10 +22,48 @@
             </div>
             <div class="site-mobile-menu-body"></div>
         </div>
-
-
-
-        @include('client.template.menu')
+        @if (Request::segment(3) == 'chi-tiet')
+        <header class="site-navbar site-navbar-target" role="banner">
+            <div class="container mb-3">
+                <div class="d-flex align-items-center">
+                    <div class="site-logo mr-auto">
+                    <a href="{{ route('trang-chu') }}">Kid Care<span class="text-primary">.</span></a>
+                    </div>
+                    <div class="site-quick-contact d-none d-lg-flex ml-auto ">
+                    <div class="d-flex site-info align-items-center mr-5">
+                        <span class="block-icon mr-3"><span class="icon-map-marker text-yellow"></span></span>
+                        <span>{{ $truongHoc->nt_diachi }}</span>
+                    </div>
+                    <div class="d-flex site-info align-items-center">
+                        <span class="block-icon mr-3"><span class="icon-clock-o"></span></span>
+                        <span>Monday - Friday 7:30AM - 5:30PM</span>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            {{-- <div class="container">
+                <div class="menu-wrap d-flex align-items-center">
+                    <span class="d-inline-block d-lg-none"><a href="#" class="text-black site-menu-toggle js-menu-toggle py-5"><span class="icon-menu h3 text-black"></span></a></span>
+                    <nav class="site-navigation text-left mr-auto d-none d-lg-block" role="navigation">
+                        <ul class="site-menu main-menu js-clone-nav mr-auto ">
+                        <li><a href="{{ route('trang-chu') }}" class="nav-link">Trang chủ</a></li>
+                        <li><a href="{{ route('trang-chu.truong-hoc') }}" class="nav-link">Thành viên</a></li>
+                        <li><a href="packages.html" class="nav-link">Dịch vụ</a></li>
+                        <li><a href="gallery.html" class="nav-link">Hình ảnh</a></li>
+                        <li><a href="contact.html" class="nav-link">Liên hệ</a></li>
+                        </ul>
+                    </nav>
+                    <div class="top-social ml-auto">
+                        <a href="#"><span class="icon-facebook text-teal"></span></a>
+                        <a href="#"><span class="icon-twitter text-success"></span></a>
+                        <a href="#"><span class="icon-linkedin text-yellow"></span></a>
+                    </div>
+                </div>
+            </div> --}}
+        </header>
+        @else
+            @include('client.template.menu')
+        @endif
 
     <div class="ftco-blocks-cover-1">
 
@@ -33,10 +71,9 @@
         <div class="container">
           <div class="row align-items-center ">
             <div class="col-md-5 mt-5 pt-5">
-              <span class="text-cursive h5 text-red">Chào mừng đến với website</span>
-              <h1 class="mb-3 font-weight-bold text-teal">Mang lại niềm vui cho trẻ em</h1>
-              <p>Sân chơi tuyệt vời cho con bạn</p>
-              <p class="mt-5"><a href="{{ route('admin') }}" class="btn btn-primary py-4 btn-custom-1">Đăng nhập hệ thống</a></p>
+              <span class="text-cursive h5 text-red">{{ $truongHoc->nt_tentruong }}</span>
+              <h1 class="mb-3 font-weight-bold text-teal">Mang lại những điều tốt đẹp nhất cho con bạn</h1>
+              <p>Môi trường phát triển tuyệt vời cho con bạn</p>
             </div>
             <div class="col-md-6 ml-auto align-self-end">
               <img src="{{asset('client')}}/images/kid_transparent.png" alt="Image" class="img-fluid">
@@ -91,7 +128,7 @@
             <h3 class="text-black">Mang lại những điều tốt nhất dành cho bạn</h3>
             <p>
                 <span>
-                    Thời đại công nghệ 4.0, khi lựa chọn trường cho con, Phụ huynh không chỉ quan tâm đến cơ sở vật chất, chất lượng đào tạo, thái độ giáo viên,… mà còn quan tâm đến “tính công nghệ” của ngôi trường. Do đó, ứng dụng công nghệ trong trường mầm non không chỉ là xu hướng mà còn là điều tất yếu.
+                    {{ $truongHoc->nt_gioithieuchung }}
                 </span>
             </p>
 
@@ -115,21 +152,23 @@
             <div class="package text-center bg-white" style="height: 350px;">
               <span class="img-wrap"><img src="{{asset('client')}}/images/flaticon/svg/001-jigsaw.svg" alt="Image" class="img-fluid"></span>
               <h3 class="text-teal">BGH & GIÁO VỤ</h3>
-              <p>Hỗ trợ công tác quản lý của Nhà trường, chuyên nghiệp hóa công tác quản lý trường mầm non: Quản lý thông tin học sinh, giáo viên, nhân viên; dinh dưỡng,...</p>
+              <p>
+                  {{ $truongHoc->nt_gioithieubangiamhieu }}
+              </p>
             </div>
           </div>
           <div class="col-lg-4 mb-4 mb-lg-0" style="height: 350px;">
             <div class="package text-center bg-white" style="height: 350px;">
               <span class="img-wrap"><img src="{{asset('client')}}/images/flaticon/svg/002-target.svg" alt="Image" class="img-fluid"></span>
-              <h3 class="text-success">CÔ GIÁO</h3>
-              <p>Theo dõi và đánh giá sự tiến bộ của trẻ; tương tác và trao đổi với phụ huynh và ban giám hiệu</p>
+              <h3 class="text-success">GIÁO VIÊN</h3>
+              <p>{{ $truongHoc->nt_gioithieugiaovien }}</p>
             </div>
           </div>
           <div class="col-lg-4 mb-4 mb-lg-0" style="height: 350px;">
             <div class="package text-center bg-white" style="height: 350px;">
               <span class="img-wrap"><img src="{{asset('client')}}/images/flaticon/svg/003-mission.svg" alt="Image" class="img-fluid"></span>
-              <h3 class="text-danger">PHỤ HUYNH</h3>
-              <p>Là công cụ để phụ huynh chủ động đồng hành cùng quá trình vui học của trẻ</p>
+              <h3 class="text-danger">CƠ SỞ VẬT CHẤT</h3>
+              <p>{{ $truongHoc->nt_gioithieucosovatchat }}</p>
             </div>
           </div>
         </div>
@@ -143,6 +182,49 @@
             <span class="text-cursive h5 text-red d-block">Đánh giá</span>
             <h2 class="text-black">Khách hàng nói gì về chúng tôi ?</h2>
           </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+              <div class="testimonial-3-wrap">
+
+
+                <div class="owl-carousel nonloop-block-13">
+                  <div class="testimonial-3 d-flex">
+                    <div class="vcard-wrap mr-5">
+                      <img src="{{asset('client')}}/images/person_1.jpg" alt="Image" class="vcard img-fluid">
+                    </div>
+                    <div class="text">
+                      <h3>Jeff Woodland</h3>
+                      <p class="position">Partner</p>
+                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam earum libero rem maxime magnam. Similique esse ab earum, autem consectetur.</p>
+                    </div>
+                  </div>
+
+                  <div class="testimonial-3 d-flex">
+                    <div class="vcard-wrap mr-5">
+                      <img src="{{asset('client')}}/images/person_3.jpg" alt="Image" class="vcard img-fluid">
+                    </div>
+                    <div class="text">
+                      <h3>Jeff Woodland</h3>
+                      <p class="position">Partner</p>
+                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam earum libero rem maxime magnam. Similique esse ab earum, autem consectetur.</p>
+                    </div>
+                  </div>
+
+                  <div class="testimonial-3 d-flex">
+                    <div class="vcard-wrap mr-5">
+                      <img src="{{asset('client')}}/images/person_2.jpg" alt="Image" class="vcard img-fluid">
+                    </div>
+                    <div class="text">
+                      <h3>Jeff Woodland</h3>
+                      <p class="position">Partner</p>
+                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam earum libero rem maxime magnam. Similique esse ab earum, autem consectetur.</p>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
         </div>
         <div class="row mt-5 justify-content-center">
           <div class="col-md-8">
@@ -172,6 +254,4 @@
     </div>
     @include('client.template.js')
   </body>
-
 </html>
-

@@ -72,7 +72,7 @@
                     <div class="hpanel hblue contact-panel contact-panel-cs responsive-mg-b-30">
                         <div class="panel-body custom-panel-jw">
                             @if ($item->gv_avata != '')
-                                <img alt="avtar" class="img-circle m-b" width="250" height="250" src="{{ asset('giao-vien/anh-dai-dien') }}/{{ $item->gv_avata }}">
+                                <img alt="avtar" class="img-circle m-b" width="250" height="250" src="{{ asset('hinh-anh-giao-vien/anh-dai-dien') }}/{{ $item->gv_avata }}">
                             @else
                                 <img src="https://via.placeholder.com/250x250" class="img-circle m-b" alt="avtar">
                             @endif
@@ -113,7 +113,7 @@
                     <div class="hpanel hblue contact-panel contact-panel-cs responsive-mg-b-30">
                         <div class="panel-body custom-panel-jw">
                             @if ($item->gv_avata != '')
-                                <img alt="avtar" class="img-circle m-b" width="250" height="250" src="{{ asset('giao-vien/anh-dai-dien') }}/{{ $item->gv_avata }}">
+                                <img alt="avtar" class="img-circle m-b" width="250" height="250" src="{{ asset('hinh-anh-giao-vien/anh-dai-dien') }}/{{ $item->gv_avata }}">
                             @else
                                 <img src="https://via.placeholder.com/250x250" class="img-circle m-b" alt="avtar">
                             @endif

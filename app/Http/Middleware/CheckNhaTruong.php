@@ -16,8 +16,10 @@ class CheckNhaTruong
     public function handle($request, Closure $next)
     {
         if (Auth::guard('nhatruong')->check()) {
-            # code...
-            return $next($request);
+            // if(Auth::guard('nhatruong')->user()->nt_trangthai == 1) {
+                # code...
+                return $next($request);
+            // }
         }
         return redirect()->route('dang-nhap');
 

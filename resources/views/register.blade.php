@@ -111,7 +111,36 @@
                                 </div>
                                 <div class="form-group col-lg-12">
                                     <label>Địa chỉ</label>
-                                    <input class="form-control" name="diaChi" type="text" placeholder="Nhập địa chỉ trường . . ." required>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        {{-- <input name="diaChi" type="text" class="form-control" placeholder="Địa chỉ"> --}}
+                                        <label for="">Tỉnh - thành phố</label>
+                                        <select name="thanhPho" id="" class="thanhPho form-control col-md-4">
+                                            <option value="null" lang="123">Chọn</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="">Quận - Huyện</label>
+                                        <select name="quanHuyen" id="" class="quanHuyen form-control col-md-4">
+                                            <option value="null" class="delQH">Chọn</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Phường xã</label>
+                                        <select name="phuongXa" id="" class="phuongXa form-control col-md-4">
+                                            <option value="null" class="delPX" lang="123">Chọn</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-12" style="margin-top: 15px;">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Số nhà, tên đường . . ." name="tenDuong">
+                                    </div>
                                 </div>
                                 <div class="checkbox col-lg-12">
                                     <input type="checkbox" class="i-checks"> Tôi đồng ý với các <a href="#" style="color: red; background-color: unset;">điều khoản</a>
@@ -175,6 +204,59 @@
     <!-- main JS
         ============================================ -->
     <script src="{{ asset('template') }}/js/main.js"></script>
+    <script>
+        $(document).ready(function() {
+            var jsonFile = "{{ asset('admin-he-thong') }}/"+"local.json";
+            $.getJSON(jsonFile, function(js) {
+                console.log(js.length);
+                for (let i = 0; i < js.length; i++) {
+                    $('.thanhPho').append('<option class="value-tp" value="' + js[i].name + '" lang="' + js[i].id + '" >' + js[i].name + '</option>');
+                }
+
+                //lấy Quận huyện
+                $('select.thanhPho').change(function (e) {
+                    e.preventDefault();
+                    $('.value-qh').remove();
+                    $('.delQH').remove();
+                    $('.delPX').remove();
+                    $('.value-px').remove();
+                    var getIDThanhPho = $(this).children("option:selected").attr("lang");
+                    console.log(getIDThanhPho);
+                    $.getJSON(jsonFile,
+                        function (data) {
+                            for (let i = 0; i < data.length; i++) {
+                                // $('.thanhPho').append('<option class="value-tp" value="' + js[i].id + '" >' + js[i].name + '</option>');
+                                if(data[i].id == getIDThanhPho){
+                                    console.log(data[i].districts.length);
+                                    for (let j = 0; j < data[i].districts.length; j++) {
+                                        $('.quanHuyen').append('<option class="value-qh" value="' + data[i].districts[j].name + '" lang="' + data[i].districts[j].id + '" >' + data[i].districts[j].name + '</option>');
+                                    }
+                                    //Lấy phường xã
+                                    $('select.quanHuyen').change(function (e) {
+                                        e.preventDefault();
+                                        $('.value-px').remove();
+                                        $('.delPX').remove();
+                                        var getIDQuanHuyen = $(this).children("option:selected").attr("lang");
+                                        // console.log(data[i].districts);
+                                        for (let k = 0; k < data[i].districts.length; k++) {
+                                            // console.log('')
+                                            if(data[i].districts[k].id == getIDQuanHuyen){
+                                                console.log(data[i].districts[k].wards);
+                                                for (let l = 0; l < data[i].districts[k].wards.length; l++) {
+                                                    $('.phuongXa').append('<option class="value-px" value="' + data[i].districts[k].wards[l].name + '" lang="' + data[i].districts[k].wards[l].id + '" >' + data[i].districts[k].wards[l].name + '</option>');
+                                                }
+                                            }
+                                        }
+                                        console.log(getIDQuanHuyen);
+                                    });
+                                }
+                            }
+                        }
+                    );
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>

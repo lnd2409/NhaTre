@@ -33,19 +33,23 @@
                                 <ul class="nav navbar-nav mai-top-nav header-right-menu">
                                     <li class="nav-item">
                                         <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
-                                                <img src="{{ asset('template') }}/img/product/pro4.jpg" alt="" />
-                                                <span class="admin-name">
-                                                    @if (Auth::guard('giaovien')->check())
-                                                        {{ Auth::guard('giaovien')->user()->username }}
-                                                    @endif
-                                                    @if (Auth::guard('nhatruong')->check())
-                                                        {{ Auth::guard('nhatruong')->user()->username }}
-                                                    @endif
-                                                </span>
-                                                <i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
-                                            </a>
+                                            @if (Auth::guard('giaovien')->check())
+                                                <img src="{{ asset('hinh-anh-giao-vien/anh-dai-dien') }}/{{ Auth::guard('giaovien')->user()->gv_avata }}" alt="" />
+                                            @endif
+
+
+                                            <span class="admin-name">
+                                                @if (Auth::guard('giaovien')->check())
+                                                    {{ Auth::guard('giaovien')->user()->username }}
+                                                @endif
+                                                @if (Auth::guard('nhatruong')->check())
+                                                    {{ Auth::guard('nhatruong')->user()->username }}
+                                                @endif
+                                            </span>
+                                            <i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
+                                        </a>
                                         <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
-                                            <li><a href="#"><span class="edu-icon edu-home-admin author-log-ic"></span>Thông tin cá nhân</a></li>
+                                            <li><a href="{{ route('nha-truong.thong-tin') }}"><span class="edu-icon edu-home-admin author-log-ic"></span>Thông tin cá nhân</a></li>
                                             <li><a href="#"><span class="edu-icon edu-settings author-log-ic"></span>Tùy chỉnh tài khoản</a></li>
                                             @if (Auth::guard('nhatruong')->check())
                                                 <li><a href="{{ route('dang-xuat') }}"><span class="edu-icon edu-locked author-log-ic"></span>Đăng xuất</a></li>

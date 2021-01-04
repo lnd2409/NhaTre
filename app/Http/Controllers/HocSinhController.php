@@ -107,7 +107,7 @@ class HocSinhController extends Controller
     {
         if ($request->hasFile('anhDaiDien')) {
             $file = $request->file('anhDaiDien')->getClientOriginalName();
-            $request->file('anhDaiDien')->move(public_path('hoc-sinh/anh-dai-dien/'),$file);
+            $request->file('anhDaiDien')->move(public_path('hinh-anh-hoc-sinh/anh-dai-dien/'),$file);
             $addStudent = DB::table('hocsinh')->insert([
                 'hs_hoten' => $request->hoTen,
                 'hs_noisinh' => $request->noiSinh,

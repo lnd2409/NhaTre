@@ -15,7 +15,7 @@ class CreateLichHoatDongTable extends Migration
     {
         Schema::create('lichhoatdong', function (Blueprint $table) {
             $table->bigIncrements('lhd_id');
-            $table->date('ldh_ngayapdung');
+            $table->date('lhd_ngayapdung');
             $table->bigInteger('lh_id')->unsigned();
             $table->foreign('lh_id')->references('lh_id')->on('lophoc')->onDelete('cascade');
             $table->timestamps();
