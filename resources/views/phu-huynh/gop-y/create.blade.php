@@ -1,6 +1,6 @@
 @extends('phu-huynh.template.master')
 @section('title')
-    Hộp thư
+    Giáo viên
 @endsection
 @section('content')
 <div class="container-fluid">
@@ -28,7 +28,7 @@
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <ul class="breadcome-menu">
-                                    <li><a href="{{ route('phu-huynh.trang-chu') }}">Trang chủ</a> <span class="bread-slash">/</span>
+                                    <li><a href="{{ route('admin') }}">Trang chủ</a> <span class="bread-slash">/</span>
                                     </li>
                                     <li><span class="bread-blod">Thông báo</span>
                                     </li>
@@ -42,10 +42,10 @@
     </div>
 </div>
 <div class="contacts-area mg-b-15">
-    <div class="container-fluid" style="margin-left: 20px;">
+    <div class="container-fluid"  style="margin-left: 20px;">
         <div class="row">
             <div class="col-md-12">
-                <h2>Hộp thư góp ý</h2>
+                <h2>Viết thông báo</h2>
             </div>
         </div>
         <div class="row">
@@ -82,51 +82,47 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-9 col-md-9 col-sm-9 col-xs-12">
-                <div class="hpanel">
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-md-6 col-md-6 col-sm-6 col-xs-8">
-                                <div class="btn-group ib-btn-gp active-hook mail-btn-sd mg-b-15">
-                                </div>
-                            </div>
+            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                <form action="{{ route('phu-huynh.xu-ly-viet-thong-bao') }}" method="post">
+                    @csrf
+                    <div class="tinymce-single mg-t-30">
+                        <div class="alert-title form-group">
+                            <label>Người nhận</label>
                         </div>
-                        <div class="table-responsive ib-tb">
-                            <table class="table table-hover table-mailbox">
-                                <tbody>
-                                    <tr>
-                                        <th></th>
-                                        <th>Người gửi</th>
-                                        <th>Tiêu đề</th>
-                                        <th class="text-center"></th>
-                                    </tr>
-                                    @foreach ($baiViet as $item)
-                                        <tr class="
-                                            @if ($item->nn_trangthai == 0)
-                                                unread
-                                            @else
-                                                read
-                                            @endif
-                                        ">
-                                            <td >
-                                                <div class="checkbox checkbox-single checkbox-success">
-                                                    <input type="checkbox" checked="">
-                                                    <label></label>
-                                                </div>
-                                            </td>
-                                            <td><a href="#">{{ $item->gv_ten }}</a></td>
-                                            <td><a href="{{ route('phu-huynh.chi-tiet-thong-bao', ['idThu'=>$item->tb_id]) }}">{{ $item->tb_tieude }}</a>
-                                            </td>
-                                            <td class="text-center mail-date">{{ Carbon\Carbon::parse($item->tb_ngayviet)->format('d/m/Y') }}</td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" name="nguoiNhan" value="giaoVien">
+                            <label class="form-check-label" for="exampleCheck1">Giáo viên</label>
                         </div>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" name="nguoiNhan" value="nhaTruong">
+                            <label class="form-check-label" for="exampleCheck1">Nhà trường</label>
+                        </div>
+                        <br>
+                        <div class="alert-title form-group">
+                            <label>Tiêu đề</label>
+                            <input type="text" name="tieuDe" class="form-control" placeholder="Nhập tiêu đề bài viết . . .">
+                        </div>
+                        <textarea id="summernote" name="noiDungThongBao">
+
+                        </textarea>
+                        <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Gửi</button>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>
 </div>
+@push('select-picker')
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.js-example-basic-multiple').select2();
+        });
+    </script>
+@endpush
 @endsection

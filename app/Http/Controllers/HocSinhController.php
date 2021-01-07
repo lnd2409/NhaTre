@@ -122,4 +122,22 @@ class HocSinhController extends Controller
             dd('none');
         }
     }
+
+    public function updateAvt(Request $request)
+    {
+        // $request->idHocSinh;
+        if ($request->hasFile('hinhAnh')) {
+            $file = $request->file('hinhAnh')->getClientOriginalName();
+            $request->file('hinhAnh')->move(public_path('hinh-anh-hoc-sinh/anh-dai-dien/'),$file);
+            $update = DB::table('hocsinh')->where('hs_id', $request->idHocSinh)->update(
+                [
+                    'hs_avata' => $file
+                ]
+            );
+            return redirect()->route('danh-sach-hoc-sinh');
+        }
+        else{
+            dd("error");
+        }
+    }
 }

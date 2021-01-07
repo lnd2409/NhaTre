@@ -25,6 +25,7 @@ class GiaoVienSeeder extends Seeder
                 'gv_ngaysinh' => $faker->date($format = 'Y-m-d', $max = 'now'),
                 'gv_gioitinh' => rand(0,1),
                 'nt_id' => 1,
+                'gv_bangcap' => 'Đại học',
                 // 'lh_id' => rand('')
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),

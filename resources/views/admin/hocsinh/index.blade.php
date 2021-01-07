@@ -137,7 +137,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
                     <button type="submit" class="btn btn-primary">Chỉnh sửa</button>
                     <hr>
                     <p class="text-center">Kiểm tra kỹ thông tin trước khi cập nhật</p>
@@ -147,7 +147,34 @@
         </div>
     </div>
 </div>
-
+<div id="editAvt" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <form action="{{ route('hoc-sinh.update-avata') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="my-modal-title">Cập nhật ảnh đại diện</h5>
+                    <button class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <input type="text" name="idHocSinh" id="idHocSinhImage" hidden>
+                        <label>Hình ảnh</label>
+                        {{-- <input type="file" name="hinhAnh"> --}}
+                        <input type="file" class="form-control" name="hinhAnh" id="imgInp">
+                        <img src="" height="300" width="300" alt="Ảnh đại diện" id="avatar">
+                        <div id="avatar"></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">Cập nhật</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
 @push('danh-sach-hoc-sinh')
 <script type="text/javascript">
     $(function () {
@@ -164,8 +191,9 @@
                 {data: 'hs_id', name: 'hs_id'},
                 {data: {hs_avata : 'hs_avata'}, name: 'hs_avata', 'render' : function(data){
                                     // return '<a href="'+url+'hocsinh/anh-dai-dien/' + data.lh_id +'"> '+data.lh_tenlop+'</a>';
-                                    return '<img src="'+url+'hinh-anh-hoc-sinh/anh-dai-dien/'+ data.hs_avata +'" alt="Ảnh đại diện">';
-
+                                    return '<img src="'+url+'hinh-anh-hoc-sinh/anh-dai-dien/'+ data.hs_avata +'" alt="Ảnh đại diện">'
+                                    + '<br>'
+                                    +'<a href="#" data-toggle="modal" data-target="#editAvt" data-id="'+ data.hs_id +'" class="openModalUpdateImg">Cập nhật</a>';
                                 }
                             },
                 {data: 'hs_hoten', name: 'hs_hoten'},
@@ -225,6 +253,33 @@
                 }
             });
         });
+    });
+</script>
+<script>
+    $(document).ready(function(){
+        $(document).on('click','.openModalUpdateImg',function(){
+            var id = $(this).data('id');
+            var url = "{!! asset('') !!}";
+            // console.log(url);
+            console.log(id);
+            $('#idHocSinhImage').val(id);
+        });
+    });
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+            $('#avatar').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]); // convert to base64 string
+        }
+        }
+
+        $("#imgInp").change(function() {
+        readURL(this);
     });
 </script>
 @endpush

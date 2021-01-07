@@ -1,4 +1,4 @@
-@extends('phu-huynh.template.master')
+@extends('admin.template.master')
 @section('title')
     Hộp thư
 @endsection
@@ -13,7 +13,7 @@
     </div>
 </div>
 <div class="header-advance-area">
-    @include('phu-huynh.template.header')
+    @include('admin.template.header')
     <div class="breadcome-area">
         <div class="container-fluid">
             <div class="row">
@@ -63,11 +63,12 @@
                                     @endif
 
                                 ">
-                                <a href="{{ route('phu-huynh.hop-thu-den') }}">
+                                <a href="{{ route('nha-truong.gop-y') }}">
                                     <span class="pull-right"></span>
-                                    <i class="fa fa-envelope"></i> Thư đến @if ($demBaiViet)
+                                    <i class="fa fa-envelope"></i> Thư đến
+                                    {{-- @if ($demBaiViet)
                                         ({{ $demBaiViet }})
-                                    @endif
+                                    @endif --}}
                                 </a>
                             </li>
 
@@ -114,7 +115,10 @@
                                                     <label></label>
                                                 </div>
                                             </td>
-                                            <td><a href="#">{{ $item->gv_ten }}</a></td>
+                                            <?php
+                                                $sender = DB::table('phuhuynh')->where('ph_id', $item->ph_id)->first();
+                                            ?>
+                                            <td><a href="#">{{ $sender->ph_hoten }}</a></td>
                                             <td><a href="{{ route('phu-huynh.chi-tiet-thong-bao', ['idThu'=>$item->tb_id]) }}">{{ $item->tb_tieude }}</a>
                                             </td>
                                             <td class="text-center mail-date">{{ Carbon\Carbon::parse($item->tb_ngayviet)->format('d/m/Y') }}</td>

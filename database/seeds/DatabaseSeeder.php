@@ -10,19 +10,19 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $dataKhoiHoc = [
-            [
-                'kh_tenkhoi' => 'Mầm',
-                'kh_dotuoi' => '3-4'
-            ],[
-                'kh_tenkhoi' => 'Chồi',
-                'kh_dotuoi' => '4-5'
-            ],[
-                'kh_tenkhoi' => 'Lá',
-                'kh_dotuoi' => '5-6'
-            ],
-        ];
-        DB::table('khoihoc')->insert($dataKhoiHoc);
+        // $dataKhoiHoc = [
+        //     [
+        //         'kh_tenkhoi' => 'Mầm',
+        //         'kh_dotuoi' => '3-4'
+        //     ],[
+        //         'kh_tenkhoi' => 'Chồi',
+        //         'kh_dotuoi' => '4-5'
+        //     ],[
+        //         'kh_tenkhoi' => 'Lá',
+        //         'kh_dotuoi' => '5-6'
+        //     ],
+        // ];
+        // DB::table('khoihoc')->insert($dataKhoiHoc);
 
         // $dataTruongHoc = [
         //     [
@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
         //         'nt_diachi' => '132 Mậu Thân',
         //         'nt_sodienthoai' => '0909009008',
         //         'nt_email' => 'thanhxuan@edu.tx.vn',
+        //         'nt_thanhpho' => 'Cần Thơ',
         //         'username' => 'thanhxuan',
         //         'password' => Hash::make('123'),
         //         'nt_trangthai' => 1
@@ -39,6 +40,7 @@ class DatabaseSeeder extends Seeder
         //         'nt_diachi' => '132 Nguyễn Văn Cừ',
         //         'nt_sodienthoai' => '0909009008',
         //         'nt_email' => 'cuulong@edu.tx.vn',
+        //         'nt_thanhpho' => 'Cần Thơ',
         //         'username' => 'cuulong',
         //         'password' => Hash::make('123'),
         //         'nt_trangthai' => 1
@@ -48,7 +50,7 @@ class DatabaseSeeder extends Seeder
 
         // $this->call(HocSinhSeeder::class);
         // $this->call(GiaoVienSeeder::class);
-        // $this->call(PhuHuynhSeeder::class);
+        $this->call(PhuHuynhSeeder::class);
         // $this->call(MonHocSeeder::class);
     }
 }

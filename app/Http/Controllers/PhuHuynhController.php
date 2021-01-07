@@ -36,7 +36,7 @@ class PhuHuynhController extends Controller
         // $avata = $request
         if ($request->hasFile('anhDaiDien')) {
             $file = $request->file('anhDaiDien')->getClientOriginalName();
-            $request->file('anhDaiDien')->move(public_path('phu-huynh/anh-dai-dien/'),$file);
+            $request->file('anhDaiDien')->move(public_path('hinh-anh-phu-huynh/anh-dai-dien/'),$file);
             $addGiaoVien = DB::table('phuhuynh')->insert(
                 [
                     'ph_hoten' => $hoTen,

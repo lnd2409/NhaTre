@@ -23,6 +23,7 @@ class PhuHuynhSeeder extends Seeder
                 'ph_sdt' => $faker->phoneNumber,
                 'ph_hoten' => $faker->name,
                 'ph_diachi' => $faker->address,
+                'ph_gioitinh' => rand(0,1),
                 'ph_ngaysinh' => $faker->date($format = 'Y-m-d', $max = 'now'),
                 'nt_id' => 1
             ]);

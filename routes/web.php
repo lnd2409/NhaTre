@@ -15,7 +15,7 @@
 Route::get('/', function() {
     return view('client.index');
 })->name('trang-chu');
-Route::get('/truong-hoc', 'TrangChu\TrangChuController@getSchool')->name('trang-chu.truong-hoc');
+Route::get('/thanh-vien', 'TrangChu\TrangChuController@getSchool')->name('trang-chu.truong-hoc');
 Route::get('/truong-hoc/{idSchool}/chi-tiet', 'TrangChu\TrangChuController@shoolDetail')->name('trang-chu.chi-tiet-truong-hoc');
 
 
@@ -70,6 +70,7 @@ Route::group(['middleware' => ['checkNhaTruong']], function () {
             Route::post('xu-ly-them-hoc-sinh', 'HocSinhController@addStudent')->name('hocsinh.xu-ly-them');
             Route::post('cap-nhat', 'HocSinhController@handleEdit')->name('hoc-sinh.xu-ly-chinh-sua');
             Route::get('hoc-ky-nam-hoc','HocSinhController@getCourse')->name('hoc-sinh.danh-sach-hoc-ky-nam-hoc');
+            Route::post('update-avata','HocSinhController@updateAvt')->name('hoc-sinh.update-avata');
         });
 
         #Thực đơn
@@ -97,7 +98,9 @@ Route::group(['middleware' => ['checkNhaTruong']], function () {
         Route::get('sap-lich-hoat-dong/{idClass}', 'HoatDongController@makeActivate')->name('nha-truong.sap-lich-hoat-dong');
         Route::get('lich-hoat-dong/{idClass}', 'HoatDongController@getActivate')->name('nha-truong.lich-hoat-dong-chi-tiet');
 
-
+        Route::group(['prefix' => 'gop-y'], function () {
+            Route::get('/', 'GopYController@getAlert')->name('nha-truong.gop-y');
+        });
 
     });
 
@@ -197,6 +200,8 @@ Route::group(['prefix' => 'phu-huynh'], function () {
             Route::get('thu-den', 'PhuHuynh\GopYController@hopThuDen')->name('phu-huynh.hop-thu-den');
             Route::get('chi-tiet/{idThu}', 'PhuHuynh\GopYController@docthuDen')->name('phu-huynh.chi-tiet-thong-bao');
             Route::post('phan-hoi/{idThu}', 'PhuHuynh\GopYController@phanHoi')->name('phu-huynh.phan-hoi');
+            Route::get('viet-thong-bao','PhuHuynh\GopYController@create')->name('phu-huynh.viet-thong-bao');
+            Route::post('xu-ly-viet-thong-bao', 'PhuHuynh\GopYController@handleWrite')->name('phu-huynh.xu-ly-viet-thong-bao');
         });
 
         #Đơn xin phép
@@ -216,3 +221,8 @@ Route::group(['prefix' => 'phu-huynh'], function () {
 Route::get('quan-tri', function () {
     return view('admin-he-thong.index');
 });
+
+Route::get('/truong-hoc', 'QuanTri\AdminController@getSchool')->name('quan-tri.danh-sach-truong');
+Route::get('/khoa-tai-khoan/{id}', 'QuanTri\AdminController@blockSchool')->name('quan-tri.khoa-tai-khoan');
+Route::get('/duyet-tai-khoan/{id}', 'QuanTri\AdminController@acceptSchool')->name('quan-tri.mo-tai-khoan');
+Route::get('/truong-hoc/{id}', 'QuanTri\AdminController@schoolDetail')->name('quan-tri.chi-tiet');
