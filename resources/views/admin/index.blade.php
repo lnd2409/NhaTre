@@ -270,4 +270,81 @@
         </div>
     </div>
 </div>
+<br>
+<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+    <div class="white-box">
+        <h3 class="box-title">Học sinh chưa đóng học phí</h3>
+        <ul class="basic-list">
+            <li >
+                Họ tên
+                <span class="pull-right">Ngày sinh</span>
+            </li>
+            @foreach ($hocSinh as $item)
+                <li >
+                    {{ $item->hs_hoten }}
+                    <span class="pull-right">{{ Carbon\Carbon::parse($item->hs_ngaysinh)->format('d-m-Y') }}</span>
+                </li>
+            @endforeach
+        </ul>
+    </div>
+</div>
+<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+    <div class="white-box">
+        <h3 class="box-title">Tình trạng học tập</h3>
+        <ul class="basic-list">
+            <li>Tỉ lệ giỏi
+                <span class="pull-right label-danger label-1 label">
+                    <?php
+                        $id = Auth::guard('nhatruong')->id();
+                        $hocSinh = DB::table('hocsinh')
+                                ->join('lophoc','lophoc.lh_id','hocsinh.lh_id')
+                                ->where('lophoc.nt_id',$id)
+                                ->count();
+                        $hocSinhGioi = DB::table('hocsinh')
+                                ->join('lophoc','lophoc.lh_id','hocsinh.lh_id')
+                                ->where('lophoc.nt_id',$id)
+                                ->join('sobengoan','sobengoan.hs_id','hocsinh.hs_id')
+                                ->where('sbn_hoctap','>=',7)
+                                ->count();
+                        // dd($hocSinhKha/$hocSinh);
+                        $hocSinhGioi = $hocSinhGioi / $hocSinh * 100;
+                        // dd($hocSinhKha);
+                    ?>
+                    {{ $hocSinhGioi }}%
+                </span>
+            </li>
+            <li>Tỉ lệ khá
+                <span class="pull-right label-purple label-2 label">
+                    <?php
+                        $hocSinhKha = DB::table('hocsinh')
+                                ->join('lophoc','lophoc.lh_id','hocsinh.lh_id')
+                                ->where('lophoc.nt_id',$id)
+                                ->join('sobengoan','sobengoan.hs_id','hocsinh.hs_id')
+                                ->where('sbn_hoctap','<',7)
+                                ->where('sbn_hoctap','>=',4)
+                                ->count();
+                        // dd($hocSinhKha/$hocSinh);
+                        $hocSinhKha = $hocSinhKha / $hocSinh * 100;
+                        // dd($hocSinhKha);
+                    ?>
+                    {{ $hocSinhKha }}%
+                </span>
+            </li>
+            <li>Tỉ lệ trung bình
+                <span class="pull-right label-info label-4 label">
+                    <?php
+                        $hocSinhTB = DB::table('hocsinh')
+                                ->join('lophoc','lophoc.lh_id','hocsinh.lh_id')
+                                ->where('lophoc.nt_id',$id)
+                                ->join('sobengoan','sobengoan.hs_id','hocsinh.hs_id')
+                                ->where('sbn_hoctap','<',4)
+                                ->count();
+                        $hocSinhTB = $hocSinhTB / $hocSinh * 100;
+                    ?>
+                    {{ $hocSinhTB }}%
+                </span>
+            </li>
+        </ul>
+    </div>
+</div>
 @endsection

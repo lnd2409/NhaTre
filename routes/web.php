@@ -12,9 +12,7 @@
 */
 
 // Trang giới thiệu
-Route::get('/', function() {
-    return view('client.index');
-})->name('trang-chu');
+Route::get('/', 'TrangChu\TrangChuController@index')->name('trang-chu');
 Route::get('/thanh-vien', 'TrangChu\TrangChuController@getSchool')->name('trang-chu.truong-hoc');
 Route::get('/truong-hoc/{idSchool}/chi-tiet', 'TrangChu\TrangChuController@shoolDetail')->name('trang-chu.chi-tiet-truong-hoc');
 
@@ -100,6 +98,7 @@ Route::group(['middleware' => ['checkNhaTruong']], function () {
 
         Route::group(['prefix' => 'gop-y'], function () {
             Route::get('/', 'GopYController@getAlert')->name('nha-truong.gop-y');
+            // Route::get('/viet-gop-y','G')
         });
 
     });
@@ -214,15 +213,20 @@ Route::group(['prefix' => 'phu-huynh'], function () {
             Route::get('/chi-tiet/{idActive}', 'PhuHuynh\LichHoatDongController@getDetailActive')->name('phu-huynh.hoat-dong-chi-tiet');
         });
         Route::get('thuc-don', 'PhuHuynh\ThucDonController@thucDon')->name('phu-huynh.thuc-don');
+
+        Route::group(['prefix' => 'danh-gia'], function () {
+            Route::get('/', 'PhuHuynh\DanhGiaController@viewDanhGia')->name('phu-huynh.danh-gia');
+            Route::post('xu-ly-danh-gia', 'PhuHuynh\DanhGiaController@handleRating')->name('phu-huynh.xu-ly-danh-gia');
+        });
     });
 });
 
 #admin hệ thống
-Route::get('quan-tri', function () {
-    return view('admin-he-thong.index');
-});
+// Route::get('quan-tri', function () {
+//     return view('admin-he-thong.index');
+// });
 
-Route::get('/truong-hoc', 'QuanTri\AdminController@getSchool')->name('quan-tri.danh-sach-truong');
+Route::get('quan-tri', 'QuanTri\AdminController@getSchool')->name('quan-tri.danh-sach-truong');
 Route::get('/khoa-tai-khoan/{id}', 'QuanTri\AdminController@blockSchool')->name('quan-tri.khoa-tai-khoan');
 Route::get('/duyet-tai-khoan/{id}', 'QuanTri\AdminController@acceptSchool')->name('quan-tri.mo-tai-khoan');
 Route::get('/truong-hoc/{id}', 'QuanTri\AdminController@schoolDetail')->name('quan-tri.chi-tiet');

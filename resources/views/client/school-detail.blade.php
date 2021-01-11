@@ -180,70 +180,53 @@
         <div class="row mb-5">
           <div class="col-12 text-center">
             <span class="text-cursive h5 text-red d-block">Đánh giá</span>
-            <h2 class="text-black">Khách hàng nói gì về chúng tôi ?</h2>
+            <h2 class="text-black">Phụ huynh nói gì về chúng tôi ?</h2>
           </div>
         </div>
         <div class="row justify-content-center">
             <div class="col-md-8">
-              <div class="testimonial-3-wrap">
-
-
-                <div class="owl-carousel nonloop-block-13">
-                  <div class="testimonial-3 d-flex">
-                    <div class="vcard-wrap mr-5">
-                      <img src="{{asset('client')}}/images/person_1.jpg" alt="Image" class="vcard img-fluid">
+                <div class="testimonial-3-wrap">
+                    <div class="owl-carousel nonloop-block-13">
+                        @foreach ($danhGia as $item)
+                        <div class="testimonial-3 d-flex">
+                            <div class="vcard-wrap mr-5">
+                                <img src="{{asset('client')}}/images/person_1.jpg" alt="Image" class="vcard img-fluid">
+                            </div>
+                            <div class="text">
+                                <h3>{{ $item->ph_hoten }}</h3>
+                                <p class="position" style="display: inline-flex">
+                                    @for ($i = 1; $i <= $item->dg_diem; $i++)
+                                        <span>
+                                            <img src="{{asset('client/images')}}/star.png" alt="" style="width: 20px; margin-top: 0px; margin-bottom: 10px; margin-right: 5px;">
+                                        </span>
+                                    @endfor
+                                </p>
+                                <p>{{ $item->dg_noidung }}</p>
+                            </div>
+                        </div>
+                        @endforeach
                     </div>
-                    <div class="text">
-                      <h3>Jeff Woodland</h3>
-                      <p class="position">Partner</p>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam earum libero rem maxime magnam. Similique esse ab earum, autem consectetur.</p>
-                    </div>
-                  </div>
-
-                  <div class="testimonial-3 d-flex">
-                    <div class="vcard-wrap mr-5">
-                      <img src="{{asset('client')}}/images/person_3.jpg" alt="Image" class="vcard img-fluid">
-                    </div>
-                    <div class="text">
-                      <h3>Jeff Woodland</h3>
-                      <p class="position">Partner</p>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam earum libero rem maxime magnam. Similique esse ab earum, autem consectetur.</p>
-                    </div>
-                  </div>
-
-                  <div class="testimonial-3 d-flex">
-                    <div class="vcard-wrap mr-5">
-                      <img src="{{asset('client')}}/images/person_2.jpg" alt="Image" class="vcard img-fluid">
-                    </div>
-                    <div class="text">
-                      <h3>Jeff Woodland</h3>
-                      <p class="position">Partner</p>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam earum libero rem maxime magnam. Similique esse ab earum, autem consectetur.</p>
-                    </div>
-                  </div>
                 </div>
-
-              </div>
             </div>
         </div>
         <div class="row mt-5 justify-content-center">
           <div class="col-md-8">
             <div class="row">
               <div class="col-lg-3 text-center">
-                <span class="text-teal h2 d-block">3423</span>
-                <span>Khách hàng hài lòng</span>
+                <span class="text-teal h2 d-block">{{ $truongHoc->nt_danhgia }} <img src="{{asset('client/images')}}/star.png" alt="" style="width: 20px; margin-top: 0px; margin-bottom: 10px; margin-right: 5px;"></span>
+                <span>Mức độ hài lòng</span>
               </div>
               <div class="col-lg-3 text-center">
-                <span class="text-yellow h2 d-block">4398</span>
-                <span>Thành viên</span>
+                <span class="text-yellow h2 d-block">{{ $giaoVien }}</span>
+                <span>Giáo viên</span>
               </div>
               <div class="col-lg-3 text-center">
-                <span class="text-success h2 d-block">50+</span>
-                <span>Nhân viên</span>
+                <span class="text-success h2 d-block">{{ $hocSinh }}</span>
+                <span>Học sinh</span>
               </div>
               <div class="col-lg-3 text-center">
-                <span class="text-danger h2 d-block">2000+</span>
-                <span>Lượt theo dõi</span>
+                <span class="text-danger h2 d-block">{{ $lopHoc }}</span>
+                <span>Lớp học</span>
               </div>
             </div>
           </div>

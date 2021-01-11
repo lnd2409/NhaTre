@@ -87,8 +87,6 @@
                                         <td>
                                             <a href="{{ route('chi-tiet-lop-hoc', ['id' => $item->lh_id]) }}" class="btn btn-default">Chi tiết</a>
                                             <a href="{{ route('nha-truong.lich-hoat-dong-chi-tiet', ['idClass'=> $item->lh_id]) }}">Chi tiết lịch hoạt động</a>
-                                            <a href="#" class="btn btn-success">Sửa</a>
-                                            <a href="#" class="btn btn-danger">Xóa</a>
                                         </td>
                                     </tr>
                                     @endforeach

@@ -104,7 +104,14 @@
                         {{-- style="color: rgb(32, 31, 31) !important; background-color: ghostwhite;" --}}
                         <a href="{{ route('nha-truong.gop-y') }}" aria-expanded="false">
                             <span class="educate-icon educate-interface"></span>
-                            <span class="mini-click-non" >Góp ý</span>
+                            <span class="mini-click-non" >Góp ý
+
+                                <?php
+                                    $id = Auth::guard('nhatruong')->user()->username;
+                                    $count = DB::table('nguoinhan')->where('nn_id',$id)->where('nn_trangthai',0)->count();
+                                ?>
+                                ({{ $count }})
+                            </span>
                         </a>
                     </li>
                 </ul>

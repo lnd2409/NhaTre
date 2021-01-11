@@ -34,6 +34,17 @@
                                 <p style="color: white;">
                                     <span>Xin chào, </span><span><b>{{ Auth::guard('phuhuynh')->user()->ph_hoten }}</b></span>
                                 </p>
+                                <?php
+                                    $danhGia = DB::table('danhgia')->where('ph_id', Auth::guard('phuhuynh')->id())->first();
+                                ?>
+                                @if (!$danhGia)
+                                    <p style="color: white;">
+                                        <span>Xin vui lòng đánh giá để chúng tôi phát triển hơn.</span>
+                                        <b><a href="{{ route('phu-huynh.danh-gia') }}" style="color: white;">Tại đây</a></b>
+                                    </p>
+                                @else
+
+                                @endif
                             @endif
                         </div>
                         <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
@@ -78,3 +89,5 @@
         </div>
     </div>
 </div>
+<br>
+<br>

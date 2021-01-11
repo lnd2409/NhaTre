@@ -110,7 +110,7 @@
                         <input type="text" name="tenMonHoc" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label>Tên môn học</label>
+                        <label>Mô tả môn học</label>
                         <textarea name="moTa" class="form-control" cols="30" rows="10"></textarea>
                     </div>
                 </div>

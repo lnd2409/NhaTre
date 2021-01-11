@@ -39,7 +39,7 @@ class LichHoatDongController extends Controller
                 $idAct = $request->idHoatDong;
                 $insertImage = DB::table('hinhanhhoatdong')->insert([
                     'ctlhd_id' => $idAct,
-                    'hahd_duongdan' => '/hinh-anh-hoat-dong/'.$name
+                    'hahd_duongdan' => 'hinh-anh-hoat-dong/'.$name
                 ]);
             }
             return redirect()->back();

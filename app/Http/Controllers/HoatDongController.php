@@ -75,6 +75,24 @@ class HoatDongController extends Controller
                         ->join('lichhoatdong','lichhoatdong.lhd_id','chitietlichhoatdong.lhd_id')
                         ->join('monhoc','monhoc.mh_id','chitietlichhoatdong.mh_id')
                         ->where('lh_id',$idClass)->get('mh_tenmon','lichhoatdong.lhd_id');
-        dd($lichHoatDong);
+        $idPhuHuynh = Auth::guard('phuhuynh')->id();
+        // $getClass = DB::table('phuhuynh')->where('gv_id',$idTecher)->first();
+        // dd($idPhuHuynh);
+        // $getHocSinh = DB::table('hocsinh')->where('ph_id',$idPhuHuynh)->first();
+        // dd($getHocSinh);
+        $getActList = DB::table('lichhoatdong')->where('lh_id',$idClass)->paginate(5);
+        // $getAct = $getActList['data'];
+        // dd($getActList);
+        // dd($getAct);
+        $activities = array();
+        foreach ($getActList as $value) {
+            # code...
+            $activities[$value->lhd_id] = DB::table('chitietlichhoatdong')
+                                        ->where('lhd_id',$value->lhd_id)
+                                        ->join('monhoc','monhoc.mh_id','chitietlichhoatdong.mh_id')
+                                        ->get();
+        }
+        // dd($lichHoatDong);
+        return view('admin.lophoc.act', compact('activities','getActList'));
     }
 }

@@ -10,8 +10,6 @@
   </head>
 
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
-
-
     <div class="site-wrap" id="home-section">
 
         <div class="site-mobile-menu site-navbar-target">
@@ -148,26 +146,79 @@
           <div class="col-md-8">
             <div class="row">
               <div class="col-lg-3 text-center">
-                <span class="text-teal h2 d-block">3423</span>
+                <span class="text-teal h2 d-block">
+                    <?php
+                        $countRate = DB::table('danhgia')->where('dg_diem','>','3')->count();
+                    ?>
+                    {{ $countRate }}
+                </span>
                 <span>Khách hàng hài lòng</span>
               </div>
               <div class="col-lg-3 text-center">
-                <span class="text-yellow h2 d-block">4398</span>
+                <span class="text-yellow h2 d-block">
+                    <?php
+                        $countSchool = DB::table('nhatruong')->count();
+                    ?>
+                    {{ $countSchool }}
+                </span>
                 <span>Thành viên</span>
               </div>
               <div class="col-lg-3 text-center">
-                <span class="text-success h2 d-block">50+</span>
-                <span>Nhân viên</span>
+                <span class="text-success h2 d-block">
+                    <?php
+                        $countTeacher = DB::table('giaovien')->count();
+                    ?>
+                    {{ $countTeacher }}
+                </span>
+                <span>Giáo viên</span>
               </div>
               <div class="col-lg-3 text-center">
-                <span class="text-danger h2 d-block">2000+</span>
-                <span>Lượt theo dõi</span>
+                <span class="text-danger h2 d-block">
+                    <?php
+                        $countStudent = DB::table('hocsinh')->count();
+                    ?>
+                    {{ $countStudent }}
+                </span>
+                <span>Học sinh</span>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+    <div class="site-section bg-teal">
+        <div class="container">
+          <div class="row justify-content-center text-center mb-5 section-2-title">
+            <div class="col-md-6">
+              <span class="text-cursive h5 text-red">Các trường thành viên</span>
+              <p class="mb-5">Các trường được đánh giá cao</p>
+            </div>
+          </div>
+          <div class="row align-items-stretch">
+              {{-- {{ dd($school) }} --}}
+              @foreach ($school as $item)
+                  <div class="col-lg-4 col-md-6 mb-5">
+                      <div class="post-entry-1 h-100 person-1 teal">
+
+                          <img src="{{asset('client')}}/images/flaticon/svg/001-jigsaw.svg" alt="Image"
+                          class="img-fluid">
+
+                      <div class="post-entry-1-contents">
+                          <h2><a href="{{ route('trang-chu.chi-tiet-truong-hoc', ['idSchool'=>$item->nt_id]) }}"><a href="{{ route('trang-chu.chi-tiet-truong-hoc', ['idSchool'=>$item->nt_id]) }}"><a href="{{ route('trang-chu.chi-tiet-truong-hoc', ['idSchool'=>$item->nt_id]) }}"><a href="{{ route('trang-chu.chi-tiet-truong-hoc', ['idSchool'=>$item->nt_id]) }}">{{ $item->nt_tentruong }}</a></h2>
+                          <span class="meta" style="color: black">SĐT: {{ $item->nt_sodienthoai }}</span>
+                          <p>Địa chỉ: {{ $item->nt_diachi }}</p>
+                          @for ($i = 1; $i <= $item->nt_danhgia; $i++)
+                            <img src="{{asset('client/images')}}/star.png" alt="" style="width: 20px; margin-top: 0px; margin-bottom: 10px;">
+                          @endfor
+                      </div>
+                      </div>
+                  </div>
+              @endforeach
+
+
+          </div>
+        </div>
+      </div>
     @include('client.template.footer')
     </div>
     @include('client.template.js')

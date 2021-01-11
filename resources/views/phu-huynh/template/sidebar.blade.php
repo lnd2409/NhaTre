@@ -18,7 +18,7 @@
                     <li>
                         <a href="#" aria-expanded="false">
                             <span class="educate-icon educate-interface"></span>
-                            <span class="mini-click-non" >Sổ liên lạc</span>
+                            <span class="mini-click-non" >Sổ bé ngoan</span>
                         </a>
                     </li>
                     <li>
@@ -34,15 +34,21 @@
                         </a>
                     </li>
                     <li>
+                        <a href="{{ route('phu-huynh.don-xin-phep') }}" aria-expanded="false">
+                            <span class="educate-icon educate-interface"></span>
+                            <span class="mini-click-non" >Đơn xin phép</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{ route('phu-huynh.hop-thu-den') }}" aria-expanded="false">
                             <span class="educate-icon educate-interface"></span>
                             <span class="mini-click-non" >Hộp thư góp ý</span>
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('phu-huynh.don-xin-phep') }}" aria-expanded="false">
+                        <a href="{{ route('phu-huynh.danh-gia') }}" aria-expanded="false">
                             <span class="educate-icon educate-interface"></span>
-                            <span class="mini-click-non" >Đơn xin phép</span>
+                            <span class="mini-click-non">Đánh giá trường</span>
                         </a>
                     </li>
                 </ul>
