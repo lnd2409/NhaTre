@@ -126,7 +126,7 @@ class GiaoVienController extends Controller
         if ($request->hasFile('anhDaiDien')) {
             $id = $request->idGiaoVien;
             $file = $request->file('anhDaiDien')->getClientOriginalName();
-            $request->file('anhDaiDien')->move(public_path('giao-vien/anh-dai-dien/'),$file);
+            $request->file('anhDaiDien')->move(public_path('hinh-anh-giao-vien/anh-dai-dien/'),$file);
             $edit = DB::table('giaovien')->where('gv_id',$id)->update(
                 [
                     'gv_avata' => $file

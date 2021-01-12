@@ -218,6 +218,8 @@ Route::group(['prefix' => 'phu-huynh'], function () {
             Route::get('/', 'PhuHuynh\DanhGiaController@viewDanhGia')->name('phu-huynh.danh-gia');
             Route::post('xu-ly-danh-gia', 'PhuHuynh\DanhGiaController@handleRating')->name('phu-huynh.xu-ly-danh-gia');
         });
+
+        Route::get('so-be-ngoan', 'PhuHuynh\SoBeNgoanController@index')->name('phu-huynh.so-be-ngoan');
     });
 });
 

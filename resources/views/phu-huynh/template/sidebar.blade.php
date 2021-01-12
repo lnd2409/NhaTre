@@ -16,7 +16,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" aria-expanded="false">
+                        <a href="{{ route('phu-huynh.so-be-ngoan') }}" aria-expanded="false">
                             <span class="educate-icon educate-interface"></span>
                             <span class="mini-click-non" >Sổ bé ngoan</span>
                         </a>
