@@ -306,8 +306,14 @@
                                 ->join('sobengoan','sobengoan.hs_id','hocsinh.hs_id')
                                 ->where('sbn_hoctap','>=',7)
                                 ->count();
-                        // dd($hocSinhKha/$hocSinh);
-                        $hocSinhGioi = $hocSinhGioi / $hocSinh * 100;
+                        // dd($hocSinhGioi);
+                        if($hocSinhGioi == 0)
+                        {
+
+                        }
+                        else{
+                            $hocSinhGioi = $hocSinhGioi / $hocSinh * 100;
+                        }
                         // dd($hocSinhKha);
                     ?>
                     {{ $hocSinhGioi }}%
@@ -324,7 +330,14 @@
                                 ->where('sbn_hoctap','>=',4)
                                 ->count();
                         // dd($hocSinhKha/$hocSinh);
-                        $hocSinhKha = $hocSinhKha / $hocSinh * 100;
+                        // $hocSinhKha = $hocSinhKha / $hocSinh * 100;
+                        if($hocSinhKha == 0)
+                        {
+
+                        }
+                        else{
+                            $hocSinhKha = $hocSinhKha / $hocSinh * 100;
+                        }
                         // dd($hocSinhKha);
                     ?>
                     {{ $hocSinhKha }}%
@@ -339,7 +352,14 @@
                                 ->join('sobengoan','sobengoan.hs_id','hocsinh.hs_id')
                                 ->where('sbn_hoctap','<',4)
                                 ->count();
-                        $hocSinhTB = $hocSinhTB / $hocSinh * 100;
+                        // $hocSinhTB = $hocSinhTB / $hocSinh * 100;
+                        if($hocSinhTB == 0)
+                        {
+
+                        }
+                        else{
+                            $hocSinhTB = $hocSinhTB / $hocSinh * 100;
+                        }
                     ?>
                     {{ $hocSinhTB }}%
                 </span>
